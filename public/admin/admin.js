@@ -135,6 +135,7 @@ views.leads = async () => {
 const qsOf = o => new URLSearchParams(Object.entries(o).filter(([, v]) => v !== '' && v != null)).toString();
 async function loadLeads() {
   const d = await api('/submissions?' + qsOf(Object.assign({ limit: 50 }, leadQ)));
+  if (!$('#ltbl')) return; // user navigated away while loading
   const { page, ...noPage } = leadQ; $('#csv').href = '/api/admin/submissions.csv?' + qsOf(noPage);
   const pages = Math.max(1, Math.ceil(d.total / d.limit));
   $('#ltbl').innerHTML = d.rows.length ? `<div class="tbl-wrap"><table><thead><tr><th><input type="checkbox" id="all" aria-label="Select all"></th><th>Received</th><th>Name</th><th>Contact</th><th>Form</th><th>Interest</th><th>Year</th><th>Ref</th><th>Status</th></tr></thead><tbody>
