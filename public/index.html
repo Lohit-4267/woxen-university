@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Arzon Global × CrowdCore Woxsen — Become who recruiters want</title>
+<meta name="description" content="Career-ready programmes for Woxsen MBA & BBA students: real projects, a 3-month internship, certification and placement support. In partnership with CrowdCore, Woxsen's marketing club." />
+<meta name="theme-color" content="#060b14" />
+<link rel="icon" id="favicon" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   DESIGN TOKENS (v2 look + logo sky-blue)
+   ============================================================ */
+:root{
+  --bg:#060b14; --bg-2:#0b1220; --bg-3:#101a2c;
+  --surface:rgba(148,180,220,.04); --surface-2:rgba(148,180,220,.075);
+  --line:rgba(148,180,220,.11); --line-2:rgba(148,180,220,.2);
+  --text:#f1f5fb; --text-2:#bcc7d6; --muted:#8392a7;
+  --violet:#3d8ade; --violet-2:#9cc9f3; --mint:#7fbcef; --sky:#9cc9f3; --warm:#e9b872; --bad:#f08a95;
+  --brand:#2f7fd8; --brand-hi:#4a93e3; --ok:#6cc9a4;
+  --radius:20px; --ease:cubic-bezier(.16,1,.3,1);
+  --sans:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --serif:'Instrument Serif',Georgia,serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none} button,input,select{font:inherit;color:inherit} img{display:block;max-width:100%}
+[hidden]{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--violet-2);outline-offset:3px;border-radius:10px}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+.grad{background:linear-gradient(95deg,#ffffff 0%,#cfe4f8 40%,#8ec2f0 100%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ============================================================ NAV */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:60;width:min(1120px,calc(100% - 24px));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 16px;
+  background:rgba(12,12,18,.62);border:1px solid var(--line);border-radius:100px;backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%)}
+.brand{display:flex;align-items:center;gap:12px;white-space:nowrap}
+.brand img{height:26px;width:auto}
+.brand small{font-family:var(--mono);font-size:11px;color:var(--muted);border-left:1px solid var(--line-2);padding-left:12px;letter-spacing:.03em}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-size:14px;color:var(--text-2);padding:8px 14px;border-radius:100px;transition:background .2s,color .2s}
+.nav-links a:hover,.nav-links a.on{background:var(--surface-2);color:var(--text)}
+.nav-r{display:flex;gap:8px;align-items:center}
+.menu-btn{display:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);cursor:pointer;place-items:center}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:16px;height:2px;background:#fff;border-radius:2px;position:relative;transition:.3s var(--ease)}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}.menu-btn span::before{top:-5px}.menu-btn span::after{top:5px}
+.menu-open .menu-btn span{background:transparent}.menu-open .menu-btn span::before{top:0;transform:rotate(45deg)}.menu-open .menu-btn span::after{top:0;transform:rotate(-45deg)}
+.sheet{position:fixed;inset:0;z-index:55;background:rgba(6,6,10,.94);backdrop-filter:blur(18px);padding:96px 24px 24px;display:flex;flex-direction:column;gap:4px;opacity:0;pointer-events:none;transition:opacity .3s}
+.menu-open .sheet{opacity:1;pointer-events:auto}
+.sheet a{font-size:30px;letter-spacing:-.03em;font-weight:600;padding:12px 0;border-bottom:1px solid var(--line)}
+.sheet a i{font-family:var(--serif);font-weight:400;color:var(--violet-2)}
+
+/* ============================================================ BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;white-space:nowrap;font-weight:600;font-size:15px;padding:12px 20px;border-radius:100px;min-height:44px;
+  transition:transform .25s var(--ease),background .2s,box-shadow .25s}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 20px -8px rgba(47,127,216,.7)}
+.btn-primary:hover{background:var(--brand-hi);transform:translateY(-1px)}
+.btn-light{background:#fff;color:#0b1220}.btn-light:hover{background:#e8f1fb}
+.btn-ghost{background:var(--surface);border:1px solid var(--line-2);color:var(--text)} .btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{padding:9px 16px;font-size:14px;min-height:38px} .btn-full{width:100%}
+.btn[disabled]{opacity:.6;pointer-events:none}
+.arrow{transition:transform .25s var(--ease)} .btn:hover .arrow,.t-cta:hover .arrow,.link:hover .arrow{transform:translateX(3px)}
+.link{color:var(--violet-2);font-weight:600;display:inline-flex;gap:6px;align-items:center;background:none;border:0;padding:0;cursor:pointer;font-size:15px}
+.link:hover{color:#fff}
+
+/* ============================================================ HERO (v2) */
+.hero{position:relative;min-height:100svh;padding:120px 0 50px;isolation:isolate;overflow:hidden}
+.hero::before,.p-hero::before{content:"";position:absolute;inset:0;z-index:-2;background-image:radial-gradient(rgba(156,201,243,.1) 1px,transparent 1px);background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 35%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 35%,#000 30%,transparent 75%)}
+.aurora{position:absolute;inset:-20% -10% auto -10%;height:90%;z-index:-3;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
+.b1{width:48vw;height:48vw;max-width:680px;max-height:680px;left:4%;top:-14%;background:radial-gradient(circle,#1c4f92 0%,transparent 65%);opacity:.6}
+.b2{width:40vw;height:40vw;max-width:560px;max-height:560px;right:4%;top:4%;background:radial-gradient(circle,#2b78c9 0%,transparent 65%);opacity:.28}
+.b3{width:32vw;height:32vw;max-width:460px;max-height:460px;left:42%;top:30%;background:radial-gradient(circle,#5aa2e6 0%,transparent 65%);opacity:.14}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:5px 14px 5px 6px;border-radius:100px;background:var(--surface);border:1px solid var(--line-2);font-size:13px;color:var(--text-2)}
+.pill img{height:22px;width:auto;padding:3px 5px;border-radius:100px;background:rgba(0,0,0,.6)}
+.pill b{color:var(--text);font-weight:600} .pill .m{display:none}
+h1,h2,h3,h4{margin:0;letter-spacing:-.03em;font-weight:600;line-height:1.05}
+.hero h1{font-size:clamp(40px,6.4vw,82px);line-height:.98;letter-spacing:-.045em;margin:22px 0}
+.hero h1 .l2{display:block}
+.swap{display:inline-grid;vertical-align:bottom;overflow:hidden;height:1.06em;padding-right:.08em}
+.swap span{grid-area:1/1;font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.02em;
+  background:linear-gradient(95deg,#ffffff 0%,#cfe4f8 40%,#8ec2f0 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  transform:translateY(105%);opacity:0;transition:transform .7s var(--ease),opacity .5s}
+.swap span.on{transform:none;opacity:1}.swap span.out{transform:translateY(-105%);opacity:0}
+.fade-text{background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.55));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:clamp(17px,1.6vw,19px);color:var(--text-2);max-width:54ch;margin:0 0 30px}
+.lede b{color:var(--text);font-weight:500}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.proof{display:flex;gap:28px;margin-top:40px;flex-wrap:wrap}
+.proof div{border-left:1px solid var(--line-2);padding-left:14px}
+.proof b{display:block;font-size:24px;font-weight:600;letter-spacing:-.02em}
+.proof span{font-size:13px;color:var(--muted)}
+/* emblem behind the card */
+.form-side{position:relative}
+.emblem{position:absolute;left:50%;top:50%;width:130%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:-1;pointer-events:none}
+.emblem .ring{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(255,255,255,.1)}
+.emblem .ring.r2{inset:12%;border-style:solid;border-color:rgba(156,198,241,.1)}
+.emblem img{position:absolute;left:50%;top:-6%;width:34%;transform:translateX(-50%);opacity:.9;filter:drop-shadow(0 20px 50px rgba(90,162,230,.55))}
+
+/* lead card (only glass surface) */
+.card-lead{position:relative;border-radius:26px;padding:26px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border:1px solid var(--line-2);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 30px 80px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.08)}
+.card-lead::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;background:linear-gradient(140deg,rgba(156,201,243,.55),transparent 35%,transparent 65%,rgba(127,188,239,.45));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.lead-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.progress{height:3px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:22px}
+.progress i{display:block;height:100%;width:33%;background:linear-gradient(90deg,var(--violet),var(--mint));border-radius:3px;transition:width .5s var(--ease)}
+.step{display:none;border:0;margin:0;padding:0;animation:stepIn .45s var(--ease)} .step.active{display:block}
+@keyframes stepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.step h3{margin:0 0 4px;font-size:22px} .step p.hint{margin:0 0 18px;color:var(--muted);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;cursor:pointer}.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:100px;font-size:14px;border:1px solid var(--line-2);background:var(--surface);color:var(--text-2);transition:all .2s var(--ease);min-height:44px}
+.chip:hover span{border-color:rgba(156,201,243,.5);color:var(--text)}
+.chip input:checked + span{background:rgba(61,138,222,.18);border-color:var(--violet-2);color:#fff;box-shadow:0 0 0 3px rgba(61,138,222,.15)}
+.chip input:focus-visible + span{outline:2px solid var(--violet-2);outline-offset:2px}
+.chip em{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--warm);letter-spacing:.04em}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13px;color:var(--text-2);margin-bottom:6px}
+.field input,.field select{width:100%;min-height:50px;padding:13px 15px;border-radius:14px;border:1px solid var(--line-2);background:rgba(0,0,0,.35);color:var(--text);font-size:16px;transition:border-color .2s,box-shadow .2s}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23b3a8ff' stroke-width='2'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.field select option{background:#11111a}
+.field input::placeholder{color:#62687c}
+.field input:focus,.field select:focus{outline:none;border-color:var(--violet-2);box-shadow:0 0 0 4px rgba(61,138,222,.18)}
+.field small{display:block;margin-top:6px;font-size:12px;color:var(--muted)}
+.field.err input{border-color:var(--bad)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--muted);margin:6px 0 16px;cursor:pointer}
+.consent input{margin-top:2px;accent-color:var(--violet);width:16px;height:16px;flex:none}
+.consent.err{color:#ffb3bd}
+.step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:10px}
+.back{background:none;border:0;color:var(--muted);cursor:pointer;font-size:14px;padding:8px 4px}.back:hover{color:var(--text)}
+.lead-foot{margin-top:14px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.done{text-align:center;padding:12px 4px;animation:stepIn .5s var(--ease)}
+.done .ringok{width:64px;height:64px;margin:4px auto 16px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,rgba(108,201,164,.22),transparent 70%);border:1px solid rgba(108,201,164,.5);color:var(--ok);font-size:26px}
+.done h3{margin:0 0 8px;font-size:24px} .done p{color:var(--text-2);margin:0 0 20px;font-size:15px}
+
+/* ============================================================ MARQUEE */
+.marquee{border-block:1px solid var(--line);padding:18px 0;overflow:hidden;position:relative;background:rgba(255,255,255,.012)}
+.marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}.marquee::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.track{display:flex;gap:44px;width:max-content;align-items:center}
+.track span{font-family:var(--mono);font-size:14px;color:var(--text-2);white-space:nowrap;display:flex;align-items:center;gap:44px}
+.track span::after{content:"✦";color:var(--violet);font-size:10px}
+.mq-label{text-align:center;margin-bottom:14px}
+
+/* ============================================================ SECTIONS */
+.sec{padding:110px 0;position:relative}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:44px;flex-wrap:wrap}
+.sec-head h2,.h2{font-size:clamp(32px,4.6vw,56px);line-height:1.02;letter-spacing:-.04em;margin:12px 0 0;max-width:17ch}
+.sec-head h2 i,.h2 i,.p-hero h1 i{font-family:var(--serif);font-weight:400;color:var(--violet-2)}
+.sec-head p{max-width:40ch;color:var(--text-2);margin:0}
+.seg{display:inline-flex;padding:4px;border-radius:100px;background:var(--surface);border:1px solid var(--line-2);position:relative}
+.seg button{position:relative;z-index:1;border:0;background:none;cursor:pointer;padding:9px 18px;border-radius:100px;font-size:14px;color:var(--text-2);transition:color .25s}
+.seg button[aria-pressed="true"]{color:#fff}
+.seg .thumb{position:absolute;z-index:0;top:4px;bottom:4px;border-radius:100px;background:var(--brand);transition:left .4s var(--ease),width .4s var(--ease)}
+
+/* track cards (v2) */
+.tracks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tracks.soon{grid-template-columns:repeat(var(--n,4),1fr)}
+.tcard{--x:50%;--y:50%;position:relative;border-radius:var(--radius);padding:24px;border:1px solid var(--line);background:var(--bg-2);overflow:hidden;display:flex;flex-direction:column;min-height:330px;transition:border-color .3s,transform .4s var(--ease)}
+.tcard::before,.spot::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--x) var(--y),rgba(61,138,222,.14),transparent 45%)}
+.tcard:hover{border-color:var(--line-2);transform:translateY(-3px)} .tcard:hover::before,.spot:hover::before{opacity:1}
+.tracks.soon .tcard{min-height:0;padding:20px}.tracks.soon .tcard h3{font-size:18px}.tracks.soon .desc,.tracks.soon .roles{font-size:13px}
+.t-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.t-ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line)}
+.t-ico svg{width:20px;height:20px}
+.badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:100px;border:1px solid var(--line-2);color:var(--text-2);white-space:nowrap}
+.badge.live{color:var(--ok);border-color:rgba(108,201,164,.35);background:rgba(108,201,164,.07)}
+.badge.soon{color:var(--warm);border-color:rgba(255,179,122,.35);background:rgba(255,179,122,.06)}
+.tcard h3{margin:0 0 8px;font-size:21px;line-height:1.15}
+.tcard .desc{margin:0 0 16px;color:var(--text-2);font-size:14.5px}
+.roles{font-size:13px;color:var(--muted);margin-bottom:14px}.roles b{color:var(--text-2);font-weight:500}
+.tools{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.tools span,.tag{font-family:var(--mono);font-size:11px;padding:4px 8px;border-radius:7px;background:var(--surface-2);color:var(--text-2)}
+.signal{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line-2);font-size:12.5px;color:var(--text-2);display:flex;gap:8px}
+.signal::before{content:"↗";color:var(--mint);font-weight:600} .signal cite{font-style:normal;color:var(--muted)}
+.t-cta{position:relative;margin-top:16px;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--violet-2);background:none;border:0;cursor:pointer;padding:0;align-self:flex-start}
+.t-cta:hover{color:#fff}
+.soon-head{display:flex;align-items:center;gap:16px;margin:44px 0 16px}
+.soon-line{flex:1;height:1px;background:linear-gradient(90deg,var(--line-2),transparent)}
+.also{margin-top:34px;padding:22px 24px;border-radius:var(--radius);border:1px solid var(--line);background:rgba(255,255,255,.015);display:grid;grid-template-columns:auto 1fr;gap:10px 22px;align-items:baseline}
+.also p{margin:0;font-size:14px;color:var(--text-2)}
+
+/* quiz */
+.quiz{display:grid;grid-template-columns:.85fr 1.15fr;gap:14px}
+.q-side{border-radius:var(--radius);padding:30px;border:1px solid var(--line);background:radial-gradient(120% 120% at 0% 0%,rgba(61,138,222,.28),transparent 55%),radial-gradient(90% 90% at 100% 100%,rgba(127,188,239,.18),transparent 60%),var(--bg-2);display:flex;flex-direction:column;justify-content:space-between;min-height:400px;position:relative;overflow:hidden}
+.q-side h3{font-size:clamp(28px,3vw,40px);letter-spacing:-.04em}.q-side h3 i{font-family:var(--serif);font-weight:400;color:var(--violet-2)}
+.q-side img{width:84px;opacity:.95;filter:drop-shadow(0 12px 30px rgba(47,127,216,.45))}
+.q-main{border-radius:var(--radius);padding:30px;border:1px solid var(--line);background:var(--bg-2)}
+.q-bar{display:flex;gap:6px;margin-bottom:16px}.q-bar i{flex:1;height:3px;border-radius:3px;background:var(--line-2);transition:background .4s}.q-bar i.on{background:linear-gradient(90deg,var(--violet),var(--mint))}
+.q-step h4{font-size:24px;margin:10px 0 18px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{position:relative;cursor:pointer}.opt input{position:absolute;opacity:0}
+.opt span{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;border:1px solid var(--line-2);background:var(--surface);min-height:60px;transition:.25s var(--ease);font-size:15px}
+.opt span em{font-style:normal;width:34px;height:34px;flex:none;border-radius:10px;display:grid;place-items:center;background:var(--surface-2);color:var(--violet-2)}.opt span em svg{width:18px;height:18px}
+.opt:hover span{border-color:rgba(156,201,243,.5)} .opt input:checked+span{border-color:var(--violet-2);background:rgba(61,138,222,.16)}
+.opt input:focus-visible+span{outline:2px solid var(--violet-2);outline-offset:2px}
+.res{margin:14px 0 20px;padding:22px;border-radius:18px;border:1px solid rgba(156,201,243,.45);background:radial-gradient(120% 140% at 100% 0%,rgba(61,138,222,.22),transparent 60%),var(--surface)}
+.res h4{font-size:26px;margin:10px 0 8px}
+
+/* ascent */
+.ascent{display:grid;grid-template-columns:110px 1fr;gap:36px}
+.altimeter{position:sticky;top:120px;height:420px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.altimeter .rail{flex:1;width:3px;border-radius:3px;background:var(--line-2);position:relative;overflow:hidden}
+.altimeter .rail i{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(0deg,var(--violet),var(--mint));border-radius:3px}
+.altimeter b{font-size:20px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.steps{display:flex;flex-direction:column;gap:12px}
+.pstep{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;padding:26px;border-radius:var(--radius);border:1px solid var(--line);background:var(--bg-2);position:relative;overflow:hidden}
+.pstep .num{font-family:var(--serif);font-style:italic;font-size:58px;line-height:.85;color:var(--violet-2)}
+.pstep .alt{font-family:var(--mono);font-size:11px;color:var(--mint);letter-spacing:.08em;text-transform:uppercase}
+.pstep h4{font-size:22px;margin:6px 0 8px} .pstep p{margin:0;color:var(--text-2);font-size:15px}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(170px,auto);gap:14px}
+.bx{border-radius:var(--radius);border:1px solid var(--line);background:var(--bg-2);padding:26px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.bx h4{margin:0 0 6px;font-size:19px} .bx p{margin:0;font-size:14px;color:var(--text-2);max-width:40ch}
+.bx .big{font-size:clamp(56px,7vw,96px);font-weight:600;letter-spacing:-.05em;line-height:.9;margin-bottom:auto;background:linear-gradient(180deg,#fff,rgba(255,255,255,.35));-webkit-background-clip:text;background-clip:text;color:transparent}
+.bx .big i{font-family:var(--serif);font-weight:400}
+.span-3{grid-column:span 3}.span-2{grid-column:span 2}.span-4{grid-column:span 4}
+.bx.glow{background:radial-gradient(120% 120% at 100% 0%,rgba(61,138,222,.22),transparent 55%),var(--bg-2)}
+.bx.glow2{background:radial-gradient(120% 120% at 0% 100%,rgba(127,188,239,.16),transparent 55%),var(--bg-2)}
+.orbit{position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;border:1px dashed rgba(255,255,255,.12)}
+.orbit::after{content:"";position:absolute;inset:34px;border-radius:50%;border:1px solid rgba(255,255,255,.08)}
+.mentors{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:auto}
+.mentors span{font-family:var(--mono);font-size:12px;padding:7px 11px;border-radius:9px;border:1px solid var(--line-2);color:var(--text)}
+
+/* events */
+.banner{position:relative;border-radius:28px;overflow:hidden;padding:clamp(30px,5vw,56px);border:1px solid var(--line-2);isolation:isolate;
+  background:radial-gradient(60% 100% at 100% 100%,rgba(127,188,239,.18),transparent 60%),radial-gradient(70% 100% at 0% 0%,rgba(61,138,222,.3),transparent 60%),var(--bg-2)}
+.banner::before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000);mask-image:linear-gradient(90deg,transparent,#000)}
+.countdown{display:flex;gap:8px}
+.countdown div{min-width:70px;text-align:center;padding:12px 8px;border-radius:14px;border:1px solid var(--line-2);background:rgba(0,0,0,.35)}
+.countdown b{display:block;font-size:30px;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.countdown span{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.ev{display:grid;grid-template-columns:96px 1fr auto;gap:22px;align-items:center;padding:20px 22px;border-radius:var(--radius);border:1px solid var(--line);background:var(--bg-2);position:relative;overflow:hidden}
+.ev-date{text-align:center;padding:10px 6px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line-2)}
+.ev-date b{display:block;font-size:30px;line-height:1;letter-spacing:-.04em}.ev-date span{font-family:var(--mono);font-size:10.5px;color:var(--violet-2);text-transform:uppercase;letter-spacing:.06em}
+.ev h3{font-size:20px;margin:8px 0 6px}
+.meta{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}.meta span{display:inline-flex;gap:6px;align-items:center}.meta svg{width:15px;height:15px}
+
+/* squad tiers */
+.tier{padding:24px;border-radius:var(--radius);border:1px solid var(--line);background:var(--bg-2);position:relative;overflow:hidden}
+.tier .pts{font-size:46px;font-weight:600;letter-spacing:-.05em;line-height:1;margin-top:10px}
+.tier h4{font-size:20px;margin:12px 0 10px}
+.tier ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:14px;color:var(--text-2)}
+.tier li{display:flex;gap:8px}.tier li::before{content:"✦";color:var(--violet-2);font-size:11px;margin-top:4px}
+.tier.top{background:radial-gradient(120% 120% at 100% 0%,rgba(61,138,222,.35),transparent 55%),radial-gradient(100% 100% at 0% 100%,rgba(127,188,239,.2),transparent 60%),var(--bg-2);border-color:rgba(156,201,243,.4)}
+.pts-table{width:100%;border-collapse:collapse;font-size:15px}
+.pts-table td{padding:14px 2px;border-bottom:1px solid var(--line)}.pts-table td:last-child{text-align:right;font-weight:600;font-size:18px}
+
+/* programme detail */
+.p-hero{position:relative;padding:150px 0 60px;isolation:isolate;overflow:hidden}
+.p-hero h1{font-size:clamp(38px,6vw,76px);letter-spacing:-.045em;line-height:1;margin:16px 0 18px;max-width:16ch}
+.crumbs{display:flex;gap:8px;font-size:13px;color:var(--muted);margin-bottom:18px;flex-wrap:wrap}.crumbs a:hover{color:#fff}
+.facts{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.facts span{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:100px;background:var(--surface);border:1px solid var(--line-2);font-size:14px}
+.facts svg{width:15px;height:15px;color:var(--mint)}
+.d-grid{display:grid;grid-template-columns:1fr 350px;gap:36px;align-items:start}
+.price{position:sticky;top:96px}
+.price .amt{font-size:42px;font-weight:600;letter-spacing:-.04em}.price s{color:var(--muted);margin-left:8px}
+.price ul{list-style:none;padding:0;margin:18px 0 22px;display:grid;gap:10px;font-size:14.5px;color:var(--text-2)}
+.price li{display:flex;gap:10px}.price li::before{content:"✓";color:var(--ok);font-weight:700}
+.d-sec{margin-bottom:56px}.d-sec h2{font-size:28px;margin-bottom:16px}
+.callout{padding:20px 22px;border-radius:var(--radius);border:1px solid rgba(156,201,243,.35);background:linear-gradient(135deg,rgba(61,138,222,.14),rgba(127,188,239,.04))}
+.acc{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--bg-2)}
+.acc details{border-bottom:1px solid var(--line)}.acc details:last-child{border:0}
+.acc summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:10px;padding:17px 20px}
+.acc summary::-webkit-details-marker{display:none}.acc summary:hover{background:var(--surface)}
+.acc summary .n{font-family:var(--mono);color:var(--violet-2);font-size:12.5px}.acc summary b{font-weight:600;font-size:16.5px;letter-spacing:-.01em}
+.acc summary::after{content:"+";font-family:var(--mono);font-size:19px;color:var(--muted);transition:transform .3s var(--ease)}
+.acc details[open] summary::after{transform:rotate(45deg);color:#fff}
+.acc .topics{padding:0 20px 18px 82px;display:flex;flex-wrap:wrap;gap:6px}
+.roles-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.role{padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:var(--bg-2);font-weight:500;display:flex;gap:10px;align-items:center}
+.role::before{content:"→";color:var(--mint)}
+.note{font-size:12.5px;color:var(--muted);margin-top:10px}
+.card{border-radius:var(--radius);border:1px solid var(--line);background:var(--bg-2);padding:24px;position:relative;overflow:hidden}
+
+/* programmes toolbar */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:24px}
+.search{flex:1;min-width:240px;display:flex;align-items:center;gap:10px;padding:0 14px;border-radius:100px;border:1px solid var(--line-2);background:var(--surface)}
+.search svg{width:17px;height:17px;color:var(--muted)}.search input{flex:1;border:0;background:none;padding:12px 0;outline:none;font-size:15px}
+.fchip{border:1px solid var(--line-2);background:var(--surface);color:var(--text-2);padding:9px 14px;border-radius:100px;cursor:pointer;font-size:14px}
+.fchip[aria-pressed="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
+.empty{padding:50px;text-align:center;color:var(--muted);border:1px dashed var(--line-2);border-radius:var(--radius)}
+
+/* faq + final */
+.faq details{border-bottom:1px solid var(--line);padding:4px 0}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;font-size:18px;font-weight:500;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);font-size:20px;color:var(--muted);transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg);color:var(--text)}
+.faq details p{margin:0 0 22px;color:var(--text-2);max-width:64ch}
+.final{position:relative;border-radius:32px;overflow:hidden;padding:clamp(48px,8vw,96px) 24px;text-align:center;border:1px solid var(--line-2);isolation:isolate;
+  background:radial-gradient(60% 90% at 50% 115%,rgba(47,127,216,.4),transparent 70%),radial-gradient(40% 60% at 90% 0%,rgba(156,201,243,.1),transparent 70%),var(--bg-2)}
+.final::before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(255,255,255,.1) 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);mask-image:radial-gradient(ellipse at center,#000,transparent 70%)}
+.final img{width:64px;margin:0 auto 6px;filter:drop-shadow(0 12px 30px rgba(90,162,230,.55))}
+.final h2{font-size:clamp(34px,5.6vw,72px);line-height:1;letter-spacing:-.045em;margin:14px auto 20px;max-width:15ch}
+.final h2 i{font-family:var(--serif);font-weight:400;color:var(--violet-2)}
+.final p{color:var(--text-2);max-width:46ch;margin:0 auto 30px}
+
+footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;border-top:1px solid var(--line);padding-top:36px}
+.foot h5{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:var(--muted);margin:0 0 14px}
+.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;color:var(--text-2)} .foot a:hover{color:#fff}
+.foot img{height:32px;width:auto;margin-bottom:14px}
+.foot-b{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-size:13px}
+
+/* modal / dock / toast / wa */
+.modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:16px;background:rgba(6,6,10,.7);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s}
+.modal.on{opacity:1;pointer-events:auto}
+.modal .card-lead{width:min(520px,100%);max-height:calc(100svh - 32px);overflow:auto;transform:translateY(14px);transition:transform .4s var(--ease)}
+.modal.on .card-lead{transform:none}
+.x{position:absolute;right:14px;top:14px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);background:rgba(0,0,0,.4);cursor:pointer;font-size:18px;z-index:2}
+.dock{position:fixed;left:12px;right:12px;bottom:12px;z-index:70;display:none;padding:8px;border-radius:100px;background:rgba(12,12,18,.78);border:1px solid var(--line-2);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transform:translateY(140%);transition:transform .45s var(--ease)}
+.dock.show{transform:none}.dock .btn{width:100%}
+.toast{position:fixed;left:50%;bottom:24px;z-index:130;transform:translate(-50%,130px);visibility:hidden;padding:12px 18px;border-radius:12px;background:#fff;color:#0b1220;font-weight:600;font-size:14px;transition:transform .4s var(--ease)}
+.toast.on{transform:translate(-50%,0);visibility:visible}
+.wa{position:fixed;right:18px;bottom:18px;z-index:65;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#25a764;color:#fff;box-shadow:0 10px 30px -10px rgba(0,0,0,.8)}
+.wa svg{width:25px;height:25px}
+
+/* benefits + scholarship */
+.ben-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ben{display:flex;flex-direction:column;border-radius:var(--radius);border:1px solid var(--line);background:var(--bg-2);padding:22px;position:relative;overflow:hidden;transition:border-color .3s,transform .4s var(--ease);min-height:210px}
+.ben:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.ben h3{font-size:19px;margin:0 0 6px;line-height:1.2}.ben p{margin:0 0 14px;color:var(--text-2);font-size:14px;flex:1}
+.ben .t-ico{margin-bottom:18px;color:var(--violet-2)}
+.ben.hl{background:linear-gradient(160deg,rgba(47,127,216,.28),rgba(47,127,216,.05));border-color:rgba(156,201,243,.35)}
+.strip{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:18px 22px;border-radius:18px;border:1px solid rgba(156,201,243,.3);background:linear-gradient(90deg,rgba(47,127,216,.22),rgba(47,127,216,.04))}
+.strip .amt{font-size:30px;font-weight:600;letter-spacing:-.03em}.strip s{color:var(--muted);margin-left:8px}
+.sch-chip{display:inline-flex;gap:10px;align-items:center;margin-top:18px;padding:8px 14px;border-radius:100px;border:1px solid rgba(156,201,243,.3);background:rgba(47,127,216,.12);font-size:13.5px;color:var(--text-2)}
+.sch-chip b{color:#fff}.sch-chip i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(108,201,164,.18)}
+.ladder2{display:grid;gap:14px}
+.lr{display:grid;grid-template-columns:190px 1fr 110px;gap:14px;align-items:center}
+.lr .l{color:var(--text-2);font-size:15px}.lr .v{text-align:right;font-weight:600;font-size:20px;font-variant-numeric:tabular-nums}
+.lr .t{height:30px;display:flex;align-items:center}.lr .f{height:28px;border-radius:0 6px 6px 0;background:var(--bar,#4a90dc)}
+.lr .f.muted{background:rgba(148,180,220,.22)}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:s}
+.how .card{padding:20px}.how .card::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--serif);font-style:italic;font-size:40px;line-height:1;color:var(--violet-2);display:block;margin-bottom:10px}
+.how h4{font-size:17px;margin:0 0 6px}.how p{margin:0;color:var(--text-2);font-size:14px}
+.pts-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.pts-list li{display:flex;gap:12px;align-items:flex-start;font-size:16px;color:var(--text-2)}.pts-list li::before{content:"✓";color:var(--ok);font-weight:700}
+.b-nav{display:flex;gap:8px;flex-wrap:wrap}
+.b-nav a{font-size:14px;padding:9px 14px;border-radius:100px;border:1px solid var(--line-2);background:var(--surface);color:var(--text-2)}
+.b-nav a:hover,.b-nav a.on{background:var(--brand);border-color:var(--brand);color:#fff}
+/* mock visuals */
+.mock{border-radius:18px;border:1px solid var(--line-2);background:linear-gradient(180deg,var(--bg-3),var(--bg-2));padding:20px;position:relative;overflow:hidden}
+.player{aspect-ratio:16/9;border-radius:12px;background:radial-gradient(80% 90% at 30% 20%,rgba(47,127,216,.35),transparent 60%),#0a1424;display:grid;place-items:center;border:1px solid var(--line)}
+.player .pb{width:58px;height:58px;border-radius:50%;background:#fff;display:grid;place-items:center;color:#0b1220;font-size:20px}
+.plist{display:grid;gap:8px;margin-top:12px}.plist div{display:flex;justify-content:space-between;font-size:13px;color:var(--text-2);padding:9px 12px;border-radius:10px;background:var(--surface)}
+.doc{background:#f7f9fc;color:#1b2536;border-radius:12px;padding:22px 24px;font-size:13px;line-height:1.55;box-shadow:0 20px 50px -20px rgba(0,0,0,.8)}
+.doc .dh{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #2f7fd8;padding-bottom:10px;margin-bottom:12px}
+.doc b{color:#0b1f3a}.doc .ln{height:8px;border-radius:4px;background:#dfe7f1;margin:7px 0}
+.certs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cert{border-radius:12px;padding:16px;background:#f7f9fc;color:#1b2536;text-align:center;border:3px double #9cc9f3;font-size:12px}
+.cert b{display:block;font-size:14px;color:#0b1f3a;margin:6px 0}
+.feed{display:grid;gap:8px}.feed div{padding:10px 12px;border-radius:12px;background:var(--surface);font-size:13.5px;color:var(--text-2)}.feed b{color:#fff;display:block;font-size:12px;margin-bottom:2px;font-family:var(--mono);letter-spacing:.04em}
+.projline{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:10px}
+.projline div{border-radius:12px;padding:16px;background:var(--surface);border:1px solid var(--line)}.projline div.maj{background:linear-gradient(160deg,rgba(47,127,216,.3),rgba(47,127,216,.06));border-color:rgba(156,201,243,.35)}
+.projline b{display:block;font-size:16px;margin:6px 0 4px}.projline span{font-size:13px;color:var(--text-2)}
+
+/* views */
+.view{display:none}.view.on{display:block;animation:viewIn .5s var(--ease)}
+@keyframes viewIn{from{opacity:0}to{opacity:1}}
+
+/* reveal */
+.rv{opacity:1}
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0ms)}
+  .rv.in{opacity:1;transform:none}
+  .track{animation:scroll 38s linear infinite}.marquee:hover .track{animation-play-state:paused}
+  .b1{animation:float1 18s ease-in-out infinite alternate}.b2{animation:float2 22s ease-in-out infinite alternate}.b3{animation:float3 16s ease-in-out infinite alternate}
+  .emblem .ring{animation:spin 80s linear infinite}
+  .emblem img{animation:bob 7s ease-in-out infinite}
+  .paused .track,.paused .blob{animation-play-state:paused}
+}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@keyframes float1{to{transform:translate(8vw,6vh) scale(1.1)}}@keyframes float2{to{transform:translate(-6vw,8vh) scale(.92)}}@keyframes float3{to{transform:translate(-10vw,-4vh) scale(1.15)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-10px)}}
+@media (prefers-reduced-motion:reduce){.swap span{transition:none}}
+
+/* ============================================================ RESPONSIVE */
+@media (max-width:1240px){.brand small{display:none}}
+@media (max-width:1000px){
+  .ben-grid{grid-template-columns:1fr 1fr}.how{grid-template-columns:1fr 1fr}.certs{grid-template-columns:1fr}.projline{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .tracks,.tracks.soon{grid-template-columns:1fr 1fr}
+  .bento{grid-template-columns:1fr 1fr}.span-3,.span-2,.span-4{grid-column:span 1}.bx.wide{grid-column:span 2}
+  .nav-links{display:none}.menu-btn{display:grid}
+  .quiz{grid-template-columns:1fr}.q-side{min-height:0;gap:20px}
+  .d-grid{grid-template-columns:1fr}.price{position:static}.d-grid aside{order:-1}
+  .foot{grid-template-columns:1fr 1fr}
+  .emblem{width:100%}
+}
+@media (max-width:640px){
+  .hero{padding-top:96px;min-height:auto}
+  .brand small,.nav-r .btn{display:none}
+  .pill .d{display:none}.pill .m{display:inline}
+  .tracks,.tracks.soon,.opts,.row2,.roles-grid,.ben-grid,.how{grid-template-columns:1fr}
+  .lr{grid-template-columns:110px 1fr 80px}.lr .v{font-size:16px}
+  .bento{grid-template-columns:1fr}.bx.wide{grid-column:span 1}
+  .sec{padding:80px 0}
+  .proof{gap:18px}.proof b{font-size:20px}
+  .card-lead{padding:20px;border-radius:22px}
+  .also{grid-template-columns:1fr}
+  .dock{display:block}.wa{bottom:84px}
+  .tcard{min-height:0}
+  .ascent{grid-template-columns:1fr}.altimeter{display:none}
+  .pstep{grid-template-columns:1fr;gap:6px}
+  .ev{grid-template-columns:1fr;gap:12px}.ev-date{display:flex;gap:10px;align-items:baseline;width:max-content;padding:8px 12px}
+  .foot{grid-template-columns:1fr}
+  .acc .topics{padding-left:20px}
+  .countdown div{min-width:60px}
+  .chip span{padding:8px 12px;font-size:13.5px;min-height:40px}
+  .card-lead .chips{gap:6px}
+  .emblem{display:none}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+
+<!-- ======================= NAV ======================= -->
+<nav class="nav" aria-label="Primary">
+  <a href="#/" class="brand" aria-label="Arzon Global home"><img data-logo="wm" alt="Arzon Global" width="101" height="26"><small>× CrowdCore · Woxsen</small></a>
+  <div class="nav-links">
+    <a href="#/" data-nav="home">Home</a><a href="#/programmes" data-nav="programmes">Programmes</a><a href="#/benefits" data-nav="benefits">What you get</a><a href="#/scholarship" data-nav="scholarship">Scholarship</a><a href="#/events" data-nav="events">Events</a><a href="#/squad" data-nav="squad">Growth Squad</a>
+  </div>
+  <div class="nav-r"><a href="#/apply" class="btn btn-primary btn-sm">Get my roadmap</a><button class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button></div>
+</nav>
+<div class="sheet" id="sheet"><a href="#/">Home</a><a href="#/programmes">Programmes</a><a href="#/benefits">What you <i>get</i></a><a href="#/scholarship">Scholarship</a><a href="#/events">Events</a><a href="#/squad">Growth <i>Squad</i></a><a href="#/apply">Get my <i>roadmap</i></a></div>
+
+<!-- ============================================================
+     VIEW: HOME
+     ============================================================ -->
+<div class="view" data-view="home">
+<header class="hero" id="top">
+  <div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill rv"><img data-logo="icon" alt="" width="26" height="22"><span class="d"><b>Official campus partner</b> · CrowdCore, Woxsen's marketing club</span><span class="m"><b>Official partner</b> · CrowdCore Woxsen</span></span>
+      <h1 class="rv" style="--d:80ms">
+        <span class="fade-text">Become the</span>
+        <span class="l2"><span class="swap" id="swap" aria-live="polite"><span class="on">Analyst</span><span>Marketer</span><span>Finance pro</span><span>HR leader</span><span>AI-ready manager</span></span></span>
+        <span class="fade-text">recruiters want.</span>
+      </h1>
+      <p class="lede rv" style="--d:160ms">Your Woxsen degree gets you the interview. Arzon gives you the skill that wins the offer: <b>live classes, 3 industry projects, an internship offer letter on enrolment, and 3 certificates + an LOR</b>. Built for MBA & BBA students.</p>
+      <div class="cta-row rv" style="--d:240ms">
+        <a href="#/apply" class="btn btn-primary" data-goto-form>Get my free career roadmap <span class="arrow">→</span></a>
+        <button class="btn btn-ghost" data-scroll="quiz">Take the 30-sec quiz</button>
+      </div>
+      <a href="#/scholarship" class="sch-chip rv" style="--d:280ms"><i></i>Scholarship open · <b>₹8,000</b> total · register with <b>₹1,065</b> →</a>
+      <div class="proof rv" style="--d:320ms">
+        <div><b><i style="font-style:normal" data-count="10000">10,000</i>+</b><span>students registered</span></div>
+        <div><b><i style="font-style:normal" data-count="26">26</i>+</b><span>career tracks</span></div>
+        <div><b>3</b><span>industry projects</span></div>
+      </div>
+    </div>
+    <div class="form-side rv" style="--d:200ms">
+      <div class="emblem" aria-hidden="true"><div class="ring"></div><div class="ring r2"></div><img data-logo="icon" alt=""></div>
+      <aside class="card-lead" id="lead" aria-label="Get your free career roadmap"></aside>
+    </div>
+  </div>
+</header>
+
+<div class="marquee mq" aria-label="Tools you'll learn">
+  <div class="mono mq-label">Tools you'll actually use on the job</div>
+  <div class="track"><span>Excel</span><span>SQL</span><span>Power BI</span><span>Tableau</span><span>Python</span><span>GA4</span><span>Google Ads</span><span>Meta Ads</span><span>HubSpot</span><span>Salesforce</span><span>Financial modelling</span><span>ChatGPT & Claude</span><span>Copilot</span><span>Figma</span><span>HRIS</span></div>
+</div>
+
+<!-- QUIZ -->
+<section class="sec" id="quiz">
+  <div class="wrap quiz">
+    <div class="q-side rv"><span class="mono">01 / Career-fit quiz</span>
+      <div><h3>Which career are you <i>built for?</i></h3><p style="color:var(--text-2);margin:12px 0 0;max-width:34ch">Four taps. We match you to the Arzon track that fits your strengths, and your Woxsen specialisation.</p></div>
+      <img data-logo="icon" alt="" width="84" height="71"></div>
+    <div class="q-main rv" style="--d:100ms"><div class="q-bar" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div><div id="qBody"></div></div>
+  </div>
+</section>
+
+<!-- TRACKS -->
+<section class="sec" id="tracks" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="mono">02 / Find your track</span><h2 class="rv">Skills the market is <i>hiring for</i> in 2026.</h2></div>
+      <div class="rv" style="--d:100ms"><p style="margin-bottom:16px">Every track is mapped to live hiring data. Pick your degree to see what fits.</p>
+        <div class="seg" role="group" aria-label="Filter by degree"><span class="thumb"></span><button type="button" aria-pressed="true" data-filter="all">All</button><button type="button" aria-pressed="false" data-filter="bba">BBA</button><button type="button" aria-pressed="false" data-filter="mba">MBA</button></div></div>
+    </div>
+    <div class="tracks" id="homeLive"></div>
+    <div id="homeSoonWrap"><div class="soon-head"><span class="mono">Launching next · join the waitlist</span><span class="soon-line"></span></div><div class="tracks soon" id="homeSoon"></div></div>
+    <div class="also rv"><span class="mono">Also at Arzon</span><p><b style="color:var(--text)">Tech:</b> Applied ML · Full Stack · Cloud · DevOps · Ethical Hacking · Android · IoT · Embedded Systems &nbsp;·&nbsp; <b style="color:var(--text)">Pharma & Life Sciences:</b> Pharmacovigilance · Medical Coding · Clinical Data · Clinical SAS · Regulatory Affairs · Nanotech &nbsp;<a class="link" href="#/programmes">Browse all →</a></p></div>
+  </div>
+</section>
+
+<!-- ASCENT -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="mono">03 / The Ascent</span><h2 class="rv">From classroom to <i>offer letter.</i></h2></div><p class="rv" style="--d:100ms">Five stages, one direction: up. Scroll to climb.</p></div>
+    <div class="ascent">
+      <div class="altimeter" aria-hidden="true"><span class="mono">Altitude</span><div class="rail"><i id="altBar"></i></div><b id="altVal">0 ft</b></div>
+      <div class="steps" id="steps">
+        <div class="pstep spot rv"><div class="num">01</div><div><span class="alt">Ground level</span><h4>Enrol & get your offer letter</h4><p>Reserve your seat with the ₹1,065 registration and receive your internship offer letter on enrolment.</p></div></div>
+        <div class="pstep spot rv"><div class="num">02</div><div><span class="alt">10,000 ft</span><h4>Learn live, rewatch forever</h4><p>Live classes with mentors from IITs, IIMs, YC startups and NVIDIA. Every session is recorded on the LMS, with lifetime access.</p></div></div>
+        <div class="pstep spot rv"><div class="num">03</div><div><span class="alt">20,000 ft</span><h4>Build 3 industry projects</h4><p>Two minor projects and one major project, all industry-level and built on real case studies.</p></div></div>
+        <div class="pstep spot rv"><div class="num">04</div><div><span class="alt">30,000 ft</span><h4>3-month internship</h4><p>Apply your skills on real work, and stay current through domain groups with the latest news and cheat sheets.</p></div></div>
+        <div class="pstep spot rv"><div class="num">05</div><div><span class="alt">Above the clouds</span><h4>3 certificates + LOR</h4><p>Course, project and internship completion certificates, plus a letter of recommendation for your next company.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="mono">04 / What you get</span><h2 class="rv">Not another certificate. <i>Everything you need.</i></h2></div><p class="rv" style="--d:100ms">Seven things every Arzon student gets. Tap any card to see how it works.</p></div>
+    <div class="ben-grid" id="homeBen"></div>
+    <div class="strip rv" style="margin-top:14px"><div><span class="mono">Scholarship open</span><div style="margin-top:4px"><span class="amt">₹8,000</span><s>₹24,999</s> <span style="color:var(--text-2);margin-left:8px">total programme fee · register with <b style="color:#fff">₹1,065</b></span></div></div>
+      <div class="cta-row"><a class="btn btn-primary" href="#/scholarship">See scholarship details <span class="arrow">→</span></a><a class="btn btn-ghost" href="#/benefits">Everything included</a></div></div>
+  </div>
+</section>
+
+<!-- NEXT EVENT + TEASERS -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="banner rv" id="nextEv"></div>
+    <div class="tracks" style="grid-template-columns:1fr 1fr;margin-top:14px" id="teasers">
+      <div class="card spot rv" style="padding:30px"><span class="mono">For CrowdCore members</span><h3 style="font-size:30px;margin:12px 0 10px">Join the Growth <i class="serif" style="color:var(--violet-2)">Squad.</i></h3><p style="color:var(--text-2);margin:0 0 18px">Run Arzon's Woxsen campaign as a live marketing internship. Earn points, climb tiers, unlock a free seat and a paid internship at Arzon HQ.</p><a class="btn btn-ghost" href="#/squad">See how it works <span class="arrow">→</span></a></div>
+      <div class="card spot rv" style="--d:100ms;padding:30px"><span class="mono">Case challenge</span><h3 style="font-size:30px;margin:12px 0 10px">Market <i class="serif" style="color:var(--violet-2)">Masters.</i></h3><p style="color:var(--text-2);margin:0 0 18px">The CrowdCore × Arzon case competition. Pitch a real growth strategy and win free Arzon seats plus a paid marketing internship.</p><a class="btn btn-ghost" href="#/events" data-after="mm">View the challenge <span class="arrow">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="mono">05 / FAQ</span><h2 class="rv">Quick answers.</h2></div></div>
+    <div class="faq rv" id="faq" style="max-width:820px"></div>
+  </div>
+</section>
+
+<section style="padding:20px 0 40px">
+  <div class="wrap"><div class="final rv"><img data-logo="icon" alt="" width="64" height="54"><span class="mono">For Woxsen students · via CrowdCore</span>
+    <h2>Your degree gets the interview. <i>Skills get the offer.</i></h2><p>Get a free, personalised career roadmap from an Arzon mentor. It takes 30 seconds.</p>
+    <a href="#/apply" class="btn btn-primary" data-goto-form>Get my free roadmap <span class="arrow">→</span></a></div></div>
+</section>
+</div>
+
+<!-- ============================================================ VIEW: PROGRAMMES -->
+<div class="view" data-view="programmes">
+  <section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b3"></div></div>
+    <div class="wrap"><span class="mono">Programmes</span><h1>Pick your track. <i>Rise.</i></h1>
+      <p class="lede">26+ self-paced tracks across business, data & AI, technology and pharma. Every one includes real projects, a 3-month internship, a certificate and placement support.</p></div></section>
+  <section class="sec" style="padding-top:10px"><div class="wrap">
+    <div class="toolbar" role="search">
+      <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="sr">Search</span><input id="pq" type="search" placeholder="Search a skill, tool or role, e.g. Power BI"></label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="pcats"></div>
+      <div class="seg" id="pdeg"><span class="thumb"></span><button type="button" aria-pressed="true" data-v="all">All</button><button type="button" aria-pressed="false" data-v="bba">BBA</button><button type="button" aria-pressed="false" data-v="mba">MBA</button></div>
+    </div>
+    <p class="mono" id="pcount" aria-live="polite" style="margin:0 0 16px"></p>
+    <div class="tracks" id="pgrid"></div>
+    <div class="empty" id="pempty" hidden>No programmes match. Try "analytics", "marketing" or "finance", or <a class="link" href="#/apply">ask a mentor</a>.</div>
+  </div></section>
+</div>
+
+<!-- ============================================================ VIEW: PROGRAMME DETAIL -->
+<div class="view" data-view="programme"><div id="detail"></div></div>
+
+<!-- ============================================================ VIEW: BENEFITS (hub + sub-pages) -->
+<div class="view" data-view="benefits"><div id="benView"></div></div>
+<!-- ============================================================ VIEW: SCHOLARSHIP -->
+<div class="view" data-view="scholarship"><div id="schView"></div></div>
+
+<!-- ============================================================ VIEW: EVENTS -->
+<div class="view" data-view="events">
+  <section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+    <div class="wrap"><span class="mono">Events · free for Woxsen students</span><h1>Learn it live. <i>Build it tonight.</i></h1>
+      <p class="lede">45-minute hands-on Skill Sprints with Arzon mentors, co-hosted with Woxsen's clubs, plus AI resume reviews and the Market Masters case challenge.</p>
+      <div class="countdown" id="evCd"></div><p class="mono" id="evCdLbl" style="margin-top:12px"></p></div></section>
+  <section class="sec" style="padding-top:10px"><div class="wrap">
+    <div class="sec-head"><div><span class="mono">Skill Sprint series</span><h2>Upcoming <i>sessions</i></h2></div></div>
+    <div style="display:grid;gap:12px" id="evList"></div>
+  </div></section>
+  <section class="sec" id="mm" style="padding-top:20px"><div class="wrap">
+    <div class="banner"><div class="tracks" style="grid-template-columns:1.1fr .9fr;gap:40px;align-items:end" id="mmBox"></div></div>
+    <div class="tracks" style="margin-top:14px" id="mmRounds"></div>
+  </div></section>
+</div>
+
+<!-- ============================================================ VIEW: SQUAD -->
+<div class="view" data-view="squad">
+  <section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+    <div class="wrap"><span class="mono">For CrowdCore members</span><h1>Market a brand. <i>Build your portfolio.</i></h1>
+      <p class="lede">The CrowdCore Growth Squad runs Arzon's Woxsen campaign as a real, live marketing internship: email waves, reels, on-ground booths and events. Every result goes in your portfolio.</p>
+      <div class="cta-row"><button class="btn btn-primary" id="sqApply">Apply to the Squad <span class="arrow">→</span></button></div></div></section>
+  <section class="sec" style="padding-top:10px"><div class="wrap">
+    <div class="tracks" style="grid-template-columns:1fr 1fr;gap:40px;align-items:start">
+      <div><span class="mono">Points</span><h2 class="h2" style="margin-bottom:20px">How you <i>score.</i></h2>
+        <table class="pts-table"><tbody><tr><td>Qualified lead via your link</td><td>1</td></tr><tr><td>Skill Sprint attendee via your link</td><td>3</td></tr><tr><td>Market Masters team registered</td><td>5</td></tr><tr><td>Reel that crosses 5k views</td><td>5</td></tr><tr><td><b>Paid programme registration</b></td><td style="color:var(--mint)">25</td></tr></tbody></table></div>
+      <div class="card"><span class="mono">Build your tracked link</span><h3 style="font-size:22px;margin:10px 0 16px">Every share counts, if it's tracked.</h3>
+        <div class="row2"><div class="field"><label for="lkRef">Your referral code</label><input id="lkRef" placeholder="CC-AR01" maxlength="12"></div>
+          <div class="field"><label for="lkCh">Channel</label><select id="lkCh"><option value="instagram">Instagram</option><option value="whatsapp">WhatsApp</option><option value="email">Outlook email</option><option value="linkedin">LinkedIn</option><option value="qr">QR / poster</option></select></div></div>
+        <div class="field"><label for="lkOut">Your link</label><input id="lkOut" readonly></div>
+        <button class="btn btn-primary btn-full" id="lkCopy" type="button">Copy link</button></div>
+    </div>
+    <div class="sec-head" style="margin-top:80px"><div><span class="mono">Tiers</span><h2>Rewards that <i>mean something.</i></h2></div></div>
+    <div class="tracks soon">
+      <div class="tier"><span class="mono">Bronze</span><div class="pts">25</div><h4>Campus Growth Marketer</h4><ul><li>Arzon certificate</li><li>Squad merch</li></ul></div>
+      <div class="tier"><span class="mono">Silver</span><div class="pts">75</div><h4>Rising Marketer</h4><ul><li>Everything in Bronze</li><li>LinkedIn recommendation from an Arzon manager</li></ul></div>
+      <div class="tier"><span class="mono">Gold</span><div class="pts">150</div><h4>Growth Lead</h4><ul><li>Everything in Silver</li><li>Free seat in any Arzon programme</li></ul></div>
+      <div class="tier top"><span class="mono">Platinum · top 3</span><div class="pts grad">300</div><h4>Squad Legend</h4><ul><li>Everything in Gold</li><li>Paid marketing internship at Arzon HQ, Madhapur</li></ul></div>
+    </div>
+    <p class="note">Rewards are confirmed by Arzon Global at Squad kickoff.</p>
+  </div></section>
+</div>
+
+<!-- ============================================================ VIEW: APPLY -->
+<div class="view" data-view="apply">
+  <section class="p-hero" style="padding-bottom:100px"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+    <div class="wrap hero-grid" style="align-items:start">
+      <div><span class="mono">Free · 30 seconds</span><h1>Get your <i>career roadmap.</i></h1>
+        <p class="lede">Tell us where you're headed. An Arzon mentor will WhatsApp you a personalised plan: the right track for your specialisation, the next batch date and what it takes to get there.</p>
+        <div style="display:grid;gap:12px;max-width:440px">
+          <div class="card" style="padding:16px 18px"><b>A plan made for you</b><div style="color:var(--muted);font-size:14px">Mapped to your Woxsen specialisation and year.</div></div>
+          <div class="card" style="padding:16px 18px"><b>A real mentor, not a bot</b><div style="color:var(--muted);font-size:14px">We reach out the same day.</div></div>
+          <div class="card" style="padding:16px 18px"><b>Zero obligation</b><div style="color:var(--muted);font-size:14px">No spam. Opt out any time.</div></div></div></div>
+      <aside class="card-lead" id="applyForm"></aside>
+    </div></section>
+</div>
+
+<!-- ======================= FOOTER ======================= -->
+<footer><div class="wrap">
+  <div class="foot">
+    <div><img data-logo="wm" alt="Arzon Global" width="124" height="32"><p style="margin:0;max-width:34ch">Industry-ready programmes with real projects, a 3-month internship, certification and placement support. Brought to Woxsen by CrowdCore, the university's marketing club.</p></div>
+    <div><h5>Programmes</h5><ul id="footProg"></ul></div>
+    <div><h5>Explore</h5><ul><li><a href="#/benefits">What you get</a></li><li><a href="#/scholarship">Scholarship & fees</a></li><li><a href="#/events">Skill Sprints & events</a></li><li><a href="#/squad">Growth Squad</a></li><li><a href="#/programmes">All programmes</a></li><li><a href="#/apply">Get your roadmap</a></li></ul></div>
+    <div><h5>Contact</h5><ul><li><a id="fPhone"></a></li><li><a id="fMail"></a></li><li id="fAddr"></li></ul></div>
+  </div>
+  <div class="foot-b"><span>© 2026 Arzon Global. All rights reserved.</span><span>In partnership with CrowdCore · Woxsen University</span></div>
+</div></footer>
+
+<a class="wa" id="wa" target="_blank" rel="noopener" aria-label="Chat with Arzon on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg></a>
+<div class="dock" id="dock"><a href="#/apply" class="btn btn-primary" data-goto-form>Get my free career roadmap →</a></div>
+<div class="modal" id="modal"><div class="card-lead" role="dialog" aria-modal="true"><button class="x" aria-label="Close">×</button><div id="modalBody"></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="/assets/brand.js"></script>
+<!-- Site content (programmes, events, FAQ, pricing, contact) is served live from the database -->
+<script src="/site-data.js"></script>
+<script>
+(function(){
+const C = window.ARZON_CONFIG, D = window.ARZON_DATA;
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const icon = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${D.ICONS[n] || ''}</svg>`;
+const inr = n => '₹' + Number(n).toLocaleString('en-IN');
+const T = id => D.TRACKS.find(t => t.id === id);
+{ const ai = D.TRACKS.find(t => t.id === 'ai-intelligence'); if (ai) ai.goal = 'AI Builder'; }
+const visible = () => D.TRACKS.filter(t => t.live || C.SHOW_UPCOMING);
+const fmtDate = (iso, o = { day:'numeric', month:'short', year:'numeric' }) => new Date(iso).toLocaleDateString('en-IN', o);
+const toast = m => { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 3000); };
+
+/* ---------- attribution: utm_* + ambassador ref (kept in memory across views) ---------- */
+const qs = new URLSearchParams(location.search); const attrib = {};
+['utm_source','utm_medium','utm_campaign','utm_content','ref'].forEach(k => { if (qs.get(k)) attrib[k] = qs.get(k).slice(0, 60); });
+const inPreview = location.protocol === 'file:' || (() => { try { return window.self !== window.top; } catch (_) { return true; } })();
+
+const hp = () => { const h = document.querySelector('input[name="website"]'); return h ? h.value : ''; };
+async function submit(type, data) {
+  const payload = Object.assign({ type, source: C.SOURCE, page: current, submitted_at: new Date().toISOString(),
+    ref: attrib.ref || '', utm_source: attrib.utm_source || '', utm_medium: attrib.utm_medium || '', utm_campaign: attrib.utm_campaign || '', utm_content: attrib.utm_content || '' }, data);
+  if (C.ENDPOINT) {
+    // Real backend: a 4xx means the server rejected it (validation, event full) — surface it to the user.
+    // Network errors / 5xx fall through to the email fallback below so no lead is ever lost.
+    let res;
+    try { res = await fetch(C.ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(Object.assign(payload, { website: hp() })) }); } catch (_) { res = null; }
+    if (res && res.ok) return res.json().catch(() => ({}));
+    if (res && res.status >= 400 && res.status < 500) { const j = await res.json().catch(() => ({})); const err = new Error(j.error || 'Please check your details and try again.'); err.user = true; throw err; }
+  }
+  if (inPreview) { console.info('[preview] lead captured (connect ENDPOINT to save it):', payload); return; }
+  const body = Object.entries(payload).filter(([,v]) => v !== '').map(([k,v]) => `${k}: ${v}`).join('\n');
+  location.href = `mailto:${C.EMAIL}?subject=${encodeURIComponent(`[CrowdCore ${type}] ${payload.name} · ${payload.track || payload.event || ''}`)}&body=${encodeURIComponent(body)}`;
+}
+const registerLink = id => { const u = new URL(C.REGISTER_URL); u.searchParams.set('utm_source', C.SOURCE); u.searchParams.set('utm_medium','campus_site'); u.searchParams.set('utm_campaign','crowdcore_woxsen'); if (id) u.searchParams.set('utm_content', id); if (attrib.ref) u.searchParams.set('ref', attrib.ref); return u.toString(); };
+const validPhone = v => { const d = v.replace(/\D/g,''); return d.length >= 10 && d.length <= 13; };
+function validate(root, map) {
+  let ok = true;
+  map.forEach(([sel, test]) => { const el = $(sel, root); const good = test(el.value.trim()); el.closest('.field').classList.toggle('err', !good); if (!good && ok) { el.focus(); ok = false; } });
+  const c = $('[data-consent]', root); if (ok && c && !c.checked) { c.closest('.consent').classList.add('err'); c.focus(); ok = false; }
+  return ok;
+}
+const CONSENT = `<label class="consent"><input type="checkbox" data-consent><span>I agree that Arzon Global may contact me by WhatsApp, call or email about its programmes. I can opt out any time.</span></label>`;
+const LOCK = `<div class="lead-foot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Your details go only to Arzon Global admissions.</div>`;
+
+/* ---------- v2 multi-step roadmap form (reusable) ---------- */
+const STAGES = [['BBA · 1st year','BBA · 1st yr'],['BBA · 2nd year','BBA · 2nd yr'],['BBA · final year','BBA · final yr'],['MBA · 1st year','MBA · 1st yr'],['MBA · 2nd year','MBA · 2nd yr'],['Other programme','Other programme']];
+function leadForm(root, opt = {}) {
+  const goals = visible().filter(t => (t.cat === 'business' || t.cat === 'data') && t.id !== 'applied-ml');
+  root.innerHTML = `<form novalidate>
+    <div class="lead-top"><span class="mono f-lbl">Step 1 of 3</span><span class="mono">~30 sec</span></div>
+    <div class="progress" aria-hidden="true"><i></i></div>
+    <fieldset class="step active" data-step="1"><legend class="sr">Goal</legend><h3>What do you want to become?</h3><p class="hint">Pick one. We'll build your roadmap around it.</p>
+      <div class="chips">${goals.map(t => `<label class="chip"><input type="radio" name="goal" value="${t.id}" ${opt.track === t.id ? 'checked' : ''}><span>${t.goal}${t.live ? '' : ' <em>SOON</em>'}</span></label>`).join('')}<label class="chip"><input type="radio" name="goal" value="unsure"><span>Not sure yet</span></label></div></fieldset>
+    <fieldset class="step" data-step="2"><legend class="sr">Year</legend><h3>Where are you right now?</h3><p class="hint s2hint">So we recommend the right level: tools-first or strategy-first.</p>
+      <div class="chips">${STAGES.map(([v,l]) => `<label class="chip"><input type="radio" name="stage" value="${v}"><span>${l}</span></label>`).join('')}</div>
+      <div class="step-nav"><button type="button" class="back">← Back</button></div></fieldset>
+    <fieldset class="step" data-step="3"><legend class="sr">Contact</legend><h3>Where should we send it?</h3><p class="hint s3hint">Your personalised roadmap + next batch details.</p>
+      <div class="field"><label>Full name<input class="f-name" name="fullname" autocomplete="name" placeholder="e.g. Aditi Rao" style="margin-top:6px"></label></div>
+      <div class="field"><label>WhatsApp number<input class="f-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="98xxxxxx21" style="margin-top:6px"></label><small>We'll WhatsApp your roadmap. No spam, ever.</small></div>
+      <div class="field"><label>Email<input class="f-email" type="email" inputmode="email" autocomplete="email" placeholder="you@woxsen.edu.in" style="margin-top:6px"></label></div>
+      ${CONSENT}<button class="btn btn-primary btn-full" type="submit">Send my roadmap <span class="arrow">→</span></button>
+      <div class="step-nav"><button type="button" class="back">← Back</button><span class="mono">${attrib.ref ? 'Ref · ' + esc(attrib.ref) : ''}</span></div></fieldset>
+  </form>${LOCK}`;
+  const f = $('form', root); let step = 1;
+  const show = n => { step = n; $$('.step', f).forEach(s => s.classList.toggle('active', +s.dataset.step === n)); $('.progress i', f).style.width = (n / 3 * 100) + '%'; $('.f-lbl', f).textContent = `Step ${n} of 3`;
+    const t = T(f.goal.value);
+    if (n === 2) $('.s2hint', f).innerHTML = (t ? `Goal: <b style="color:#fff">${t.goal}</b> · ` : '') + 'so we recommend the right level.';
+    if (n === 3) { $('.s3hint', f).textContent = t ? `Your ${t.goal} roadmap for ${f.stage.value}, with the next batch details.` : `A mentor will help you choose, for ${f.stage.value}.`; setTimeout(() => $('.f-name', f).focus({ preventScroll: true }), 350); } };
+  f.addEventListener('change', e => { if (e.target.name === 'goal' && step === 1) setTimeout(() => show(2), 260); if (e.target.name === 'stage' && step === 2) setTimeout(() => show(3), 260); if (e.target.matches('[data-consent]')) e.target.closest('.consent').classList.remove('err'); });
+  $$('.back', f).forEach(b => b.addEventListener('click', () => show(Math.max(1, step - 1))));
+  if (opt.track && T(opt.track)) show(2);
+  root._pick = id => { const r = $(`input[name="goal"][value="${id}"]`, f); if (r) r.checked = true; show(f.stage.value ? 3 : 2); };
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!validate(f, [['.f-name', v => v.length > 1], ['.f-phone', validPhone], ['.f-email', v => /^\S+@\S+\.\S+$/.test(v)]])) return;
+    const btn = $('button[type=submit]', f); btn.disabled = true; btn.textContent = 'Sending…';
+    const t = T(f.goal.value);
+    try { await submit('lead', { name: $('.f-name', f).value.trim(), phone: $('.f-phone', f).value.trim(), email: $('.f-email', f).value.trim(), track: t ? t.name : 'Not sure yet', track_id: t ? t.id : '', track_status: t ? (t.live ? 'enrolling' : 'waitlist') : 'unsure', stage: f.stage.value }); }
+    catch (err) { btn.disabled = false; btn.innerHTML = 'Send my roadmap <span class="arrow">→</span>'; toast(err.message); return; }
+    root.innerHTML = `<div class="done" role="status"><div class="ringok">✓</div><h3>Roadmap on its way.</h3><p>An Arzon mentor will WhatsApp you shortly. Meanwhile, explore ${t ? 'your track' : 'the programmes'} in detail.</p>
+      <a class="btn btn-primary" href="${t ? '#/programme/' + t.id : '#/programmes'}">${t ? 'View ' + t.short : 'Explore programmes'} <span class="arrow">→</span></a></div>`;
+  });
+}
+
+/* ---------- modal forms: event / waitlist / squad ---------- */
+function openModal(html) { $('#modalBody').innerHTML = html; $('#modal').classList.add('on'); document.body.style.overflow = 'hidden'; setTimeout(() => { const i = $('#modalBody input'); i && i.focus(); }, 200); }
+function closeModal() { $('#modal').classList.remove('on'); document.body.style.overflow = ''; }
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal' || e.target.closest('.x')) closeModal(); });
+addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); document.body.classList.remove('menu-open'); } });
+function simpleForm({ type, kicker, title, sub, cta, extra = '', payload = {}, done }) {
+  openModal(`<span class="mono">${esc(kicker)}</span><h3 style="font-size:24px;margin:10px 0 6px;padding-right:40px">${esc(title)}</h3><p style="color:var(--text-2);margin:0 0 20px;font-size:15px">${sub}</p>
+    <form novalidate id="sf"><div class="field"><label>Full name<input class="s-name" autocomplete="name" style="margin-top:6px"></label></div>
+      <div class="row2"><div class="field"><label>WhatsApp<input class="s-phone" type="tel" inputmode="tel" autocomplete="tel" style="margin-top:6px"></label></div><div class="field"><label>Email<input class="s-email" type="email" autocomplete="email" style="margin-top:6px"></label></div></div>
+      <div class="field"><label>Programme & year<select class="s-stage" style="margin-top:6px">${STAGES.map(([v]) => `<option>${v}</option>`).join('')}</select></label></div>
+      ${extra}${CONSENT}<button class="btn btn-primary btn-full" type="submit">${esc(cta)} <span class="arrow">→</span></button></form>${LOCK}`);
+  const f = $('#sf');
+  f.addEventListener('change', e => { if (e.target.matches('[data-consent]')) e.target.closest('.consent').classList.remove('err'); });
+  f.addEventListener('submit', async e => { e.preventDefault();
+    if (!validate(f, [['.s-name', v => v.length > 1], ['.s-phone', validPhone], ['.s-email', v => /^\S+@\S+\.\S+$/.test(v)]])) return;
+    const data = { name: $('.s-name', f).value.trim(), phone: $('.s-phone', f).value.trim(), email: $('.s-email', f).value.trim(), stage: $('.s-stage', f).value };
+    $$('[data-x]', f).forEach(x => data[x.dataset.x] = x.value.trim());
+    const b = $('button[type=submit]', f); b.disabled = true; b.textContent = 'Sending…';
+    try { await submit(type, Object.assign(data, payload)); }
+    catch (err) { b.disabled = false; b.innerHTML = esc(cta) + ' <span class="arrow">→</span>'; toast(err.message); return; }
+    $('#modalBody').innerHTML = `<div class="done"><div class="ringok">✓</div><h3>${done[0]}</h3><p>${done[1]}</p><button class="btn btn-ghost" id="mClose">Close</button></div>`;
+    $('#mClose').onclick = closeModal; });
+}
+const eventForm = id => { const ev = D.EVENTS.find(e => e.id === id); simpleForm({ type:'event', kicker: ev.type, title: ev.title, sub: `${fmtDate(ev.date, {weekday:'short', day:'numeric', month:'short'})} · ${ev.mode} · ${ev.host}`, cta:'Reserve my seat', payload:{ event: ev.title, event_id: ev.id }, done:["You're in!", "We'll WhatsApp you the details and a reminder before it starts."] }); };
+const waitlistForm = id => { const t = T(id); simpleForm({ type:'waitlist', kicker:'Waitlist', title: t.name, sub:'This track is launching soon. Join the waitlist for first seats and early-bird pricing.', cta:'Join the waitlist', payload:{ track: t.name, track_id: t.id, track_status:'waitlist' }, done:["You're on the list.", "We'll tell you the moment it opens."] }); };
+
+/* ---------- track card (v2) ---------- */
+const card = (t, i = 0) => `<article class="tcard rv" style="--d:${(i % 3) * 70}ms" data-fit="${t.fit.join(' ')}">
+  <div class="t-top"><div class="t-ico">${icon(t.icon)}</div><span class="badge ${t.live ? 'live' : 'soon'}">${t.live ? 'Enrolling' : 'Coming soon'}</span></div>
+  <h3>${t.name}</h3><p class="desc">${t.tagline}</p>
+  <div class="roles"><b>Roles:</b> ${t.roles.slice(0, 3).join(' · ')}</div>
+  <div class="tools">${t.tools.slice(0, 4).map(x => `<span>${x}</span>`).join('')}</div>
+  <div class="signal"><span>${t.signal.text}. <cite>(${t.signal.src})</cite></span></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><a class="t-cta" href="#/programme/${t.id}">${t.live ? 'View programme' : 'Preview & waitlist'} <span class="arrow">→</span></a>${t.live ? `<span class="mono" title="With scholarship">${inr(C.PRICE)} · scholarship</span>` : ''}</div></article>`;
+
+/* ---------- interactions ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1, rootMargin: '0px 0px -5% 0px' });
+function enhance(root = document) {
+  $$('.rv:not(.in)', root).forEach(el => io.observe(el));
+  if (matchMedia('(hover:hover)').matches) $$('.tcard,.spot', root).forEach(c => { if (c._s) return; c._s = 1; c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); c.style.setProperty('--x', (e.clientX - r.left) + 'px'); c.style.setProperty('--y', (e.clientY - r.top) + 'px'); }); });
+}
+function segThumb(seg) { const b = $('[aria-pressed="true"]', seg), th = $('.thumb', seg); if (b && th && b.offsetWidth) { th.style.left = b.offsetLeft + 'px'; th.style.width = b.offsetWidth + 'px'; } }
+addEventListener('resize', () => $$('.seg').forEach(segThumb));
+function countdown(el, iso) { clearInterval(el._t); const tick = () => { const d = new Date(iso) - new Date(); if (d <= 0) { el.innerHTML = '<div><b>Live</b><span>now</span></div>'; return; }
+  const p = [Math.floor(d / 864e5), Math.floor(d / 36e5) % 24, Math.floor(d / 6e4) % 60, Math.floor(d / 1e3) % 60];
+  el.innerHTML = ['Days','Hours','Mins','Secs'].map((l, i) => `<div><b>${String(p[i]).padStart(2, '0')}</b><span>${l}</span></div>`).join(''); }; tick(); el._t = setInterval(tick, 1000); }
+const nextEvent = () => D.EVENTS.filter(e => new Date(e.date) > new Date()).sort((a, b) => new Date(a.date) - new Date(b.date))[0];
+
+// word swap
+(() => { const w = $$('#swap span'); if (reduce || w.length < 2) return; let i = 0;
+  setInterval(() => { const c = w[i]; i = (i + 1) % w.length; const n = w[i]; c.classList.remove('on'); c.classList.add('out'); n.classList.remove('out'); n.classList.add('on'); setTimeout(() => c.classList.remove('out'), 700); }, 2400); })();
+// marquee duplicate + pause off-screen
+$$('.mq .track').forEach(t => t.innerHTML += t.innerHTML);
+const pio = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('paused', !e.isIntersecting)));
+$$('.mq,.hero').forEach(el => pio.observe(el));
+// counters
+const cio = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; cio.unobserve(e.target); if (reduce) return; const el = e.target, end = +el.dataset.count, t0 = performance.now();
+  const s = t => { const k = Math.min(1, (t - t0) / 1400); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))).toLocaleString('en-IN'); if (k < 1) requestAnimationFrame(s); }; requestAnimationFrame(s); }));
+$$('[data-count]').forEach(el => cio.observe(el));
+
+/* ---------- HOME ---------- */
+leadForm($('#lead'));
+const liveHome = visible().filter(t => t.live && t.flagship), soonHome = visible().filter(t => !t.live);
+$('#homeLive').innerHTML = liveHome.map(card).join('');
+if (soonHome.length) { $('#homeSoon').innerHTML = soonHome.map(card).join(''); $('#homeSoon').style.setProperty('--n', Math.min(5, soonHome.length)); } else $('#homeSoonWrap').remove();
+$$('#tracks .seg button').forEach(b => b.addEventListener('click', () => { const seg = b.closest('.seg'); $$('button', seg).forEach(x => x.setAttribute('aria-pressed', x === b)); segThumb(seg);
+  const f = b.dataset.filter; $$('#tracks .tcard').forEach(c => c.hidden = f !== 'all' && !c.dataset.fit.includes(f));
+  const w = $('#homeSoonWrap'); if (w) w.hidden = !$$('#homeSoon .tcard:not([hidden])').length; }));
+$('#faq').innerHTML = D.FAQ.map(f => `<details><summary>${f.q}</summary><p>${f.a}</p></details>`).join('');
+// quiz
+const Q = [
+  { q:"What excites you most?", o:[["chart","Numbers & patterns",{"business-analytics":2,"data-science":2}],["spark","Brands & attention",{"digital-marketing":3}],["coin","Money & markets",{"applied-finance":3}],["people","People & teams",{"hr-talent":3}],["brain","Building with AI",{"ai-intelligence":2,"ai-for-business":2}],["compass","Solving big problems",{"consulting-strategy":2,"business-analytics":1,"product-management":1}]] },
+  { q:"Pick your dream first project", o:[["chart","Build a sales dashboard",{"business-analytics":3}],["spark","Make a campaign go viral",{"digital-marketing":3}],["coin","Value a listed company",{"applied-finance":3}],["people","Hire a team of ten",{"hr-talent":3}],["sparkle","Build an AI assistant",{"ai-intelligence":3}],["phone","Launch a product feature",{"product-management":3,"business-analytics":1}]] },
+  { q:"Which app lives on your home screen?", o:[["table","Excel / Sheets",{"business-analytics":2,"applied-finance":1}],["phone","Instagram & Canva",{"digital-marketing":2}],["chart","A stock-market app",{"applied-finance":2}],["handshake","LinkedIn",{"hr-talent":2,"b2b-sales":2}],["sparkle","ChatGPT / Claude",{"ai-for-business":2,"ai-intelligence":1}],["code","A coding app",{"data-science":2,"ai-intelligence":1}]] },
+  { q:"Where are you right now?", o:[["file","BBA · 1st / 2nd year",{"digital-marketing":1,"business-analytics":1}],["compass","BBA · final year",{"business-analytics":1,"b2b-sales":1}],["layers","MBA · 1st year",{"business-analytics":1,"applied-finance":1}],["trophy","MBA · 2nd year",{"consulting-strategy":1,"product-management":1}]] }];
+let ans = [], qi = 0;
+function renderQ() { $$('.q-bar i').forEach((b, i) => b.classList.toggle('on', i <= qi));
+  const s = Q[qi]; $('#qBody').innerHTML = `<div class="q-step" style="animation:stepIn .45s var(--ease)"><span class="mono">Question ${qi + 1} of ${Q.length}</span><h4>${s.q}</h4>
+    <div class="opts">${s.o.map((o, j) => `<label class="opt"><input type="radio" name="q" value="${j}" ${ans[qi] === j ? 'checked' : ''}><span><em>${icon(o[0])}</em>${o[1]}</span></label>`).join('')}</div>
+    ${qi ? '<div class="step-nav"><button class="back" type="button" id="qBack">← Back</button></div>' : ''}</div>`;
+  const qb = $('#qBack'); if (qb) qb.onclick = () => { qi--; renderQ(); }; }
+$('#qBody').addEventListener('change', e => { if (e.target.name !== 'q') return; ans[qi] = +e.target.value; setTimeout(() => { if (qi < Q.length - 1) { qi++; renderQ(); } else qResult(); }, 260); });
+function qResult() {
+  const sc = {}; ans.forEach((a, i) => Object.entries(Q[i].o[a][2]).forEach(([k, v]) => sc[k] = (sc[k] || 0) + v));
+  const ranked = Object.entries(sc).sort((a, b) => b[1] - a[1]).map(([k]) => T(k)).filter(t => t && (t.live || C.SHOW_UPCOMING));
+  const top = ranked[0], alt = ranked.find(t => t.live && t !== top);
+  $$('.q-bar i').forEach(b => b.classList.add('on'));
+  $('#qBody').innerHTML = `<div style="animation:stepIn .5s var(--ease)"><span class="mono">Your match</span>
+    <div class="res"><span class="badge ${top.live ? 'live' : 'soon'}">${top.live ? 'Enrolling now' : 'Coming soon · waitlist'}</span><h4>${top.name}</h4>
+      <p style="color:var(--text-2);margin:0 0 12px">${top.overview.split('. ')[0]}.</p><div class="tools" style="margin:0">${top.roles.slice(0, 3).map(r => `<span>${r}</span>`).join('')}</div></div>
+    ${!top.live && alt ? `<p style="color:var(--text-2);font-size:14px;margin:0 0 14px">Start today with <a class="link" style="font-size:14px" href="#/programme/${alt.id}">${alt.name}</a>, enrolling now.</p>` : ''}
+    <div class="cta-row"><button class="btn btn-primary" id="qGo">Get my ${top.short} roadmap <span class="arrow">→</span></button><a class="btn btn-ghost" href="#/programme/${top.id}">View programme</a></div>
+    <div class="step-nav"><button class="back" id="qRedo">↺ Retake quiz</button></div></div>`;
+  $('#qGo').onclick = () => { $('#lead')._pick(top.id); scrollToEl($('#lead')); };
+  $('#qRedo').onclick = () => { ans = []; qi = 0; renderQ(); };
+}
+renderQ();
+// altimeter
+const altBar = $('#altBar'), altVal = $('#altVal'), stepsEl = $('#steps');
+addEventListener('scroll', () => { if (!stepsEl.offsetParent) return; const r = stepsEl.getBoundingClientRect(); const p = Math.min(1, Math.max(0, (innerHeight * .6 - r.top) / r.height));
+  altBar.style.height = (p * 100) + '%'; altVal.textContent = p >= .98 ? '∞ ft' : Math.round(p * 36000).toLocaleString('en-IN') + ' ft'; }, { passive: true });
+// next event banner
+(() => { const ev = nextEvent(); if (!ev) { $('#nextEv').remove(); return; }
+  $('#nextEv').innerHTML = `<div style="display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-end"><div style="max-width:560px"><span class="mono">Next up · ${ev.type}</span>
+    <h2 class="h2" style="margin:14px 0 12px;max-width:none">${ev.title}</h2><p style="color:var(--text-2);margin:0 0 22px">${fmtDate(ev.date, { weekday:'long', day:'numeric', month:'long' })} · ${ev.mode} · Hosted by ${ev.host}. Free for Woxsen students.</p>
+    <div class="cta-row"><button class="btn btn-primary" data-ev="${ev.id}">Reserve my seat <span class="arrow">→</span></button><a class="btn btn-ghost" href="#/events">All events</a></div></div><div class="countdown" id="homeCd"></div></div>`;
+  countdown($('#homeCd'), ev.date); })();
+document.addEventListener('click', e => { const b = e.target.closest('[data-ev]'); if (b) eventForm(b.dataset.ev); });
+
+/* ---------- PROGRAMMES ---------- */
+const P = { cat: 'all', deg: 'all', q: '' }; const allT = visible().slice();
+const order = { business:0, data:1, tech:2, pharma:3 };
+allT.sort((a, b) => (b.live - a.live) || (order[a.cat] - order[b.cat]) || ((b.flagship ? 1 : 0) - (a.flagship ? 1 : 0)));
+$('#pgrid').innerHTML = allT.map(card).join('');
+$('#pcats').innerHTML = [['all','All'],['business','Business'],['data','Data & AI'],['tech','Tech'],['pharma','Pharma']].concat(C.SHOW_UPCOMING ? [['soon','Coming soon']] : []).map(([v, l]) => `<button type="button" class="fchip" data-v="${v}" aria-pressed="${v === 'all'}">${l}</button>`).join('');
+const hay = t => [t.name, t.tagline, t.desc, t.roles.join(' '), t.tools.join(' '), D.CATS[t.cat]].join(' ').toLowerCase();
+function pApply() { let n = 0; $$('#pgrid .tcard').forEach((el, i) => { const t = allT[i];
+    const ok = (P.cat === 'all' || (P.cat === 'soon' ? !t.live : t.cat === P.cat)) && (P.deg === 'all' || t.fit.includes(P.deg)) && (!P.q || hay(t).includes(P.q));
+    el.hidden = !ok; if (ok) { n++; el.classList.add('in'); } });
+  $('#pcount').textContent = `${n} programme${n === 1 ? '' : 's'}${P.deg !== 'all' ? ' · recommended for ' + P.deg.toUpperCase() : ''}`; $('#pempty').hidden = n > 0; }
+$('#pcats').addEventListener('click', e => { const b = e.target.closest('.fchip'); if (!b) return; P.cat = b.dataset.v; $$('#pcats .fchip').forEach(x => x.setAttribute('aria-pressed', x === b)); pApply(); });
+$('#pdeg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; P.deg = b.dataset.v; $$('#pdeg button').forEach(x => x.setAttribute('aria-pressed', x === b)); segThumb($('#pdeg')); pApply(); });
+let pt; $('#pq').addEventListener('input', e => { clearTimeout(pt); pt = setTimeout(() => { P.q = e.target.value.trim().toLowerCase(); pApply(); }, 120); });
+pApply();
+
+/* ---------- PROGRAMME DETAIL ---------- */
+function renderDetail(id) {
+  let t = T(id); if (!t || (!t.live && !C.SHOW_UPCOMING)) t = T('business-analytics');
+  document.title = `${t.name} · Arzon Global × CrowdCore`;
+  const fit = t.fit.length ? t.fit.map(x => x.toUpperCase()).join(' & ') + ' students' : 'Graduates & final-year students';
+  const rel = visible().filter(x => x !== t && x.cat === t.cat).sort((a, b) => b.live - a.live).slice(0, 3);
+  $('#detail').innerHTML = `
+  <section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="wrap">
+    <div class="crumbs"><a href="#/">Home</a><span>/</span><a href="#/programmes">Programmes</a><span>/</span><span>${D.CATS[t.cat]}</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="badge ${t.live ? 'live' : 'soon'}">${t.live ? 'Enrolling now' : 'Coming soon · waitlist open'}</span>${t.fit.length ? `<span class="badge">For ${t.fit.map(x => x.toUpperCase()).join(' & ')}</span>` : ''}</div>
+    <h1>${t.name.replace(/ & /, ' <i>&</i> ')}</h1><p class="lede">${t.tagline} ${t.desc}</p>
+    <div class="facts"><span>${icon('calendar')}Live classes</span><span>${icon('layers')}Lifetime LMS</span><span>${icon('chart')}3 industry projects</span><span>${icon('file')}Offer letter on enrolment</span><span>${icon('check')}3 certificates + LOR</span></div></div></section>
+  <div class="wrap"><div class="d-grid">
+    <main>
+      <section class="d-sec"><h2>Overview</h2><p class="lede" style="max-width:none">${t.overview}</p>
+        <div class="callout"><span class="mono" style="color:var(--mint)">Market signal</span><p style="margin:8px 0 0;font-size:17px">${t.signal.text}. <span style="color:var(--muted)">(${t.signal.src})</span></p>${t.pay ? `<p style="margin:6px 0 0;color:var(--text-2)">${t.pay} <span style="color:var(--muted)">(${t.paySrc})</span></p>` : ''}</div>
+        <div class="roles-grid" style="margin-top:12px"><div class="card"><span class="mono">Ideal for</span><p style="margin:6px 0 0;font-size:16px">${fit}</p></div><div class="card"><span class="mono">Format</span><p style="margin:6px 0 0;font-size:16px">Live classes · lifetime recordings · 3-month internship</p></div></div></section>
+      <section class="d-sec"><h2>Curriculum</h2><div class="acc">${t.modules.map((m, i) => `<details ${i === 0 ? 'open' : ''}><summary><span class="n">M${String(i + 1).padStart(2, '0')}</span><b>${m.t}</b></summary><div class="topics">${m.topics.map(x => `<span class="tag">${x}</span>`).join('')}</div></details>`).join('')}
+        <details><summary><span class="n">MAJ</span><b>Major project</b></summary><div class="topics" style="color:var(--text-2);font-size:14.5px">${t.capstone}</div></details></div>
+        <p class="note">Curriculum outline is indicative and may be updated by Arzon's academic team.</p></section>
+      <section class="d-sec"><h2>Tools & certifications</h2><div class="card"><span class="mono">Tools you'll use</span><div class="tools" style="margin:12px 0 0">${t.tools.map(x => `<span style="font-size:12px;padding:6px 10px">${x}</span>`).join('')}</div></div>
+        <div class="card" style="margin-top:12px"><span class="mono">Certification pathway</span><ul style="list-style:none;padding:0;margin:12px 0 0;display:grid;gap:9px"><li>✓&nbsp; Course completion certificate</li><li>✓&nbsp; Project completion certificate</li><li>✓&nbsp; Internship completion certificate</li><li>✓&nbsp; Letter of recommendation (LOR)</li>${t.certs.map(c => `<li>✓&nbsp; ${c}</li>`).join('')}</ul><p class="note">"Aligned" means the programme covers the skills tested; external exam fees are separate.</p></div></section>
+      <section class="d-sec"><h2>Careers this unlocks</h2><div class="roles-grid">${t.roles.map(r => `<div class="role">${r}</div>`).join('')}</div></section>
+      <section class="d-sec"><h2>Projects & internship</h2>
+        <div class="projline"><div><span class="mono">Minor project 1</span><b>Core skills</b><span>Industry-level project based on a real case study.</span></div><div><span class="mono">Minor project 2</span><b>Tools & data</b><span>A second real case study, going deeper with the tools.</span></div><div class="maj"><span class="mono" style="color:#dcecfb">Major project</span><b>${t.capstone}</b><span style="color:#dcecfb">End-to-end, industry-level, real case study.</span></div></div>
+        <div class="roles-grid" style="margin-top:12px"><div class="bx glow2" style="min-height:190px"><div class="big" style="font-size:64px">3<i>mo</i></div><h4>Internship</h4><p>Offer letter on enrolment, then an internship completion certificate.</p></div>
+        <div class="bx glow" style="min-height:190px"><span class="mono" style="margin-bottom:auto;color:var(--violet-2)">On completion</span><h4>3 certificates + LOR</h4><p>Course, project and internship completion certificates, plus a letter of recommendation.</p></div></div>
+        <p style="margin-top:14px"><a class="link" href="#/benefits">See everything you get →</a></p></section>
+    </main>
+    <aside><div class="card-lead price">${t.live ? `<span class="mono">Scholarship price</span><div style="margin:6px 0 4px"><span class="amt">${inr(C.PRICE)}</span><s>${inr(C.LIST_PRICE)}</s></div>
+        <span class="badge live">Scholarship · save ${inr(C.LIST_PRICE - C.PRICE)}</span>
+        <div class="callout" style="margin:14px 0 0;padding:12px 14px"><span class="mono">Register with</span><div style="font-size:24px;font-weight:600;letter-spacing:-.02em">${inr(C.REG_FEE)}</div><span style="font-size:13px;color:var(--text-2)">Reserves your seat. Total programme fee: ${inr(C.PRICE)}</span></div>
+        <ul><li>Live classes + lifetime LMS recordings</li><li>Internship offer letter on enrolment</li><li>1 major + 2 minor industry projects</li><li>3 certificates + LOR</li><li>Domain groups: news & cheat sheets</li></ul>
+        <button class="btn btn-primary btn-full" id="dRoad">Get my free roadmap <span class="arrow">→</span></button>
+        <a class="btn btn-ghost btn-full" style="margin-top:10px" href="${registerLink(t.id)}" target="_blank" rel="noopener">Register with ${inr(C.REG_FEE)} ↗</a>
+        <p class="note" style="text-align:center"><a class="link" style="font-size:13px" href="#/scholarship">Scholarship & fee details →</a></p>
+        ${C.COHORT.label ? `<p class="note" style="text-align:center">${C.COHORT.label} starts ${fmtDate(C.COHORT.start)}</p>` : ''}`
+      : `<span class="badge soon">Coming soon</span><h3 style="font-size:24px;margin:14px 0 8px">Be first in line.</h3><p style="color:var(--text-2);margin:0 0 18px">Waitlist members get first seats and early-bird pricing when this track launches.</p>
+        <button class="btn btn-primary btn-full" id="dWait">Join the waitlist <span class="arrow">→</span></button><a class="btn btn-ghost btn-full" style="margin-top:10px" href="#/programmes">Start with a live track</a>`}</div></aside>
+  </div>
+  ${rel.length ? `<section class="sec" style="padding-top:30px"><div class="sec-head"><div><span class="mono">Keep exploring</span><h2>Related <i>programmes</i></h2></div></div><div class="tracks">${rel.map(card).join('')}</div></section>` : ''}</div>`;
+  const r = $('#dRoad'); if (r) r.onclick = () => { openModal('<div id="mLead"></div>'); leadForm($('#mLead'), { track: t.id }); };
+  const w = $('#dWait'); if (w) w.onclick = () => waitlistForm(t.id);
+  enhance($('#detail'));
+}
+
+/* ---------- EVENTS ---------- */
+(() => { const nx = nextEvent(); if (nx) { countdown($('#evCd'), nx.date); $('#evCdLbl').textContent = 'Until the next session · ' + nx.title; } else { $('#evCd').remove(); $('#evCdLbl').remove(); }
+  $('#evList').innerHTML = D.EVENTS.slice().sort((a, b) => new Date(a.date) - new Date(b.date)).map((e, i) => { const d = new Date(e.date), past = d < new Date(), t = T(e.track);
+    return `<article class="ev spot rv" style="--d:${i * 60}ms"><div class="ev-date"><b>${d.toLocaleDateString('en-IN', { day:'2-digit' })}</b><span>${d.toLocaleDateString('en-IN', { month:'short' })} · ${d.toLocaleDateString('en-IN', { weekday:'short' })}</span></div>
+      <div><span class="badge ${e.type === 'Skill Sprint' ? 'live' : ''}">${e.type}</span><h3>${e.title}</h3><div class="meta"><span>${icon('calendar')}${d.toLocaleTimeString('en-IN', { hour:'numeric', minute:'2-digit' })} IST</span><span>${icon('pin')}${e.mode}</span><span>${icon('people')}${e.host}</span>${t ? `<a class="link" style="font-size:13.5px" href="#/programme/${t.id}">${t.short} track →</a>` : ''}</div></div>
+      <div style="text-align:right">${past ? '<span class="badge">Ended</span>' : e.seats_left === 0 ? '<span class="badge">Full</span>' : `<button class="btn btn-primary btn-sm" data-ev="${e.id}">Reserve seat <span class="arrow">→</span></button>${e.seats_left != null && e.seats_left <= 25 ? `<div class="mono" style="margin-top:8px">${e.seats_left} seats left</div>` : ''}`}</div></article>`; }).join('');
+  const M = D.CASE_COMP;
+  $('#mmBox').innerHTML = `<div><span class="mono">${M.tagline}</span><h2 style="font-size:clamp(48px,7vw,92px);letter-spacing:-.05em;margin:14px 0"><span class="grad">${M.name}</span></h2><p class="lede" style="margin-bottom:24px">The brief: ${M.brief}</p><button class="btn btn-primary" id="mmBtn">Register your team <span class="arrow">→</span></button></div>
+    <div class="card-lead" style="padding:22px">${[['Registrations open', fmtDate(M.opens)], ['Round 1 deadline', fmtDate(M.closes)], ['Grand finale', fmtDate(M.final)], ['Team size', M.team], ['Open to', 'All students · Unstop + Woxsen']].map(([k, v]) => `<div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)"><span style="color:var(--text-2)">${k}</span><b style="font-weight:600;text-align:right">${v}</b></div>`).join('')}</div>`;
+  $('#mmRounds').innerHTML = M.rounds.map((r, i) => `<div class="card spot rv" style="--d:${i * 80}ms"><div class="serif" style="font-size:52px;line-height:1;color:var(--violet-2)">0${i + 1}</div><h3 style="font-size:19px;margin:12px 0 6px">${r.t}</h3><p style="color:var(--text-2);margin:0">${r.d}</p></div>`).join('')
+    + `<div class="card spot rv" style="grid-column:1/-1"><span class="mono">Prizes</span><div class="tracks" style="margin-top:14px;gap:10px">${M.prizes.map(p => `<div style="display:flex;gap:12px;align-items:center"><span class="t-ico">${icon('trophy')}</span><span>${p}</span></div>`).join('')}</div></div>`;
+  $('#mmBtn').onclick = () => simpleForm({ type:'event', kicker:'Case challenge', title: M.name + ' · team registration', sub: M.brief, cta:'Register team',
+    extra:`<div class="row2"><div class="field"><label>Team name<input data-x="team_name" style="margin-top:6px"></label></div><div class="field"><label>Teammates<input data-x="teammates" placeholder="Optional" style="margin-top:6px"></label></div></div>`,
+    payload:{ event: M.name, event_id:'market-masters' }, done:['Team registered!', "We'll WhatsApp the full brief, rules and deadlines to your team lead."] });
+})();
+
+/* ---------- SQUAD ---------- */
+$('#sqApply').onclick = () => simpleForm({ type:'ambassador', kicker:'Growth Squad', title:'Apply to the Growth Squad', sub:'8–12 CrowdCore members per cycle. About 2–3 hours a week.', cta:'Send application',
+  extra:`<div class="row2"><div class="field"><label>Role you want<select data-x="squad_role" style="margin-top:6px"><option>Email waves</option><option>Reels & content</option><option>On-ground & events</option><option>Data & leaderboard</option></select></label></div><div class="field"><label>Instagram / LinkedIn<input data-x="handle" placeholder="@yourhandle" style="margin-top:6px"></label></div></div>`,
+  done:['Application sent!', 'The Squad Lead will WhatsApp you with next steps and your referral code.'] });
+const lkBuild = () => { const ref = $('#lkRef').value.trim().toUpperCase().replace(/[^A-Z0-9-]/g, ''); const base = (location.protocol.startsWith('http') && !inPreview) ? location.origin + location.pathname : 'https://woxsen.arzonglobal.com/';
+  const u = new URL(base); u.searchParams.set('utm_source', C.SOURCE); u.searchParams.set('utm_medium', $('#lkCh').value); u.searchParams.set('utm_campaign', 'growth_squad'); if (ref) u.searchParams.set('ref', ref); $('#lkOut').value = u.toString(); };
+['input','change'].forEach(ev => { $('#lkRef').addEventListener(ev, lkBuild); $('#lkCh').addEventListener(ev, lkBuild); }); lkBuild();
+$('#lkCopy').onclick = async () => { lkBuild(); try { await navigator.clipboard.writeText($('#lkOut').value); toast('Link copied ✓'); } catch (_) { $('#lkOut').select(); toast('Press Ctrl/Cmd + C to copy'); } };
+
+/* ---------- WHAT YOU GET: hub + sub-pages ---------- */
+const B = D.BENEFITS;
+const benCard = (b, i = 0) => `<a class="ben spot rv" style="--d:${(i % 4) * 60}ms" href="#/benefits/${b.id}"><div class="t-ico">${icon(b.icon)}</div><h3>${b.title}</h3><p>${b.short}</p><span class="t-cta">How it works <span class="arrow">→</span></span></a>`;
+const priceCard = `<a class="ben hl spot rv" href="#/scholarship"><span class="mono" style="color:#dcecfb">Scholarship open</span><div style="font-size:44px;font-weight:600;letter-spacing:-.04em;margin:14px 0 4px">₹8,000</div><p style="color:#dcecfb">All of this for the total programme fee. Register with ₹1,065.</p><span class="t-cta" style="color:#fff">Fee details <span class="arrow">→</span></span></a>`;
+$('#homeBen').innerHTML = B.map(benCard).join('') + priceCard;
+function visual(b) {
+  const L = '<div class="ln" style="width:92%"></div><div class="ln" style="width:80%"></div><div class="ln" style="width:86%"></div>';
+  if (b.visual === 'player') return `<div class="mock"><div class="player"><div class="pb">▶</div></div><div class="plist"><div><span>Live class 12: Power BI dashboards</span><span>Recorded</span></div><div><span>Live class 11: SQL joins</span><span>Recorded</span></div><div><span>Live class 10: Excel modelling</span><span>Recorded</span></div></div></div>`;
+  if (b.visual === 'letter') return `<div class="mock"><div class="doc"><div class="dh"><b>ARZON GLOBAL</b><span style="font-size:11px;color:#5e6b7e">${b.id === 'lor' ? 'Letter of Recommendation' : 'Internship Offer Letter'}</span></div><p style="margin:0 0 8px">Dear <b>Student Name</b>,</p>${L}${L}<p style="margin:10px 0 0">Sincerely,<br><b>Arzon Global</b></p></div><p class="note" style="text-align:center">Illustrative sample</p></div>`;
+  if (b.visual === 'certs') return `<div class="mock"><div class="certs"><div class="cert"><span style="color:#2f7fd8">CERTIFICATE</span><b>Course Completion</b>Arzon Global</div><div class="cert"><span style="color:#2f7fd8">CERTIFICATE</span><b>Project Completion</b>Arzon Global</div><div class="cert"><span style="color:#2f7fd8">CERTIFICATE</span><b>Internship Completion</b>Arzon Global</div></div><p class="note" style="text-align:center">Illustrative samples</p></div>`;
+  if (b.visual === 'feed') return `<div class="mock"><div class="feed"><div><b>DOMAIN NEWS</b>This week in your domain: 5 updates you should know</div><div><b>CHEAT SHEET</b>SQL window functions: one-page reference</div><div><b>RESOURCE</b>Interview prep pack for analysts</div><div><b>OPPORTUNITY</b>New internship openings shared by mentors</div></div><p class="note" style="text-align:center">Illustrative example</p></div>`;
+  if (b.visual === 'projects') return `<div class="mock"><div class="projline"><div><span class="mono">Minor 1</span><b>Real case study</b><span>Core skills</span></div><div><span class="mono">Minor 2</span><b>Real case study</b><span>Tools & data</span></div><div class="maj"><span class="mono" style="color:#dcecfb">Major</span><b>End-to-end industry case</b><span style="color:#dcecfb">Portfolio centrepiece</span></div></div></div>`;
+  return '';
+}
+function renderBenefits(id) {
+  const b = B.find(x => x.id === id);
+  const nav = `<div class="b-nav">${B.map(x => `<a href="#/benefits/${x.id}" class="${b && x.id === b.id ? 'on' : ''}">${x.title}</a>`).join('')}</div>`;
+  const cta = `<section class="sec" style="padding-top:20px"><div class="wrap"><div class="final"><img data-logo2 alt="" width="64" height="54"><span class="mono">Scholarship open · ₹8,000 total</span><h2>Everything included. <i>Register with ₹1,065.</i></h2><p>Get a free roadmap from an Arzon mentor, or reserve your seat now.</p><div class="cta-row" style="justify-content:center"><a class="btn btn-primary" href="#/apply">Get my free roadmap <span class="arrow">→</span></a><a class="btn btn-ghost" href="#/scholarship">Scholarship details</a></div></div></div></section>`;
+  if (!b) {
+    document.title = 'What you get · Arzon Global × CrowdCore';
+    $('#benView').innerHTML = `<section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b3"></div></div><div class="wrap"><span class="mono">What you get</span><h1>Everything you need to <i>get hired.</i></h1><p class="lede">Seven things every Arzon student gets, for a total programme fee of ₹8,000 with the current scholarship.</p></div></section>
+      <section class="sec" style="padding-top:10px"><div class="wrap"><div class="ben-grid">${B.map(benCard).join('')}${priceCard}</div>
+      <div class="card rv" style="margin-top:14px"><span class="mono">Your journey</span><div class="how" style="margin-top:14px"><div class="card"><h4>Enrol · ₹1,065</h4><p>Seat reserved, offer letter issued, LMS and group access.</p></div><div class="card"><h4>Learn live</h4><p>Live classes, recorded to the LMS for life.</p></div><div class="card"><h4>Build + intern</h4><p>2 minor + 1 major project and a 3-month internship.</p></div><div class="card"><h4>Certify</h4><p>3 completion certificates + an LOR.</p></div></div></div></div></section>${cta}`;
+  } else {
+    document.title = `${b.title} · Arzon Global × CrowdCore`;
+    const others = B.filter(x => x !== b).slice(0, 3);
+    $('#benView').innerHTML = `<section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div><div class="wrap">
+      <div class="crumbs"><a href="#/">Home</a><span>/</span><a href="#/benefits">What you get</a><span>/</span><span>${b.title}</span></div>
+      <div class="hero-grid" style="align-items:center"><div><span class="mono">${b.kicker}</span><h1>${b.title.replace(/^(\S+)/, '<i>$1</i>')}</h1><p class="lede">${b.lede}</p><div class="cta-row"><a class="btn btn-primary" href="#/apply">Get my free roadmap <span class="arrow">→</span></a><a class="btn btn-ghost" href="#/scholarship">₹8,000 with scholarship</a></div></div>
+      <div>${visual(b)}</div></div></div></section>
+      <section class="sec" style="padding-top:10px"><div class="wrap">
+        <div class="tracks" style="grid-template-columns:1fr 1.4fr;gap:14px;align-items:start"><div class="card"><span class="mono">What's included</span><ul class="pts-list" style="margin-top:14px">${b.points.map(p => `<li>${p}</li>`).join('')}</ul></div>
+        <div class="card"><span class="mono">How it works</span><div class="how" style="margin-top:14px;grid-template-columns:1fr 1fr">${b.how.map(h => `<div class="card" style="background:var(--bg-3)"><h4>${h[0]}</h4><p>${h[1]}</p></div>`).join('')}</div></div></div>
+        <div style="margin-top:34px"><span class="mono">Explore everything you get</span><div style="margin-top:12px">${nav}</div></div>
+        <div class="ben-grid" style="margin-top:14px;grid-template-columns:repeat(3,1fr)">${others.map(benCard).join('')}</div>
+      </div></section>${cta}`;
+  }
+  $$('#benView [data-logo2]').forEach(i => i.src = document.querySelector('[data-logo="icon"]').src);
+  enhance($('#benView'));
+}
+
+/* ---------- SCHOLARSHIP ---------- */
+function renderScholarship() {
+  document.title = 'Scholarship & fees · Arzon Global × CrowdCore';
+  const rows = [['List price', C.LIST_PRICE, 'muted'], ['Scholarship price', C.PRICE, ''], ['Registration fee', C.REG_FEE, '']];
+  $('#schView').innerHTML = `<section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="wrap">
+    <div class="crumbs"><a href="#/">Home</a><span>/</span><span>Scholarship & fees</span></div>
+    <span class="sch-chip" style="margin-top:0"><i></i>Scholarship open for students</span>
+    <h1>Save ${inr(C.LIST_PRICE - C.PRICE)}. <i>Start with ${inr(C.REG_FEE)}.</i></h1>
+    <p class="lede">With the current scholarship, the total programme fee is <b>${inr(C.PRICE)}</b> instead of ${inr(C.LIST_PRICE)}. Reserve your seat with a <b>${inr(C.REG_FEE)}</b> registration fee.</p>
+    <div class="cta-row"><button class="btn btn-primary" id="schClaim">Claim my scholarship <span class="arrow">→</span></button><a class="btn btn-ghost" href="${registerLink('scholarship')}" target="_blank" rel="noopener">Register with ${inr(C.REG_FEE)} ↗</a></div></div></section>
+    <section class="sec" style="padding-top:10px"><div class="wrap">
+      <div class="tracks" style="grid-template-columns:1.3fr 1fr;gap:14px;align-items:stretch">
+        <div class="card"><span class="mono">Your fee, at a glance</span><div class="ladder2" style="margin-top:18px">${rows.map(r => `<div class="lr" data-tip="<b>${r[0]}</b> · ${inr(r[1])}"><span class="l">${r[0]}</span><span class="t"><span class="f ${r[2]}" style="width:${Math.max(3, r[1] / C.LIST_PRICE * 100)}%"></span></span><span class="v"${r[2] ? ' style="color:var(--muted);text-decoration:line-through"' : ''}>${inr(r[1])}</span></div>`).join('')}</div>
+          <p class="note">The registration fee reserves your seat. Your counsellor confirms eligibility and the payment schedule.</p></div>
+        <div class="card" style="background:linear-gradient(160deg,rgba(47,127,216,.28),rgba(47,127,216,.05));border-color:rgba(156,201,243,.35)"><span class="mono" style="color:#dcecfb">You save</span><div style="font-size:64px;font-weight:600;letter-spacing:-.05em;margin:8px 0">${inr(C.LIST_PRICE - C.PRICE)}</div><p style="color:#dcecfb;margin:0">That's ${Math.round((1 - C.PRICE / C.LIST_PRICE) * 100)}% off the list price, with everything still included.</p></div>
+      </div>
+      <div style="margin-top:44px"><span class="mono">How to claim it</span><div class="how" style="margin-top:14px"><div class="card"><h4>Get your roadmap</h4><p>Take the quiz or fill the 30-second form.</p></div><div class="card"><h4>Talk to a counsellor</h4><p>Pick your track and confirm your scholarship.</p></div><div class="card"><h4>Register · ${inr(C.REG_FEE)}</h4><p>Reserve your seat and get your offer letter.</p></div><div class="card"><h4>Start learning</h4><p>Live classes, LMS access and your community group.</p></div></div></div>
+      <div style="margin-top:44px"><span class="mono">Included in ${inr(C.PRICE)}</span><div class="ben-grid" style="margin-top:14px">${B.map(benCard).join('')}<div class="ben"><div class="t-ico">${icon('trophy')}</div><h3>26+ career tracks</h3><p>Business, data & AI, tech and pharma. Same scholarship on every live track.</p><a class="t-cta" href="#/programmes">Browse programmes <span class="arrow">→</span></a></div></div></div>
+      <div style="margin-top:44px;max-width:820px" class="faq">${D.FAQ.slice(0, 4).map(f => `<details><summary>${f.q}</summary><p>${f.a}</p></details>`).join('')}</div>
+    </div></section>`;
+  $('#schClaim').onclick = () => { openModal('<div id="mLead"></div>'); leadForm($('#mLead')); };
+  enhance($('#schView'));
+}
+
+/* ---------- APPLY ---------- */
+function renderApply(track) { leadForm($('#applyForm'), { track }); }
+
+/* ---------- footer, WA ---------- */
+$('#footProg').innerHTML = D.TRACKS.filter(t => t.flagship).map(t => `<li><a href="#/programme/${t.id}">${t.short}</a></li>`).join('');
+$('#fPhone').textContent = C.PHONE; $('#fPhone').href = 'tel:' + C.PHONE.replace(/[^+\d]/g, '');
+$('#fMail').textContent = C.EMAIL; $('#fMail').href = 'mailto:' + C.EMAIL; $('#fAddr').textContent = C.ADDRESS;
+$('#wa').href = `https://wa.me/${C.WHATSAPP}?text=${encodeURIComponent("Hi Arzon! I'm a Woxsen student and I'd like to know more about your programmes.")}`;
+
+/* ---------- menu, dock, scroll helpers ---------- */
+const mb = $('.menu-btn'); mb.onclick = () => { const o = document.body.classList.toggle('menu-open'); mb.setAttribute('aria-expanded', o); };
+
+function scrollToEl(el) { el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); }
+$$('[data-scroll]').forEach(b => b.addEventListener('click', () => scrollToEl($('#' + b.dataset.scroll))));
+// on the home view, "Get my roadmap" buttons scroll to the hero form instead of switching views
+
+const dock = $('#dock'); let leadVis = false;
+new IntersectionObserver(es => es.forEach(e => { leadVis = e.isIntersecting; dockSync(); })).observe($('#lead'));
+function dockSync() { dock.classList.toggle('show', scrollY > innerHeight * .7 && !(route().name === 'home' && leadVis) && route().name !== 'apply'); }
+addEventListener('scroll', dockSync, { passive: true });
+
+/* ---------- router ---------- */
+let current = (location.hash || '').startsWith('#/') ? location.hash : '#/';
+function route() { const h = current.replace(/^#\/?/, ''); const [path, q] = h.split('?'); const parts = path.split('/').filter(Boolean);
+  return { name: parts[0] || 'home', id: parts[1], q: new URLSearchParams(q || '') }; }
+let after = null;
+// sandbox-safe: sandboxed previews (srcdoc) turn '#/…' links into full navigations, so we intercept every internal link
+function navigate(h) { current = h; try { if (location.protocol !== 'about:' && location.href.indexOf('about:srcdoc') < 0 && location.hash !== h) history.pushState(null, '', h); } catch (_) {} go(); }
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#/"]'); if (!a) return;
+  e.preventDefault(); document.body.classList.remove('menu-open');
+  if (a.hasAttribute('data-goto-form') && route().name === 'home') { scrollToEl($('#lead')); return; }
+  if (a.dataset.after) after = a.dataset.after;
+  navigate(a.getAttribute('href'));
+});
+addEventListener('popstate', () => { current = (location.hash || '').startsWith('#/') ? location.hash : '#/'; go(); });
+function go() {
+  const r = route(); const names = ['home','programmes','programme','events','squad','apply','benefits','scholarship']; const name = names.includes(r.name) ? r.name : 'home';
+  $$('.view').forEach(v => v.classList.toggle('on', v.dataset.view === name));
+  $$('[data-nav]').forEach(a => a.classList.toggle('on', a.dataset.nav === (name === 'programme' ? 'programmes' : name)));
+  if (name === 'programme') renderDetail(r.id);
+  if (name === 'benefits') renderBenefits(r.id);
+  if (name === 'scholarship') renderScholarship();
+  if (name === 'apply') renderApply(r.q.get('track') || undefined);
+  if (!['programme','benefits','scholarship'].includes(name)) document.title = { programmes:'Programmes', events:'Events', squad:'Growth Squad', apply:'Get your roadmap' }[name] ? ({ programmes:'Programmes', events:'Events', squad:'Growth Squad', apply:'Get your roadmap' }[name] + ' · Arzon Global × CrowdCore') : 'Arzon Global × CrowdCore Woxsen — Become who recruiters want';
+  closeModal();
+  if (after) { const el = $('#' + after); after = null; setTimeout(() => el && scrollToEl(el), 80); } else scrollTo({ top: 0, behavior: 'auto' });
+  requestAnimationFrame(() => { $$('.seg').forEach(segThumb); enhance(); dockSync(); });
+}
+addEventListener('hashchange', () => { if (location.hash !== current && location.hash.startsWith('#/')) { current = location.hash; go(); } });
+go();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,2683 @@
+{
+  "config": {
+    "ENDPOINT": "/api/submissions",
+    "REGISTER_URL": "https://arzonglobal.com/",
+    "PHONE": "+91 91212-83638",
+    "EMAIL": "info@arzonglobal.co.in",
+    "ADDRESS": "S Chandra Reddy Towers, Hyderabad, Telangana",
+    "WHATSAPP": "919121283638",
+    "PRICE": 8000,
+    "LIST_PRICE": 24999,
+    "SOURCE": "woxsen_crowdcore",
+    "SHOW_UPCOMING": true,
+    "COHORT": {
+      "label": "Woxsen Batch",
+      "start": "2027-01-12"
+    },
+    "REG_FEE": 1065,
+    "SCHOLARSHIP": true
+  },
+  "cats": {
+    "business": "Business & Management",
+    "data": "Data & AI",
+    "tech": "Technology",
+    "pharma": "Pharma & Life Sciences"
+  },
+  "tracks": [
+    {
+      "id": "business-analytics",
+      "name": "Business Analytics & Intelligence",
+      "short": "Business Analytics",
+      "goal": "Business Analyst",
+      "cat": "business",
+      "fit": [
+        "bba",
+        "mba"
+      ],
+      "live": true,
+      "icon": "chart",
+      "flagship": true,
+      "tagline": "Turn raw data into decisions leadership actually uses.",
+      "desc": "Analyze business data and build dashboards for decision-making.",
+      "overview": "The fastest-growing business skill of 2026. You'll go from spreadsheets to SQL to live Power BI dashboards, then learn to tell the story behind the numbers — the exact toolkit recruiters test in analyst, BI and consulting interviews.",
+      "roles": [
+        "Business Analyst",
+        "BI Analyst",
+        "Data Analyst",
+        "Analytics Consultant"
+      ],
+      "tools": [
+        "Excel",
+        "SQL",
+        "Power BI",
+        "Tableau",
+        "Python (basics)",
+        "ChatGPT for analysis"
+      ],
+      "certs": [
+        "Microsoft PL-300 (Power BI) prep",
+        "Google Data Analytics (aligned)"
+      ],
+      "signal": {
+        "text": "Data analysis jumped from #10 to #4 in employer hiring priorities",
+        "src": "GMAC Corporate Recruiters Survey 2026"
+      },
+      "pay": "Business Analyst avg ≈ ₹9 LPA (range ₹4.9–16.7 LPA)",
+      "paySrc": "Indeed India, 2026",
+      "modules": [
+        {
+          "t": "Business problem framing",
+          "topics": [
+            "KPIs & metric trees",
+            "Hypothesis-driven analysis",
+            "Stakeholder questions"
+          ]
+        },
+        {
+          "t": "Advanced Excel",
+          "topics": [
+            "Lookups & pivots",
+            "What-if analysis",
+            "Dashboard design in Excel"
+          ]
+        },
+        {
+          "t": "SQL for business",
+          "topics": [
+            "SELECT, JOIN, GROUP BY",
+            "Window functions",
+            "Querying sales & ops data"
+          ]
+        },
+        {
+          "t": "Statistics for decisions",
+          "topics": [
+            "Distributions & sampling",
+            "A/B testing basics",
+            "Correlation vs causation"
+          ]
+        },
+        {
+          "t": "Power BI dashboards",
+          "topics": [
+            "Data modelling",
+            "DAX essentials",
+            "Interactive reports"
+          ]
+        },
+        {
+          "t": "Python for analysts",
+          "topics": [
+            "pandas basics",
+            "Cleaning messy data",
+            "Automating reports"
+          ]
+        },
+        {
+          "t": "Data storytelling",
+          "topics": [
+            "Choosing the right chart",
+            "Executive summaries",
+            "Presenting to leadership"
+          ]
+        },
+        {
+          "t": "AI-assisted analytics",
+          "topics": [
+            "Copilot in Power BI",
+            "Prompting for analysis",
+            "Checking AI output"
+          ]
+        }
+      ],
+      "capstone": "Build an end-to-end sales & operations KPI dashboard for a real business and present three recommendations."
+    },
+    {
+      "id": "digital-marketing",
+      "name": "Digital Marketing & Growth Hacking",
+      "short": "Digital Marketing",
+      "goal": "Digital Marketer",
+      "cat": "business",
+      "fit": [
+        "bba",
+        "mba"
+      ],
+      "live": true,
+      "icon": "spark",
+      "flagship": true,
+      "tagline": "Run real campaigns — not just read about them.",
+      "desc": "Drive brand growth using SEO, ads, and data-driven strategies.",
+      "overview": "Marketing hiring for freshers has come roaring back, and companies want people who can launch, measure and optimise campaigns on day one. You'll work across SEO, Google and Meta ads, analytics, automation and GenAI content — and run a live campaign.",
+      "roles": [
+        "Performance Marketer",
+        "Digital Campaign Analyst",
+        "Growth Associate",
+        "Social Media Manager"
+      ],
+      "tools": [
+        "GA4",
+        "Google Tag Manager",
+        "Google Ads",
+        "Meta Ads",
+        "HubSpot",
+        "Semrush",
+        "Canva",
+        "ChatGPT & Claude"
+      ],
+      "certs": [
+        "Google Ads & GA4 (aligned)",
+        "Meta Certified (aligned)",
+        "HubSpot Inbound (aligned)"
+      ],
+      "signal": {
+        "text": "Marketing fresher hiring intent jumped from 11% to 62%",
+        "src": "TeamLease EdTech, H1 2026"
+      },
+      "pay": "Performance marketing roles up to ≈ ₹14 LPA in Bengaluru",
+      "paySrc": "Indeed India, 2026",
+      "modules": [
+        {
+          "t": "The digital consumer journey",
+          "topics": [
+            "Funnels & personas",
+            "Channel mix",
+            "Brand vs performance"
+          ]
+        },
+        {
+          "t": "SEO & content with GenAI",
+          "topics": [
+            "Keyword research",
+            "On-page & technical SEO",
+            "AI-assisted content"
+          ]
+        },
+        {
+          "t": "Google Search & Performance Max",
+          "topics": [
+            "Campaign structure",
+            "Bidding & budgets",
+            "Ad copy testing"
+          ]
+        },
+        {
+          "t": "Meta & social ads",
+          "topics": [
+            "Audiences & creatives",
+            "Reels ads",
+            "Retargeting"
+          ]
+        },
+        {
+          "t": "Analytics & attribution",
+          "topics": [
+            "GA4 setup",
+            "Tag Manager events",
+            "Attribution models"
+          ]
+        },
+        {
+          "t": "Automation, email & CRM",
+          "topics": [
+            "Lifecycle journeys",
+            "WhatsApp & email flows",
+            "Lead scoring"
+          ]
+        },
+        {
+          "t": "Growth experiments",
+          "topics": [
+            "CAC, LTV & ROAS",
+            "Experiment design",
+            "Growth loops"
+          ]
+        },
+        {
+          "t": "Brand & social strategy",
+          "topics": [
+            "Content calendars",
+            "Influencer & UGC",
+            "Community building"
+          ]
+        }
+      ],
+      "capstone": "Plan, launch and report a real ₹10–20k campaign for a D2C brand, with a results deck."
+    },
+    {
+      "id": "applied-finance",
+      "name": "Applied Finance & Investment Strategy",
+      "short": "Applied Finance",
+      "goal": "Finance Pro",
+      "cat": "business",
+      "fit": [
+        "bba",
+        "mba"
+      ],
+      "live": true,
+      "icon": "coin",
+      "flagship": true,
+      "tagline": "Model, value and invest like an analyst.",
+      "desc": "Learn financial planning, markets, and investment strategies.",
+      "overview": "Finance is still one of the biggest recruiters of MBAs. This track builds the hands-on skills behind analyst, equity research and investment banking roles: financial statements, three-statement models, valuation and Indian markets.",
+      "roles": [
+        "Financial Analyst",
+        "Equity Research Associate",
+        "Investment Banking Analyst",
+        "Credit / Risk Analyst"
+      ],
+      "tools": [
+        "Excel",
+        "Financial modelling",
+        "DCF & comps",
+        "Screener / Tijori",
+        "Power BI"
+      ],
+      "certs": [
+        "NISM Series XV (aligned)",
+        "CFA Level I (foundation)"
+      ],
+      "signal": {
+        "text": "Finance made up 14–20% of IIM final offers",
+        "src": "IIM Bangalore & IIM Indore placement reports, 2026"
+      },
+      "pay": "Financial Analyst avg ≈ ₹5.8 LPA; top banks pay far more",
+      "paySrc": "Indeed India, 2026",
+      "modules": [
+        {
+          "t": "Financial statements",
+          "topics": [
+            "P&L, balance sheet, cash flow",
+            "Ratio analysis",
+            "Reading annual reports"
+          ]
+        },
+        {
+          "t": "Excel for finance",
+          "topics": [
+            "Shortcuts & formatting",
+            "Scenario tables",
+            "Model hygiene"
+          ]
+        },
+        {
+          "t": "Three-statement modelling",
+          "topics": [
+            "Revenue builds",
+            "Linking statements",
+            "Sensitivity analysis"
+          ]
+        },
+        {
+          "t": "Valuation",
+          "topics": [
+            "DCF",
+            "Trading & transaction comps",
+            "Football-field charts"
+          ]
+        },
+        {
+          "t": "Deals basics",
+          "topics": [
+            "M&A logic",
+            "LBO fundamentals",
+            "Pitch-book anatomy"
+          ]
+        },
+        {
+          "t": "Equity research",
+          "topics": [
+            "Industry analysis",
+            "Report writing",
+            "Investment thesis"
+          ]
+        },
+        {
+          "t": "Indian markets & regulation",
+          "topics": [
+            "NSE/BSE, SEBI",
+            "Mutual funds & PMS",
+            "Fintech & UPI economy"
+          ]
+        },
+        {
+          "t": "AI in financial analysis",
+          "topics": [
+            "AI for research",
+            "Automating models",
+            "Risk of AI errors"
+          ]
+        }
+      ],
+      "capstone": "Initiate coverage on an NSE-listed company: build the model and write the research report."
+    },
+    {
+      "id": "hr-talent",
+      "name": "Human Resource & Talent Management",
+      "short": "HR & Talent",
+      "goal": "HR Leader",
+      "cat": "business",
+      "fit": [
+        "bba",
+        "mba"
+      ],
+      "live": true,
+      "icon": "people",
+      "flagship": true,
+      "tagline": "Modern, data-driven HR for modern companies.",
+      "desc": "Build skills in recruitment, operations, and performance management.",
+      "overview": "HR has moved from admin to analytics. Learn talent acquisition, people operations, performance systems and HR analytics — the HR Business Partner skillset that large firms and Global Capability Centres are hiring for.",
+      "roles": [
+        "HR Analyst",
+        "Talent Acquisition Specialist",
+        "HR Business Partner",
+        "People Ops Associate"
+      ],
+      "tools": [
+        "HRIS",
+        "Applicant tracking systems",
+        "Excel",
+        "Power BI",
+        "LinkedIn Recruiter"
+      ],
+      "certs": [
+        "SHRM-CP (foundation)",
+        "AIHR People Analytics (aligned)"
+      ],
+      "signal": {
+        "text": "Talent management ranks among the fastest-rising skills to 2030",
+        "src": "WEF Future of Jobs 2025"
+      },
+      "pay": "GCC hiring is expanding HR roles across Tier-I & II cities",
+      "paySrc": "Quess via YourStory, 2026",
+      "modules": [
+        {
+          "t": "Strategic HR",
+          "topics": [
+            "HR as a business partner",
+            "Org design",
+            "Workforce planning"
+          ]
+        },
+        {
+          "t": "Talent acquisition",
+          "topics": [
+            "Sourcing & employer brand",
+            "Structured interviews",
+            "ATS workflows"
+          ]
+        },
+        {
+          "t": "Performance & rewards",
+          "topics": [
+            "OKRs & reviews",
+            "Compensation basics",
+            "Recognition systems"
+          ]
+        },
+        {
+          "t": "Learning & development",
+          "topics": [
+            "Training needs analysis",
+            "Career paths",
+            "Measuring L&D"
+          ]
+        },
+        {
+          "t": "HR analytics",
+          "topics": [
+            "HR metrics",
+            "Attrition analysis",
+            "Power BI people dashboards"
+          ]
+        },
+        {
+          "t": "Labour law & compliance",
+          "topics": [
+            "New labour codes",
+            "Policies & handbooks",
+            "POSH basics"
+          ]
+        },
+        {
+          "t": "Employee experience",
+          "topics": [
+            "Engagement surveys",
+            "Onboarding",
+            "Culture & retention"
+          ]
+        },
+        {
+          "t": "AI in HR",
+          "topics": [
+            "AI in hiring",
+            "Bias & fairness",
+            "HR chatbots"
+          ]
+        }
+      ],
+      "capstone": "Diagnose attrition for a sample organisation and present a data-backed retention plan."
+    },
+    {
+      "id": "ai-intelligence",
+      "name": "AI Intelligence Programme",
+      "short": "AI Intelligence",
+      "goal": "AI-ready Professional",
+      "cat": "data",
+      "fit": [
+        "bba",
+        "mba"
+      ],
+      "live": true,
+      "icon": "brain",
+      "flagship": true,
+      "tagline": "Understand, build and lead with AI.",
+      "desc": "Build intelligent systems using neural networks, NLP, and AI concepts.",
+      "overview": "AI is the fastest-growing hiring signal in India. Learn how neural networks and NLP work, build real AI applications, and understand how businesses deploy AI responsibly — valuable whether you end up building AI or managing teams that use it.",
+      "roles": [
+        "AI Business Analyst",
+        "AI Product Associate",
+        "Junior ML Engineer",
+        "Prompt Engineer"
+      ],
+      "tools": [
+        "Python",
+        "Neural networks",
+        "NLP",
+        "LLM APIs",
+        "ChatGPT & Claude",
+        "Copilot"
+      ],
+      "certs": [
+        "Microsoft AI-900 (aligned)",
+        "Google AI Essentials (aligned)"
+      ],
+      "signal": {
+        "text": "AI/ML job postings up 33% year-on-year",
+        "src": "Naukri JobSpeak, July 2026"
+      },
+      "pay": "AI & cloud freshers start at ≈ ₹7–8.5 LPA",
+      "paySrc": "TeamLease Digital Salary Primer FY26",
+      "modules": [
+        {
+          "t": "AI foundations",
+          "topics": [
+            "What AI can & can't do",
+            "Types of ML",
+            "AI in business"
+          ]
+        },
+        {
+          "t": "Python for AI",
+          "topics": [
+            "NumPy & pandas",
+            "Data preparation",
+            "Notebooks"
+          ]
+        },
+        {
+          "t": "Machine learning essentials",
+          "topics": [
+            "Regression & classification",
+            "Model evaluation",
+            "Overfitting"
+          ]
+        },
+        {
+          "t": "Neural networks",
+          "topics": [
+            "Perceptrons to deep nets",
+            "Training intuition",
+            "Computer vision basics"
+          ]
+        },
+        {
+          "t": "Natural language processing",
+          "topics": [
+            "Text processing",
+            "Embeddings",
+            "Sentiment & classification"
+          ]
+        },
+        {
+          "t": "Generative AI & LLMs",
+          "topics": [
+            "Prompt engineering",
+            "RAG basics",
+            "Building with LLM APIs"
+          ]
+        },
+        {
+          "t": "AI agents & automation",
+          "topics": [
+            "No-code automation",
+            "Agent workflows",
+            "Evaluating outputs"
+          ]
+        },
+        {
+          "t": "Responsible AI",
+          "topics": [
+            "Bias & safety",
+            "Governance",
+            "AI business cases"
+          ]
+        }
+      ],
+      "capstone": "Build and demo an AI assistant that solves a real business workflow, with an ROI estimate."
+    },
+    {
+      "id": "data-science",
+      "name": "Data Science",
+      "short": "Data Science",
+      "goal": "Data Scientist",
+      "cat": "data",
+      "fit": [
+        "bba",
+        "mba"
+      ],
+      "live": true,
+      "icon": "code",
+      "flagship": true,
+      "tagline": "From business questions to machine-learning answers.",
+      "desc": "Extract insights from data using Python, ML, and visualization tools.",
+      "overview": "The bridge from business to data. Learn Python, statistics, machine learning and visualisation to answer business questions with models — a natural next step after Business Analytics.",
+      "roles": [
+        "Data Analyst",
+        "Junior Data Scientist",
+        "Analytics Engineer",
+        "Marketing Analyst"
+      ],
+      "tools": [
+        "Python",
+        "pandas",
+        "scikit-learn",
+        "SQL",
+        "Matplotlib / Seaborn",
+        "Jupyter"
+      ],
+      "certs": [
+        "Kaggle portfolio",
+        "Google Data Analytics (aligned)"
+      ],
+      "signal": {
+        "text": "Big-data specialists are among India's fastest-growing roles",
+        "src": "WEF Future of Jobs 2025"
+      },
+      "pay": "Data Analyst entry ≈ ₹5.2 LPA; senior ≈ ₹11 LPA",
+      "paySrc": "Indeed India, 2026",
+      "modules": [
+        {
+          "t": "Python programming",
+          "topics": [
+            "Syntax & functions",
+            "Data structures",
+            "Working with files"
+          ]
+        },
+        {
+          "t": "Data wrangling",
+          "topics": [
+            "pandas",
+            "Cleaning & joining",
+            "Feature engineering"
+          ]
+        },
+        {
+          "t": "Statistics & probability",
+          "topics": [
+            "Descriptive stats",
+            "Hypothesis testing",
+            "Regression"
+          ]
+        },
+        {
+          "t": "Visualisation",
+          "topics": [
+            "Matplotlib & Seaborn",
+            "Dashboards",
+            "Storytelling"
+          ]
+        },
+        {
+          "t": "Machine learning",
+          "topics": [
+            "Supervised learning",
+            "Clustering",
+            "Model tuning"
+          ]
+        },
+        {
+          "t": "SQL & databases",
+          "topics": [
+            "Queries",
+            "Joins",
+            "Data pipelines"
+          ]
+        },
+        {
+          "t": "Applied projects",
+          "topics": [
+            "Churn prediction",
+            "Demand forecasting",
+            "Customer segmentation"
+          ]
+        },
+        {
+          "t": "Deploying insights",
+          "topics": [
+            "Model reporting",
+            "Intro to MLOps",
+            "Communicating results"
+          ]
+        }
+      ],
+      "capstone": "Predict customer churn for a subscription business and present the retention strategy."
+    },
+    {
+      "id": "applied-ml",
+      "name": "Applied Machine Learning Programme",
+      "short": "Applied ML",
+      "goal": "ML Engineer",
+      "cat": "data",
+      "fit": [],
+      "live": true,
+      "icon": "nodes",
+      "tagline": "Hands-on machine learning with real datasets.",
+      "desc": "Hands-on machine learning using Python and real-world datasets.",
+      "overview": "A project-first ML programme: build, evaluate and ship models on real-world datasets, from classic algorithms to deep learning.",
+      "roles": [
+        "ML Engineer",
+        "Data Scientist",
+        "AI Engineer"
+      ],
+      "tools": [
+        "Python",
+        "scikit-learn",
+        "TensorFlow / PyTorch",
+        "Kaggle",
+        "Git"
+      ],
+      "certs": [
+        "Kaggle portfolio"
+      ],
+      "signal": {
+        "text": "AI Engineer ranked #2 on India's fastest-growing jobs",
+        "src": "LinkedIn Jobs on the Rise 2026"
+      },
+      "modules": [
+        {
+          "t": "ML workflow",
+          "topics": [
+            "Problem framing",
+            "Data splits",
+            "Metrics"
+          ]
+        },
+        {
+          "t": "Classic algorithms",
+          "topics": [
+            "Trees & ensembles",
+            "SVMs",
+            "Gradient boosting"
+          ]
+        },
+        {
+          "t": "Deep learning",
+          "topics": [
+            "Neural nets",
+            "CNNs",
+            "Transfer learning"
+          ]
+        },
+        {
+          "t": "NLP models",
+          "topics": [
+            "Transformers",
+            "Fine-tuning",
+            "Embeddings"
+          ]
+        },
+        {
+          "t": "Model deployment",
+          "topics": [
+            "APIs",
+            "Monitoring",
+            "MLOps basics"
+          ]
+        },
+        {
+          "t": "Kaggle-style projects",
+          "topics": [
+            "Competitions",
+            "Portfolio",
+            "Code reviews"
+          ]
+        }
+      ],
+      "capstone": "Ship a deployed ML model with a public demo and GitHub repo."
+    },
+    {
+      "id": "full-stack",
+      "name": "Full Stack Mastery",
+      "short": "Full Stack",
+      "goal": "Full Stack Developer",
+      "cat": "tech",
+      "fit": [],
+      "live": true,
+      "icon": "layers",
+      "tagline": "Front-end to back-end, React to databases.",
+      "desc": "Master front-end and back-end development including React, Node.js, and databases.",
+      "overview": "Build complete web applications: responsive front-ends in React, APIs in Node.js, databases, authentication and deployment.",
+      "roles": [
+        "Full Stack Developer",
+        "Front-end Developer",
+        "Back-end Developer"
+      ],
+      "tools": [
+        "HTML/CSS",
+        "JavaScript",
+        "React",
+        "Node.js",
+        "MongoDB / SQL",
+        "Git"
+      ],
+      "certs": [
+        "GitHub portfolio"
+      ],
+      "signal": {
+        "text": "Software roles remain the largest white-collar hiring category",
+        "src": "Naukri JobSpeak 2026"
+      },
+      "modules": [
+        {
+          "t": "Web fundamentals",
+          "topics": [
+            "HTML, CSS",
+            "Responsive design",
+            "Accessibility"
+          ]
+        },
+        {
+          "t": "JavaScript",
+          "topics": [
+            "ES6+",
+            "DOM",
+            "Async"
+          ]
+        },
+        {
+          "t": "React",
+          "topics": [
+            "Components",
+            "State",
+            "Routing"
+          ]
+        },
+        {
+          "t": "Node.js APIs",
+          "topics": [
+            "Express",
+            "REST",
+            "Auth"
+          ]
+        },
+        {
+          "t": "Databases",
+          "topics": [
+            "MongoDB",
+            "SQL",
+            "ORMs"
+          ]
+        },
+        {
+          "t": "Deploy",
+          "topics": [
+            "Git",
+            "CI basics",
+            "Cloud hosting"
+          ]
+        }
+      ],
+      "capstone": "Build and deploy a full-stack product (MVP) with authentication."
+    },
+    {
+      "id": "cybersecurity",
+      "name": "Ethical Hacking & Security",
+      "short": "Ethical Hacking",
+      "goal": "Security Analyst",
+      "cat": "tech",
+      "fit": [],
+      "live": true,
+      "icon": "shield",
+      "tagline": "Defend systems against real-world threats.",
+      "desc": "Train in cybersecurity principles and real-time threat prevention.",
+      "overview": "Learn how attacks work so you can stop them: networks, vulnerabilities, penetration-testing methodology and security operations, all in legal lab environments.",
+      "roles": [
+        "Security Analyst",
+        "SOC Analyst",
+        "Penetration Tester"
+      ],
+      "tools": [
+        "Kali Linux",
+        "Wireshark",
+        "Burp Suite",
+        "Nmap",
+        "SIEM basics"
+      ],
+      "certs": [
+        "CEH / CompTIA Security+ (aligned)"
+      ],
+      "signal": {
+        "text": "Cybersecurity is a top-3 fastest-growing skill to 2030",
+        "src": "WEF Future of Jobs 2025"
+      },
+      "modules": [
+        {
+          "t": "Networking",
+          "topics": [
+            "TCP/IP",
+            "Ports",
+            "Protocols"
+          ]
+        },
+        {
+          "t": "Linux & tools",
+          "topics": [
+            "Kali",
+            "Scripting",
+            "Recon"
+          ]
+        },
+        {
+          "t": "Web security",
+          "topics": [
+            "OWASP Top 10",
+            "Burp Suite",
+            "Secure coding"
+          ]
+        },
+        {
+          "t": "Pen-testing method",
+          "topics": [
+            "Scanning",
+            "Exploitation (lab)",
+            "Reporting"
+          ]
+        },
+        {
+          "t": "Security operations",
+          "topics": [
+            "SIEM",
+            "Incident response",
+            "Threat intel"
+          ]
+        },
+        {
+          "t": "Cloud security",
+          "topics": [
+            "IAM",
+            "Hardening",
+            "Compliance"
+          ]
+        }
+      ],
+      "capstone": "Run a full penetration test on a lab environment and write the professional report."
+    },
+    {
+      "id": "cloud",
+      "name": "Mastering Cloud Technologies",
+      "short": "Cloud",
+      "goal": "Cloud Engineer",
+      "cat": "tech",
+      "fit": [],
+      "live": true,
+      "icon": "cloud",
+      "tagline": "Deploy and scale apps in the cloud.",
+      "desc": "Deploy and manage applications using cloud-native architectures.",
+      "overview": "Learn cloud fundamentals, core services, containers and cloud-native architecture to deploy and manage applications at scale.",
+      "roles": [
+        "Cloud Engineer",
+        "Cloud Support Associate",
+        "Solutions Architect (associate)"
+      ],
+      "tools": [
+        "AWS / Azure",
+        "Linux",
+        "Docker",
+        "Kubernetes basics",
+        "Terraform basics"
+      ],
+      "certs": [
+        "AWS Cloud Practitioner / AZ-900 (aligned)"
+      ],
+      "signal": {
+        "text": "AI & cloud freshers start at ≈ ₹7–8.5 LPA",
+        "src": "TeamLease Digital FY26"
+      },
+      "modules": [
+        {
+          "t": "Cloud concepts",
+          "topics": [
+            "IaaS/PaaS/SaaS",
+            "Regions",
+            "Pricing"
+          ]
+        },
+        {
+          "t": "Compute & storage",
+          "topics": [
+            "VMs",
+            "Object storage",
+            "Databases"
+          ]
+        },
+        {
+          "t": "Networking",
+          "topics": [
+            "VPCs",
+            "Load balancers",
+            "DNS"
+          ]
+        },
+        {
+          "t": "Containers",
+          "topics": [
+            "Docker",
+            "Kubernetes intro",
+            "Registries"
+          ]
+        },
+        {
+          "t": "Infra as code",
+          "topics": [
+            "Terraform",
+            "Automation",
+            "Cost control"
+          ]
+        },
+        {
+          "t": "Cloud-native apps",
+          "topics": [
+            "Serverless",
+            "Monitoring",
+            "Security"
+          ]
+        }
+      ],
+      "capstone": "Deploy a scalable, monitored web application on the cloud."
+    },
+    {
+      "id": "devops",
+      "name": "DevOps Engineering",
+      "short": "DevOps",
+      "goal": "DevOps Engineer",
+      "cat": "tech",
+      "fit": [],
+      "live": true,
+      "icon": "loop",
+      "tagline": "Automate, ship and run software like big tech.",
+      "desc": "Learn how to deploy, automate, and manage applications using modern DevOps tools and cloud infrastructure used by tech companies.",
+      "overview": "CI/CD pipelines, containers, orchestration, infrastructure as code and monitoring — the toolchain tech companies use to ship reliably.",
+      "roles": [
+        "DevOps Engineer",
+        "Site Reliability Associate",
+        "Build & Release Engineer"
+      ],
+      "tools": [
+        "Git",
+        "Jenkins / GitHub Actions",
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "Prometheus"
+      ],
+      "certs": [
+        "CKA / AWS DevOps (foundation)"
+      ],
+      "signal": {
+        "text": "Tech literacy is among the fastest-growing skill clusters",
+        "src": "WEF Future of Jobs 2025"
+      },
+      "modules": [
+        {
+          "t": "Linux & scripting",
+          "topics": [
+            "Bash",
+            "Processes",
+            "Permissions"
+          ]
+        },
+        {
+          "t": "Git workflows",
+          "topics": [
+            "Branching",
+            "PRs",
+            "Code review"
+          ]
+        },
+        {
+          "t": "CI/CD",
+          "topics": [
+            "Pipelines",
+            "Testing",
+            "Artifacts"
+          ]
+        },
+        {
+          "t": "Containers & K8s",
+          "topics": [
+            "Docker",
+            "Deployments",
+            "Helm"
+          ]
+        },
+        {
+          "t": "IaC",
+          "topics": [
+            "Terraform",
+            "Ansible",
+            "Environments"
+          ]
+        },
+        {
+          "t": "Observability",
+          "topics": [
+            "Logs",
+            "Metrics",
+            "Alerts"
+          ]
+        }
+      ],
+      "capstone": "Build a full CI/CD pipeline that ships a containerised app to Kubernetes."
+    },
+    {
+      "id": "android",
+      "name": "Android Development Studio",
+      "short": "Android",
+      "goal": "Android Developer",
+      "cat": "tech",
+      "fit": [],
+      "live": true,
+      "icon": "phone",
+      "tagline": "Build modern Android apps with Kotlin.",
+      "desc": "Build modern Android apps using Kotlin and Android Studio.",
+      "overview": "Design, build and publish Android apps with Kotlin, Jetpack Compose, APIs and local storage.",
+      "roles": [
+        "Android Developer",
+        "Mobile App Developer"
+      ],
+      "tools": [
+        "Kotlin",
+        "Android Studio",
+        "Jetpack Compose",
+        "Firebase",
+        "REST APIs"
+      ],
+      "certs": [
+        "Play Store published app"
+      ],
+      "signal": {
+        "text": "India is Android-first: most web traffic here is mobile",
+        "src": "StatCounter, 2026"
+      },
+      "modules": [
+        {
+          "t": "Kotlin",
+          "topics": [
+            "Syntax",
+            "OOP",
+            "Coroutines"
+          ]
+        },
+        {
+          "t": "UI with Compose",
+          "topics": [
+            "Layouts",
+            "State",
+            "Theming"
+          ]
+        },
+        {
+          "t": "Architecture",
+          "topics": [
+            "MVVM",
+            "Navigation",
+            "DI"
+          ]
+        },
+        {
+          "t": "Data",
+          "topics": [
+            "Room",
+            "APIs",
+            "Firebase"
+          ]
+        },
+        {
+          "t": "Device features",
+          "topics": [
+            "Camera",
+            "Location",
+            "Notifications"
+          ]
+        },
+        {
+          "t": "Publishing",
+          "topics": [
+            "Testing",
+            "Play Store",
+            "Analytics"
+          ]
+        }
+      ],
+      "capstone": "Publish a complete Android app to the Play Store."
+    },
+    {
+      "id": "iot",
+      "name": "Internet of Things Lab",
+      "short": "IoT",
+      "goal": "IoT Engineer",
+      "cat": "tech",
+      "fit": [],
+      "live": true,
+      "icon": "chip",
+      "tagline": "Connect smart devices and sensors.",
+      "desc": "Build and connect smart devices using IoT platforms and sensors.",
+      "overview": "Work with microcontrollers, sensors and IoT cloud platforms to build connected devices and dashboards.",
+      "roles": [
+        "IoT Engineer",
+        "Embedded Developer",
+        "Automation Engineer"
+      ],
+      "tools": [
+        "Arduino",
+        "ESP32",
+        "Raspberry Pi",
+        "MQTT",
+        "IoT cloud dashboards"
+      ],
+      "certs": [
+        "Project portfolio"
+      ],
+      "signal": {
+        "text": "Tech literacy is among the fastest-growing skill clusters",
+        "src": "WEF Future of Jobs 2025"
+      },
+      "modules": [
+        {
+          "t": "Electronics basics",
+          "topics": [
+            "Circuits",
+            "Sensors",
+            "Actuators"
+          ]
+        },
+        {
+          "t": "Microcontrollers",
+          "topics": [
+            "Arduino",
+            "ESP32",
+            "Firmware"
+          ]
+        },
+        {
+          "t": "Connectivity",
+          "topics": [
+            "Wi-Fi/BLE",
+            "MQTT",
+            "Protocols"
+          ]
+        },
+        {
+          "t": "IoT cloud",
+          "topics": [
+            "Data ingest",
+            "Dashboards",
+            "Alerts"
+          ]
+        },
+        {
+          "t": "Edge computing",
+          "topics": [
+            "Raspberry Pi",
+            "Edge AI",
+            "Security"
+          ]
+        },
+        {
+          "t": "Smart systems",
+          "topics": [
+            "Home",
+            "Agri",
+            "Industry 4.0"
+          ]
+        }
+      ],
+      "capstone": "Build a connected smart-device prototype with a live dashboard."
+    },
+    {
+      "id": "embedx",
+      "name": "EmbedX: Smart Systems Engineering",
+      "short": "EmbedX",
+      "goal": "Embedded Engineer",
+      "cat": "tech",
+      "fit": [],
+      "live": true,
+      "icon": "chip",
+      "tagline": "Design performance-critical embedded systems.",
+      "desc": "Design and program embedded systems for performance-critical applications.",
+      "overview": "Embedded C, microcontroller architecture, RTOS and hardware interfaces for performance-critical products.",
+      "roles": [
+        "Embedded Software Engineer",
+        "Firmware Engineer"
+      ],
+      "tools": [
+        "Embedded C",
+        "ARM Cortex",
+        "RTOS",
+        "Oscilloscope",
+        "I2C/SPI/UART"
+      ],
+      "certs": [
+        "Project portfolio"
+      ],
+      "signal": {
+        "text": "Tech literacy is among the fastest-growing skill clusters",
+        "src": "WEF Future of Jobs 2025"
+      },
+      "modules": [
+        {
+          "t": "Embedded C",
+          "topics": [
+            "Pointers",
+            "Memory",
+            "Bit ops"
+          ]
+        },
+        {
+          "t": "MCU architecture",
+          "topics": [
+            "ARM Cortex",
+            "Registers",
+            "Interrupts"
+          ]
+        },
+        {
+          "t": "Peripherals",
+          "topics": [
+            "GPIO",
+            "Timers",
+            "ADC"
+          ]
+        },
+        {
+          "t": "Protocols",
+          "topics": [
+            "I2C",
+            "SPI",
+            "UART/CAN"
+          ]
+        },
+        {
+          "t": "RTOS",
+          "topics": [
+            "Tasks",
+            "Scheduling",
+            "Sync"
+          ]
+        },
+        {
+          "t": "Debug & test",
+          "topics": [
+            "JTAG",
+            "Profiling",
+            "Reliability"
+          ]
+        }
+      ],
+      "capstone": "Build a real-time embedded controller with RTOS."
+    },
+    {
+      "id": "pharmacovigilance",
+      "name": "Pharmacovigilance & Drug Safety Monitoring",
+      "short": "Pharmacovigilance",
+      "goal": "Drug Safety Associate",
+      "cat": "pharma",
+      "fit": [],
+      "live": true,
+      "icon": "pill",
+      "tagline": "Keep patients safe with drug-safety data.",
+      "desc": "Learn how drug safety data is collected, analyzed, and reported to ensure patient safety and regulatory compliance.",
+      "overview": "Case processing, signal detection, safety reporting and global regulations — the core of drug-safety roles at pharma companies and CROs.",
+      "roles": [
+        "Drug Safety Associate",
+        "PV Case Processor",
+        "Safety Scientist (associate)"
+      ],
+      "tools": [
+        "Argus / ARISg concepts",
+        "MedDRA",
+        "E2B",
+        "Excel"
+      ],
+      "certs": [
+        "Arzon certificate"
+      ],
+      "signal": {
+        "text": "Hyderabad is one of India's biggest pharma & life-sciences hubs",
+        "src": "Arzon Global"
+      },
+      "modules": [
+        {
+          "t": "PV fundamentals",
+          "topics": [
+            "Adverse events",
+            "Drug lifecycle",
+            "ICH guidelines"
+          ]
+        },
+        {
+          "t": "Case processing",
+          "topics": [
+            "Intake",
+            "Coding with MedDRA",
+            "Narratives"
+          ]
+        },
+        {
+          "t": "Safety databases",
+          "topics": [
+            "Argus concepts",
+            "Data entry",
+            "QC"
+          ]
+        },
+        {
+          "t": "Signal detection",
+          "topics": [
+            "Aggregate reports",
+            "PSUR/PBRER",
+            "Risk management"
+          ]
+        },
+        {
+          "t": "Regulations",
+          "topics": [
+            "CDSCO",
+            "FDA",
+            "EMA"
+          ]
+        },
+        {
+          "t": "Career prep",
+          "topics": [
+            "Interview prep",
+            "SOPs",
+            "Audits"
+          ]
+        }
+      ],
+      "capstone": "Process and QC a set of adverse-event cases end to end."
+    },
+    {
+      "id": "medical-coding",
+      "name": "Certified Medical Coding Programme",
+      "short": "Medical Coding",
+      "goal": "Medical Coder",
+      "cat": "pharma",
+      "fit": [],
+      "live": true,
+      "icon": "file",
+      "tagline": "Code healthcare claims accurately.",
+      "desc": "Learn medical coding standards used in hospitals and insurance companies to process healthcare claims accurately.",
+      "overview": "ICD-10, CPT and HCPCS coding, anatomy and medical terminology for hospital and insurance claims roles.",
+      "roles": [
+        "Medical Coder",
+        "Coding Auditor",
+        "Healthcare Claims Analyst"
+      ],
+      "tools": [
+        "ICD-10-CM",
+        "CPT",
+        "HCPCS",
+        "Encoder software"
+      ],
+      "certs": [
+        "CPC (AAPC) prep"
+      ],
+      "signal": {
+        "text": "Healthcare RCM remains a large fresher employer in Hyderabad",
+        "src": "Arzon Global"
+      },
+      "modules": [
+        {
+          "t": "Anatomy & terminology",
+          "topics": [
+            "Body systems",
+            "Medical terms",
+            "Abbreviations"
+          ]
+        },
+        {
+          "t": "ICD-10-CM",
+          "topics": [
+            "Guidelines",
+            "Diagnoses",
+            "Sequencing"
+          ]
+        },
+        {
+          "t": "CPT",
+          "topics": [
+            "E/M",
+            "Surgery",
+            "Radiology & lab"
+          ]
+        },
+        {
+          "t": "HCPCS & modifiers",
+          "topics": [
+            "Level II codes",
+            "Modifiers",
+            "Compliance"
+          ]
+        },
+        {
+          "t": "Revenue cycle",
+          "topics": [
+            "Claims",
+            "Denials",
+            "Audits"
+          ]
+        },
+        {
+          "t": "Exam prep",
+          "topics": [
+            "Mock tests",
+            "Speed & accuracy",
+            "Case studies"
+          ]
+        }
+      ],
+      "capstone": "Code a full set of real-world style patient charts with audit scoring."
+    },
+    {
+      "id": "clinical-data",
+      "name": "Clinical Data Management",
+      "short": "Clinical Data Mgmt",
+      "goal": "Clinical Data Associate",
+      "cat": "pharma",
+      "fit": [],
+      "live": true,
+      "icon": "table",
+      "tagline": "Manage and validate clinical-trial data.",
+      "desc": "Manage, validate, and report clinical trial data using industry-standard tools.",
+      "overview": "CRF design, data validation, query management and database lock across the clinical-trial lifecycle.",
+      "roles": [
+        "Clinical Data Associate",
+        "Data Validation Specialist"
+      ],
+      "tools": [
+        "EDC systems",
+        "CDISC standards",
+        "Excel",
+        "MedDRA / WHODrug"
+      ],
+      "certs": [
+        "Arzon certificate"
+      ],
+      "signal": {
+        "text": "Clinical research outsourcing keeps growing in India",
+        "src": "Arzon Global"
+      },
+      "modules": [
+        {
+          "t": "Clinical trials",
+          "topics": [
+            "Phases",
+            "GCP",
+            "Stakeholders"
+          ]
+        },
+        {
+          "t": "CRF & database design",
+          "topics": [
+            "eCRF",
+            "Edit checks",
+            "UAT"
+          ]
+        },
+        {
+          "t": "Data validation",
+          "topics": [
+            "Queries",
+            "Discrepancies",
+            "Reconciliation"
+          ]
+        },
+        {
+          "t": "Standards",
+          "topics": [
+            "CDISC CDASH",
+            "SDTM intro",
+            "Coding"
+          ]
+        },
+        {
+          "t": "Database lock",
+          "topics": [
+            "QC",
+            "Lock",
+            "Archiving"
+          ]
+        },
+        {
+          "t": "Compliance",
+          "topics": [
+            "21 CFR Part 11",
+            "Audits",
+            "SOPs"
+          ]
+        }
+      ],
+      "capstone": "Take a mock study from CRF design to database lock."
+    },
+    {
+      "id": "clinical-sas",
+      "name": "Clinical SAS Programming",
+      "short": "Clinical SAS",
+      "goal": "SAS Programmer",
+      "cat": "pharma",
+      "fit": [],
+      "live": true,
+      "icon": "code",
+      "tagline": "Analyse clinical data with SAS.",
+      "desc": "Analyze and report clinical data using SAS for research and regulatory submissions.",
+      "overview": "Base and advanced SAS, CDISC SDTM/ADaM datasets and TLF reporting for regulatory submissions.",
+      "roles": [
+        "Clinical SAS Programmer",
+        "Statistical Programmer"
+      ],
+      "tools": [
+        "Base SAS",
+        "SAS Macros",
+        "SQL in SAS",
+        "CDISC SDTM/ADaM"
+      ],
+      "certs": [
+        "SAS Base Programmer (prep)"
+      ],
+      "signal": {
+        "text": "Regulatory submissions require CDISC-standard data",
+        "src": "Arzon Global"
+      },
+      "modules": [
+        {
+          "t": "Base SAS",
+          "topics": [
+            "Data step",
+            "Procedures",
+            "Formats"
+          ]
+        },
+        {
+          "t": "Advanced SAS",
+          "topics": [
+            "Macros",
+            "PROC SQL",
+            "Arrays"
+          ]
+        },
+        {
+          "t": "SDTM",
+          "topics": [
+            "Domains",
+            "Mapping",
+            "Validation"
+          ]
+        },
+        {
+          "t": "ADaM",
+          "topics": [
+            "ADSL",
+            "BDS",
+            "Traceability"
+          ]
+        },
+        {
+          "t": "TLFs",
+          "topics": [
+            "Tables",
+            "Listings",
+            "Figures"
+          ]
+        },
+        {
+          "t": "Submission",
+          "topics": [
+            "Define.xml",
+            "QC",
+            "Pinnacle 21"
+          ]
+        }
+      ],
+      "capstone": "Produce SDTM/ADaM datasets and TLFs for a mock study."
+    },
+    {
+      "id": "regulatory-affairs",
+      "name": "Pharmaceutical Regulatory Affairs",
+      "short": "Regulatory Affairs",
+      "goal": "Regulatory Associate",
+      "cat": "pharma",
+      "fit": [],
+      "live": true,
+      "icon": "stamp",
+      "tagline": "Navigate global drug-approval pathways.",
+      "desc": "Understand global regulatory requirements and drug approval pathways.",
+      "overview": "Dossiers, CTD/eCTD, approval pathways and post-approval changes across India, US and EU regulators.",
+      "roles": [
+        "Regulatory Affairs Associate",
+        "Regulatory Operations Specialist"
+      ],
+      "tools": [
+        "CTD / eCTD",
+        "Regulatory databases",
+        "Document management"
+      ],
+      "certs": [
+        "Arzon certificate"
+      ],
+      "signal": {
+        "text": "India is a leading generics exporter to regulated markets",
+        "src": "Arzon Global"
+      },
+      "modules": [
+        {
+          "t": "Regulatory basics",
+          "topics": [
+            "Agencies",
+            "Drug lifecycle",
+            "ICH"
+          ]
+        },
+        {
+          "t": "CTD & eCTD",
+          "topics": [
+            "Modules 1–5",
+            "Publishing",
+            "Submissions"
+          ]
+        },
+        {
+          "t": "Approval pathways",
+          "topics": [
+            "NDA/ANDA",
+            "EU procedures",
+            "CDSCO"
+          ]
+        },
+        {
+          "t": "Labelling",
+          "topics": [
+            "SmPC",
+            "PIL",
+            "Artwork"
+          ]
+        },
+        {
+          "t": "Post-approval",
+          "topics": [
+            "Variations",
+            "Renewals",
+            "Compliance"
+          ]
+        },
+        {
+          "t": "Medical devices",
+          "topics": [
+            "MDR",
+            "Classification",
+            "CE marking"
+          ]
+        }
+      ],
+      "capstone": "Compile a mock ANDA / CTD module and review checklist."
+    },
+    {
+      "id": "nanotech",
+      "name": "Nanoscience & Nanotechnology",
+      "short": "Nanotechnology",
+      "goal": "Research Associate",
+      "cat": "pharma",
+      "fit": [],
+      "live": true,
+      "icon": "atom",
+      "tagline": "Nanotech applications in healthcare.",
+      "desc": "Explore nanotechnologies and their applications in healthcare and advanced research.",
+      "overview": "Nanomaterials, characterisation techniques and applications in drug delivery, diagnostics and advanced research.",
+      "roles": [
+        "Research Associate",
+        "Formulation Scientist (associate)"
+      ],
+      "tools": [
+        "Characterisation techniques",
+        "Lab protocols",
+        "Research writing"
+      ],
+      "certs": [
+        "Arzon certificate"
+      ],
+      "signal": {
+        "text": "Nanomedicine is a fast-growing research field",
+        "src": "Arzon Global"
+      },
+      "modules": [
+        {
+          "t": "Nanoscience basics",
+          "topics": [
+            "Scale effects",
+            "Materials",
+            "Synthesis"
+          ]
+        },
+        {
+          "t": "Characterisation",
+          "topics": [
+            "SEM/TEM",
+            "DLS",
+            "Spectroscopy"
+          ]
+        },
+        {
+          "t": "Drug delivery",
+          "topics": [
+            "Nanocarriers",
+            "Targeting",
+            "Release"
+          ]
+        },
+        {
+          "t": "Diagnostics",
+          "topics": [
+            "Biosensors",
+            "Imaging",
+            "Assays"
+          ]
+        },
+        {
+          "t": "Safety & ethics",
+          "topics": [
+            "Toxicology",
+            "Regulation",
+            "Ethics"
+          ]
+        },
+        {
+          "t": "Research skills",
+          "topics": [
+            "Literature",
+            "Protocols",
+            "Writing"
+          ]
+        }
+      ],
+      "capstone": "Write and present a research proposal for a nano-enabled therapy."
+    },
+    {
+      "id": "ai-for-business",
+      "name": "AI for Business & GenAI for Managers",
+      "short": "AI for Business",
+      "goal": "AI-ready Manager",
+      "cat": "business",
+      "fit": [
+        "bba",
+        "mba"
+      ],
+      "live": false,
+      "icon": "sparkle",
+      "tagline": "The AI skills every future manager needs — no coding.",
+      "desc": "Use GenAI, copilots and no-code agents to do analysis, marketing, finance and ops work faster.",
+      "overview": "Built for non-coders. Master prompting, AI-powered research and analysis, no-code automation and AI governance — then build a business case that proves ROI.",
+      "roles": [
+        "AI Business Analyst",
+        "AI Marketing Associate",
+        "Strategy Associate",
+        "Operations Associate"
+      ],
+      "tools": [
+        "ChatGPT / Claude / Gemini",
+        "Microsoft Copilot",
+        "Excel with AI",
+        "Power BI Copilot",
+        "Zapier / Make",
+        "Notion AI"
+      ],
+      "certs": [
+        "Microsoft AI-900 (aligned)",
+        "Google AI Essentials (aligned)"
+      ],
+      "signal": {
+        "text": "Prompt Engineer ranked #1 on India's fastest-growing jobs",
+        "src": "LinkedIn Jobs on the Rise 2026"
+      },
+      "modules": [
+        {
+          "t": "AI & LLMs for non-coders",
+          "topics": [
+            "How LLMs work",
+            "Strengths & limits",
+            "AI in each function"
+          ]
+        },
+        {
+          "t": "Prompt engineering",
+          "topics": [
+            "Prompt patterns",
+            "Role & context",
+            "Iteration"
+          ]
+        },
+        {
+          "t": "AI for research, writing & decks",
+          "topics": [
+            "Research workflows",
+            "Business writing",
+            "AI slides"
+          ]
+        },
+        {
+          "t": "AI in Excel & analysis",
+          "topics": [
+            "Copilot in Excel",
+            "AI data analysis",
+            "Verification"
+          ]
+        },
+        {
+          "t": "No-code automation & agents",
+          "topics": [
+            "Zapier / Make",
+            "Agents",
+            "Workflow design"
+          ]
+        },
+        {
+          "t": "Function use-cases",
+          "topics": [
+            "Marketing",
+            "Finance",
+            "HR & ops"
+          ]
+        },
+        {
+          "t": "Responsible AI",
+          "topics": [
+            "Quality control",
+            "Privacy",
+            "Governance"
+          ]
+        },
+        {
+          "t": "AI business case",
+          "topics": [
+            "ROI modelling",
+            "Change management",
+            "Pitching AI"
+          ]
+        }
+      ],
+      "capstone": "Redesign a real SME workflow with AI and document the time and cost saved."
+    },
+    {
+      "id": "product-management",
+      "name": "Product Management",
+      "short": "Product Mgmt",
+      "goal": "Product Manager",
+      "cat": "business",
+      "fit": [
+        "mba"
+      ],
+      "live": false,
+      "icon": "box",
+      "tagline": "Think, build and ship like a product manager.",
+      "desc": "User research, PRDs, roadmaps, metrics and AI-era product strategy.",
+      "overview": "Learn the full PM toolkit — discovery, prioritisation, roadmaps, UX, agile delivery and metrics — and build a real product spec and prototype.",
+      "roles": [
+        "Associate Product Manager",
+        "Product Analyst",
+        "Product Operations"
+      ],
+      "tools": [
+        "Jira",
+        "Figma",
+        "Miro",
+        "Mixpanel / Amplitude",
+        "SQL",
+        "Notion"
+      ],
+      "certs": [
+        "CSPO / CSM (aligned)"
+      ],
+      "signal": {
+        "text": "Analytics & product roles took 9–11% of IIM offers",
+        "src": "IIMB & IIM Indore reports, 2026"
+      },
+      "modules": [
+        {
+          "t": "The PM role",
+          "topics": [
+            "Product thinking",
+            "PM vs PgM",
+            "Career paths"
+          ]
+        },
+        {
+          "t": "User research & JTBD",
+          "topics": [
+            "Interviews",
+            "Personas",
+            "Jobs-to-be-done"
+          ]
+        },
+        {
+          "t": "Market sizing & strategy",
+          "topics": [
+            "TAM/SAM/SOM",
+            "Competition",
+            "Vision"
+          ]
+        },
+        {
+          "t": "PRDs & prioritisation",
+          "topics": [
+            "Writing PRDs",
+            "RICE",
+            "Roadmaps"
+          ]
+        },
+        {
+          "t": "UX & wireframing",
+          "topics": [
+            "Figma",
+            "Flows",
+            "Usability tests"
+          ]
+        },
+        {
+          "t": "Agile delivery",
+          "topics": [
+            "Scrum",
+            "Jira",
+            "Working with engineers"
+          ]
+        },
+        {
+          "t": "Metrics & experiments",
+          "topics": [
+            "North-star metrics",
+            "A/B tests",
+            "SQL for PMs"
+          ]
+        },
+        {
+          "t": "AI products & GTM",
+          "topics": [
+            "AI features",
+            "Pricing",
+            "Launch plans"
+          ]
+        }
+      ],
+      "capstone": "Write a PRD, clickable prototype and metrics plan for a new feature in an Indian app."
+    },
+    {
+      "id": "consulting-strategy",
+      "name": "Consulting & Strategy",
+      "short": "Consulting",
+      "goal": "Consultant",
+      "cat": "business",
+      "fit": [
+        "mba"
+      ],
+      "live": false,
+      "icon": "compass",
+      "tagline": "Solve problems like a top-tier consultant.",
+      "desc": "Frameworks, market sizing, slide-craft and case interviews.",
+      "overview": "The problem-solving toolkit of strategy consulting — issue trees, hypothesis-driven analysis, market sizing, slide-writing and case interviews.",
+      "roles": [
+        "Business Analyst (Consulting)",
+        "Strategy Associate",
+        "Research Analyst"
+      ],
+      "tools": [
+        "Excel",
+        "PowerPoint / think-cell",
+        "Power BI",
+        "GenAI research tools"
+      ],
+      "certs": [
+        "Lean Six Sigma Green Belt (optional)"
+      ],
+      "signal": {
+        "text": "Consulting took 41–46% of IIM offers",
+        "src": "IIM Bangalore & IIM Indore, 2026"
+      },
+      "modules": [
+        {
+          "t": "Consulting toolkit",
+          "topics": [
+            "MECE",
+            "Issue trees",
+            "Hypotheses"
+          ]
+        },
+        {
+          "t": "Frameworks",
+          "topics": [
+            "Profitability",
+            "Market entry",
+            "Growth"
+          ]
+        },
+        {
+          "t": "Market research & sizing",
+          "topics": [
+            "Top-down",
+            "Bottom-up",
+            "Primary research"
+          ]
+        },
+        {
+          "t": "Financial analysis",
+          "topics": [
+            "Unit economics",
+            "Business cases",
+            "NPV"
+          ]
+        },
+        {
+          "t": "Slide-writing",
+          "topics": [
+            "Pyramid principle",
+            "Action titles",
+            "Exhibits"
+          ]
+        },
+        {
+          "t": "Operations & digital",
+          "topics": [
+            "Process mapping",
+            "Lean",
+            "Transformation"
+          ]
+        },
+        {
+          "t": "Case interviews",
+          "topics": [
+            "Case practice",
+            "Guesstimates",
+            "Partner fit"
+          ]
+        },
+        {
+          "t": "AI in consulting",
+          "topics": [
+            "AI research",
+            "Synthesis",
+            "Client-ready QC"
+          ]
+        }
+      ],
+      "capstone": "Deliver a client-style strategy deck for a real business problem."
+    },
+    {
+      "id": "b2b-sales",
+      "name": "B2B Sales, BD & CRM",
+      "short": "B2B Sales & BD",
+      "goal": "BD / Sales Leader",
+      "cat": "business",
+      "fit": [
+        "bba",
+        "mba"
+      ],
+      "live": false,
+      "icon": "handshake",
+      "tagline": "Prospect, pitch and close — with CRM discipline.",
+      "desc": "Prospecting, consultative selling and CRM pipelines for SaaS and GCC roles.",
+      "overview": "Modern B2B selling: ideal customer profiles, AI-personalised outreach, consultative selling, CRM pipelines and sales operations.",
+      "roles": [
+        "Business Development Executive",
+        "SDR / BDR",
+        "Sales Operations Analyst",
+        "Account Manager"
+      ],
+      "tools": [
+        "Salesforce",
+        "HubSpot CRM",
+        "LinkedIn Sales Navigator",
+        "Apollo",
+        "GenAI outreach"
+      ],
+      "certs": [
+        "Salesforce Associate (aligned)",
+        "HubSpot Sales (aligned)"
+      ],
+      "signal": {
+        "text": "Sales roles ranked #4 among India's fastest-growing jobs",
+        "src": "LinkedIn Jobs on the Rise 2026"
+      },
+      "modules": [
+        {
+          "t": "B2B & SaaS buying",
+          "topics": [
+            "Buying committees",
+            "Sales cycles",
+            "Pricing models"
+          ]
+        },
+        {
+          "t": "ICP & prospecting",
+          "topics": [
+            "ICP",
+            "Lead lists",
+            "Sales Navigator"
+          ]
+        },
+        {
+          "t": "Consultative selling",
+          "topics": [
+            "SPIN",
+            "MEDDIC",
+            "Discovery calls"
+          ]
+        },
+        {
+          "t": "Outreach",
+          "topics": [
+            "Cold email",
+            "LinkedIn",
+            "AI personalisation"
+          ]
+        },
+        {
+          "t": "CRM pipelines",
+          "topics": [
+            "Salesforce",
+            "Stages",
+            "Hygiene"
+          ]
+        },
+        {
+          "t": "Sales ops",
+          "topics": [
+            "Forecasting",
+            "Dashboards",
+            "Territories"
+          ]
+        },
+        {
+          "t": "Negotiation & closing",
+          "topics": [
+            "Objections",
+            "Negotiation",
+            "Closing"
+          ]
+        },
+        {
+          "t": "Customer success",
+          "topics": [
+            "Onboarding",
+            "Renewals",
+            "Upsell"
+          ]
+        }
+      ],
+      "capstone": "Build and run an outbound campaign for a real startup and report the pipeline."
+    },
+    {
+      "id": "supply-chain-ecom",
+      "name": "Supply Chain & E-commerce Ops",
+      "short": "Supply Chain & E-com",
+      "goal": "Ops / E-com Manager",
+      "cat": "business",
+      "fit": [
+        "bba",
+        "mba"
+      ],
+      "live": false,
+      "icon": "truck",
+      "tagline": "Run the engine behind e-commerce and quick-commerce.",
+      "desc": "Forecasting, inventory, marketplaces and quick-commerce operations analytics.",
+      "overview": "Demand forecasting, inventory and dark-store management, procurement, last-mile logistics and marketplace operations — backed by analytics.",
+      "roles": [
+        "Supply Chain Analyst",
+        "Marketplace Operations",
+        "Category Executive",
+        "Inventory Planner"
+      ],
+      "tools": [
+        "Excel",
+        "SQL",
+        "Power BI",
+        "SAP basics",
+        "Python forecasting",
+        "Seller panels"
+      ],
+      "certs": [
+        "SAP associate (aligned)",
+        "Lean Six Sigma Yellow Belt"
+      ],
+      "signal": {
+        "text": "Retail & e-commerce have 93% fresher hiring intent",
+        "src": "TeamLease EdTech, HY2 2026"
+      },
+      "modules": [
+        {
+          "t": "Supply chain fundamentals",
+          "topics": [
+            "Flows",
+            "Costs",
+            "KPIs"
+          ]
+        },
+        {
+          "t": "Demand forecasting",
+          "topics": [
+            "Time series",
+            "Seasonality",
+            "Forecast accuracy"
+          ]
+        },
+        {
+          "t": "Inventory & dark stores",
+          "topics": [
+            "EOQ & safety stock",
+            "Dark-store ops",
+            "Replenishment"
+          ]
+        },
+        {
+          "t": "Procurement",
+          "topics": [
+            "Vendors",
+            "Negotiation",
+            "Contracts"
+          ]
+        },
+        {
+          "t": "Logistics & last mile",
+          "topics": [
+            "3PL",
+            "Routing",
+            "Returns"
+          ]
+        },
+        {
+          "t": "Marketplace ops",
+          "topics": [
+            "Catalogue",
+            "Pricing",
+            "Q-commerce"
+          ]
+        },
+        {
+          "t": "ERP basics",
+          "topics": [
+            "SAP MM/SD",
+            "Workflows",
+            "Master data"
+          ]
+        },
+        {
+          "t": "Ops dashboards & Lean",
+          "topics": [
+            "Power BI",
+            "Lean",
+            "Continuous improvement"
+          ]
+        }
+      ],
+      "capstone": "Build an inventory and forecasting model for a D2C or quick-commerce SKU set."
+    }
+  ],
+  "events": [
+    {
+      "id": "sprint-analytics",
+      "type": "Skill Sprint",
+      "title": "Build a Power BI dashboard in 45 minutes",
+      "track": "business-analytics",
+      "date": "2026-10-08T18:30:00+05:30",
+      "mode": "On campus · Woxsen",
+      "host": "CrowdCore × Tantra",
+      "seats": 120
+    },
+    {
+      "id": "sprint-marketing",
+      "type": "Skill Sprint",
+      "title": "Run a ₹0 growth campaign — live",
+      "track": "digital-marketing",
+      "date": "2026-10-22T18:30:00+05:30",
+      "mode": "On campus · Woxsen",
+      "host": "CrowdCore",
+      "seats": 120
+    },
+    {
+      "id": "sprint-ai",
+      "type": "Skill Sprint",
+      "title": "10 AI workflows every MBA should steal",
+      "track": "ai-for-business",
+      "date": "2026-11-05T18:30:00+05:30",
+      "mode": "Online · live",
+      "host": "CrowdCore × Ignite",
+      "seats": 300
+    },
+    {
+      "id": "sprint-finance",
+      "type": "Skill Sprint",
+      "title": "Value a listed company like an analyst",
+      "track": "applied-finance",
+      "date": "2026-11-19T18:30:00+05:30",
+      "mode": "On campus · Woxsen",
+      "host": "CrowdCore × FinWiz",
+      "seats": 120
+    },
+    {
+      "id": "resume-booth",
+      "type": "Career Clinic",
+      "title": "AI Resume & LinkedIn Review Booth",
+      "track": "",
+      "date": "2026-10-14T17:30:00+05:30",
+      "mode": "Cafeteria · Woxsen",
+      "host": "Arzon mentors",
+      "seats": 60
+    }
+  ],
+  "caseComp": {
+    "id": "market-masters",
+    "name": "Market Masters",
+    "tagline": "The CrowdCore × Arzon Case Challenge",
+    "brief": "Grow Arzon Global's registrations among Tier-2 college students with a ₹50,000 budget.",
+    "opens": "2026-10-12",
+    "closes": "2026-11-09",
+    "final": "2026-11-28",
+    "team": "1–3 members",
+    "rounds": [
+      {
+        "t": "Round 1 · Online deck",
+        "d": "Submit a 6-slide growth strategy."
+      },
+      {
+        "t": "Round 2 · Mentor review",
+        "d": "Top 10 teams get feedback from Arzon mentors."
+      },
+      {
+        "t": "Grand finale · Live pitch",
+        "d": "Top 5 pitch live at Woxsen."
+      }
+    ],
+    "prizes": [
+      "Free Arzon programme seats for the winning team",
+      "Paid marketing internship at Arzon HQ, Madhapur",
+      "Certificates for every finalist"
+    ]
+  },
+  "faq": [
+    {
+      "q": "How much does it cost?",
+      "a": "With the current scholarship, the total programme fee is ₹8,000 (list price ₹24,999). You reserve your seat with a ₹1,065 registration fee, and your counsellor shares the payment schedule."
+    },
+    {
+      "q": "What exactly do I get?",
+      "a": "Live classes, lifetime LMS access to every recording, an internship offer letter on enrolment, domain community groups with news and cheat sheets, 1 major + 2 minor industry projects on real case studies, course, project and internship completion certificates, and an LOR."
+    },
+    {
+      "q": "Can I do this alongside my Woxsen classes?",
+      "a": "Yes. Classes are live and every session is recorded to the LMS, so you can catch up around your timetable, exams and placement prep."
+    },
+    {
+      "q": "Do I keep access to the recordings?",
+      "a": "Yes. Recordings stay on the LMS portal with lifetime access."
+    },
+    {
+      "q": "Are the projects real?",
+      "a": "All three projects (two minor, one major) are industry-level and based on real case studies."
+    },
+    {
+      "q": "Which track should I pick as an MBA or BBA student?",
+      "a": "Take the 30-second career quiz, or request a free roadmap. A mentor will map a track to your specialisation and goal."
+    }
+  ],
+  "benefits": [
+    {
+      "id": "lms",
+      "icon": "layers",
+      "title": "Lifetime LMS access",
+      "short": "Every class recording, available for life.",
+      "kicker": "Learning portal",
+      "lede": "Every live class is recorded and saved to your Arzon LMS portal. Rewatch any session, any time, even long after the course ends.",
+      "points": [
+        "Recordings of every live session",
+        "Lifetime access to the LMS portal",
+        "Notes and resources in one place",
+        "Learn around your Woxsen timetable and exams"
+      ],
+      "how": [
+        [
+          "Enrol",
+          "Get your LMS login when you enrol."
+        ],
+        [
+          "Attend live",
+          "Join classes live or catch up later."
+        ],
+        [
+          "Rewatch",
+          "Every session lands on the portal."
+        ],
+        [
+          "Keep it",
+          "Access stays open for life."
+        ]
+      ],
+      "visual": "player"
+    },
+    {
+      "id": "offer-letter",
+      "icon": "file",
+      "title": "Offer letter on enrolment",
+      "short": "Your internship offer letter from day one.",
+      "kicker": "Internship",
+      "lede": "You receive your internship offer letter as soon as you enrol, so there's a real line on your CV and LinkedIn before placement season.",
+      "points": [
+        "Issued at enrolment",
+        "Add it to your CV and LinkedIn straight away",
+        "Leads into a 3-month internship",
+        "Ends with an internship completion certificate"
+      ],
+      "how": [
+        [
+          "Enrol",
+          "Register and confirm your seat."
+        ],
+        [
+          "Get the letter",
+          "Your offer letter is issued on enrolment."
+        ],
+        [
+          "Intern",
+          "Work on industry-level projects."
+        ],
+        [
+          "Complete",
+          "Earn the internship completion certificate."
+        ]
+      ],
+      "visual": "letter"
+    },
+    {
+      "id": "live-classes",
+      "icon": "play",
+      "title": "Live classes",
+      "short": "Learn live with mentors who hire.",
+      "kicker": "Learning",
+      "lede": "Interactive live classes led by mentors from IITs, IIMs, YC startups and NVIDIA. Ask questions in real time, and every class is recorded for later.",
+      "points": [
+        "Live, interactive sessions",
+        "Mentors from IITs, IIMs, YC startups and NVIDIA",
+        "Q&A and doubt-clearing in class",
+        "Every session recorded to the LMS"
+      ],
+      "how": [
+        [
+          "Schedule",
+          "Get the class calendar for your track."
+        ],
+        [
+          "Join live",
+          "Learn, ask and practise with mentors."
+        ],
+        [
+          "Practise",
+          "Apply it in your projects."
+        ],
+        [
+          "Rewatch",
+          "Revisit any class on the LMS."
+        ]
+      ],
+      "visual": "player"
+    },
+    {
+      "id": "community",
+      "icon": "people",
+      "title": "Domain community groups",
+      "short": "Latest domain news, cheat sheets and more.",
+      "kicker": "Community",
+      "lede": "Join your domain's community group for the latest tech and industry news, cheat sheets, resources and peer discussions, so you stay current long after class.",
+      "points": [
+        "Latest tech and industry news for your domain",
+        "Cheat sheets and quick-reference guides",
+        "Resources, templates and opportunities",
+        "Peer discussions with other learners"
+      ],
+      "how": [
+        [
+          "Enrol",
+          "Get added to your domain group."
+        ],
+        [
+          "Stay current",
+          "Daily news and updates."
+        ],
+        [
+          "Save time",
+          "Cheat sheets and resources."
+        ],
+        [
+          "Connect",
+          "Learn with peers and mentors."
+        ]
+      ],
+      "visual": "feed"
+    },
+    {
+      "id": "projects",
+      "icon": "chart",
+      "title": "3 industry projects",
+      "short": "1 major + 2 minor, built on real case studies.",
+      "kicker": "Portfolio",
+      "lede": "Build two minor projects and one major project. All three are industry-level and based on real case studies, giving you a portfolio recruiters can actually see.",
+      "points": [
+        "2 minor projects to build core skills",
+        "1 major project on a real business problem",
+        "Industry-level, based on real case studies",
+        "A portfolio to show in interviews"
+      ],
+      "how": [
+        [
+          "Minor 1",
+          "Apply the first modules on a real case."
+        ],
+        [
+          "Minor 2",
+          "Go deeper with tools and data."
+        ],
+        [
+          "Major",
+          "Solve an end-to-end industry case."
+        ],
+        [
+          "Showcase",
+          "Present it to recruiters."
+        ]
+      ],
+      "visual": "projects"
+    },
+    {
+      "id": "certificates",
+      "icon": "check",
+      "title": "3 completion certificates",
+      "short": "Course, project and internship.",
+      "kicker": "Credentials",
+      "lede": "Earn three certificates: course completion, project completion and internship completion. That is proof of learning, of building and of real work.",
+      "points": [
+        "Course completion certificate",
+        "Project completion certificate",
+        "Internship completion certificate",
+        "Add all three to LinkedIn and your CV"
+      ],
+      "how": [
+        [
+          "Learn",
+          "Finish the course modules."
+        ],
+        [
+          "Build",
+          "Complete your projects."
+        ],
+        [
+          "Intern",
+          "Complete the internship."
+        ],
+        [
+          "Certify",
+          "Receive all three certificates."
+        ]
+      ],
+      "visual": "certs"
+    },
+    {
+      "id": "lor",
+      "icon": "handshake",
+      "title": "Letter of recommendation",
+      "short": "An LOR for your next company.",
+      "kicker": "Career",
+      "lede": "On successful completion you receive a letter of recommendation (LOR) to support your applications to your next company.",
+      "points": [
+        "Issued on successful completion",
+        "Supports internship and job applications",
+        "Backs up your projects and certificates",
+        "A strong add-on for placement season"
+      ],
+      "how": [
+        [
+          "Perform",
+          "Complete the course and projects."
+        ],
+        [
+          "Intern",
+          "Finish the internship."
+        ],
+        [
+          "Receive",
+          "Get your LOR."
+        ],
+        [
+          "Apply",
+          "Use it for your next role."
+        ]
+      ],
+      "visual": "letter"
+    }
+  ]
+}

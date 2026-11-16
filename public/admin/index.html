@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Admin · Arzon × Woxsen</title>
+<link rel="icon" id="favicon" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+<!-- Sign in -->
+<main id="login" class="login" hidden>
+  <form class="card login-card" id="loginForm" novalidate>
+    <img data-logo="wm" alt="Arzon Global" height="26" />
+    <h1>Admin sign in</h1>
+    <p class="muted">Leads, programmes, events and site content.</p>
+    <label>Email<input name="email" type="email" autocomplete="username" required /></label>
+    <label>Password<input name="password" type="password" autocomplete="current-password" required /></label>
+    <p class="err" id="loginErr" role="alert"></p>
+    <button class="btn primary full" type="submit">Sign in</button>
+  </form>
+</main>
+
+<!-- App -->
+<div id="app" class="app" hidden>
+  <aside class="side">
+    <a class="brand" href="/" target="_blank" rel="noopener" title="Open the public site"><img data-logo="wm" alt="Arzon Global" height="22" /><small>Admin</small></a>
+    <nav id="nav">
+      <a href="#dashboard" data-v="dashboard">Dashboard</a>
+      <a href="#leads" data-v="leads">Leads <b id="newBadge" class="pill" hidden></b></a>
+      <a href="#programmes" data-v="programmes">Programmes</a>
+      <a href="#events" data-v="events">Events</a>
+      <a href="#squad" data-v="squad">Growth Squad</a>
+      <a href="#faq" data-v="faq">FAQ</a>
+      <a href="#benefits" data-v="benefits">What you get</a>
+      <a href="#settings" data-v="settings">Settings</a>
+      <a href="#account" data-v="account">Account</a>
+    </nav>
+    <div class="side-foot"><span class="muted" id="who"></span><button class="btn ghost sm" id="logout">Sign out</button></div>
+  </aside>
+  <main class="main" id="view" tabindex="-1"></main>
+</div>
+
+<div class="drawer" id="drawer" aria-hidden="true"><div class="drawer-panel" role="dialog" aria-modal="true"><button class="x" data-close aria-label="Close">×</button><div id="drawerBody"></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="/assets/brand.js"></script>
+<script src="/admin/admin.js"></script>
+</body>
+</html>
