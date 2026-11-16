@@ -5,7 +5,7 @@
   "description": "Arzon Global × CrowdCore Woxsen — campus career-programmes site with lead database and admin dashboard",
   "main": "index.js",
   "engines": {
-    "node": ">=22.9"
+    "node": "22.x"
   },
   "scripts": {
     "start": "node --env-file-if-exists=.env index.js",

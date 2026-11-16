@@ -1,5 +1,7 @@
 'use strict';
 // Entry point. Vercel imports the exported Express app; `npm start` runs it as a normal server.
+// (Vercel detects Express apps by an express import in the entry file.)
+require('express');
 const cfg = require('./server/config');
 const { createApp } = require('./server/app');
 
