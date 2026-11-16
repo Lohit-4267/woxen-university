@@ -461,8 +461,21 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 @media (max-width:640px){
   .form-side{padding-top:220px}
   .hero3d{height:270px}
-  .p-illo{width:min(270px,78%)}
+  .p-illo{width:min(220px,60%)}
+  .p-illo.cluster{width:min(300px,84%)}
 }
+
+/* ============================================================ CANVA 3D ART */
+.art3d{display:block;width:100%;height:auto;filter:drop-shadow(0 34px 60px rgba(20,80,170,.45))}
+@media (prefers-reduced-motion:no-preference){ .art3d.float{animation:artF 7s ease-in-out infinite} }
+@keyframes artF{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.p-illo.cluster{aspect-ratio:1.15;position:absolute}
+.cluster .art3d{position:absolute;width:52%}
+.cluster .c1{left:0;top:6%}
+.cluster .c2{right:0;top:0;animation-delay:-2s}
+.cluster .c3{left:8%;bottom:0;animation-delay:-4s}
+.cluster .c4{right:4%;bottom:6%;animation-delay:-5.5s;width:48%}
+@media (max-width:1000px){ .p-illo.cluster{position:relative;width:min(340px,88%)} }
 </style>
 </head>
 <body>
@@ -597,7 +610,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 <!-- ============================================================ VIEW: PROGRAMMES -->
 <div class="view" data-view="programmes">
   <section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b3"></div></div>
-    <div class="wrap"><div class="p-illo" data-illo="ladder"></div><span class="mono">Programmes</span><h1>Pick your track. <i>Rise.</i></h1>
+    <div class="wrap"><div class="p-illo cluster" aria-hidden="true"><img class="art3d float c1" src="/assets/illustrations/business-sm.webp" width="520" height="579" alt="" decoding="async"><img class="art3d float c2" src="/assets/illustrations/data-sm.webp" width="520" height="530" alt="" decoding="async"><img class="art3d float c3" src="/assets/illustrations/tech-sm.webp" width="520" height="540" alt="" decoding="async"><img class="art3d float c4" src="/assets/illustrations/pharma-sm.webp" width="520" height="404" alt="" decoding="async"></div><span class="mono">Programmes</span><h1>Pick your track. <i>Rise.</i></h1>
       <p class="lede">26+ self-paced tracks across business, data & AI, technology and pharma. Every one includes real projects, a 3-month internship, a certificate and placement support.</p></div></section>
   <section class="sec" style="padding-top:10px"><div class="wrap">
     <div class="toolbar" role="search">
@@ -912,6 +925,11 @@ let pt; $('#pq').addEventListener('input', e => { clearTimeout(pt); pt = setTime
 pApply();
 
 /* ---------- PROGRAMME DETAIL ---------- */
+// Category artwork: 3D renders made in Canva; code-drawn SVG for any category without one.
+const CAT_ART = { business: [900, 1003], data: [900, 917], tech: [900, 934], pharma: [900, 699] };
+const catArt = cat => CAT_ART[cat]
+  ? `<img class="art3d float" src="/assets/illustrations/${cat}.webp" srcset="/assets/illustrations/${cat}-sm.webp 520w, /assets/illustrations/${cat}.webp 900w" sizes="(max-width:1000px) 320px, 440px" width="${CAT_ART[cat][0]}" height="${CAT_ART[cat][1]}" alt="" decoding="async">`
+  : (window.ARZON_ILLO ? ARZON_ILLO.render(cat) : '');
 function renderDetail(id) {
   let t = T(id); if (!t || (!t.live && !C.SHOW_UPCOMING)) t = T('business-analytics');
   document.title = `${t.name} · Arzon Global × CrowdCore`;
@@ -919,7 +937,7 @@ function renderDetail(id) {
   const rel = visible().filter(x => x !== t && x.cat === t.cat).sort((a, b) => b.live - a.live).slice(0, 3);
   $('#detail').innerHTML = `
   <section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="wrap">
-    ${window.ARZON_ILLO ? `<div class="p-illo">${ARZON_ILLO.render(t.cat)}</div>` : ''}
+    <div class="p-illo">${catArt(t.cat)}</div>
     <div class="crumbs"><a href="#/">Home</a><span>/</span><a href="#/programmes">Programmes</a><span>/</span><span>${D.CATS[t.cat]}</span></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="badge ${t.live ? 'live' : 'soon'}">${t.live ? 'Enrolling now' : 'Coming soon · waitlist open'}</span>${t.fit.length ? `<span class="badge">For ${t.fit.map(x => x.toUpperCase()).join(' & ')}</span>` : ''}</div>
     <h1>${t.name.replace(/ & /, ' <i>&</i> ')}</h1><p class="lede">${t.tagline} ${t.desc}</p>
