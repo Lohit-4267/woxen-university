@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const { createApp } = require('../server/app');
 
 let server, base, cookie = '';
-const cfg = { dbFile: ':memory:', prod: false, secureCookies: false, trustProxy: false, ipSalt: 't', submitLimit: 1000,
+const cfg = { databaseUrl: '', pgliteDir: '', prod: false, secureCookies: false, trustProxy: false, ipSalt: 't', submitLimit: 1000,
   notifyWebhook: '', adminEmail: 'admin@test.local', adminPassword: 'correct-horse-battery' };
 
 const req = async (method, path, body, headers = {}) => {

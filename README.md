@@ -3,12 +3,12 @@
 Full working website for the Arzon × CrowdCore (Woxsen) career-programmes campaign:
 
 - **Public site** (`/`) — your original single-page design, unchanged visually, now powered by a real backend.
-- **Database** — SQLite (Node's built-in `node:sqlite`, no native build step). Holds programmes, events, FAQ, benefits, pricing/contact settings, and every form submission.
+- **Database** — Postgres (Supabase in production; an embedded PGlite Postgres for local dev, no install needed). Holds programmes, events, FAQ, benefits, pricing/contact settings, and every form submission. All tables live in the `arzon` schema.
 - **Admin dashboard** (`/admin`) — sign in to see and manage leads and to edit all site content without touching code.
 
 ## Quick start
 
-Requires **Node.js 22.13+**.
+Requires **Node.js 22.9+**.
 
 ```bash
 npm install
@@ -23,7 +23,7 @@ npm start
 ```
 
 Open http://localhost:3000 for the site and http://localhost:3000/admin for the dashboard.
-On first boot the database is created at `data/arzon.db`, seeded with all the content from the original design, and the admin from `ADMIN_EMAIL`/`ADMIN_PASSWORD` is created.
+With no `DATABASE_URL`, a local Postgres (PGlite) is created in `data/pglite/`. On first boot the tables are created, seeded with all the content from the original design, and the admin from `ADMIN_EMAIL`/`ADMIN_PASSWORD` is created.
 
 Add or reset an admin any time:
 
@@ -58,10 +58,11 @@ All content edits show on the public site within seconds — no redeploy.
 public/index.html        Original design. Loads /site-data.js (content from DB) and posts forms to /api/submissions
 public/assets/brand.js   Logo + favicon images (extracted from the original file)
 public/admin/            Admin dashboard (vanilla JS, no build step)
+index.js                 Entry point (exports the app for Vercel; `npm start` runs a server)
 server/app.js            Express app
 server/routes/public.js  /site-data.js, /api/content, /api/submissions, /api/health
 server/routes/admin.js   /api/admin/* (cookie session auth)
-server/db/index.js       Schema, migrations, first-run seed
+server/db/index.js       Postgres/PGlite drivers, schema migrations, first-run seed
 server/db/seed.json      Initial content (from the original design)
 ```
 
@@ -75,26 +76,28 @@ server/db/seed.json      Initial content (from the original design)
 ### Security
 
 - Admin passwords hashed with scrypt; sessions are random tokens stored hashed, in an HttpOnly, SameSite cookie (Secure in production).
-- Login and form submissions are rate-limited per IP; cross-origin writes are rejected.
+- Login and form submissions are rate-limited per IP; cross-origin writes are rejected; event seats are locked per row so they can't oversell.
 - Visitor IPs are never stored raw (salted hash only). CSV export neutralises spreadsheet-formula injection.
 - All admin-entered content is escaped when embedded in the page.
 
 ## Deploying
 
-Any host that runs Node 22 with a **persistent disk** for the SQLite file works.
+**Production: Vercel + Supabase.**
 
-- **Render**: push this repo, then *New → Blueprint* — `render.yaml` sets up the service and a 1 GB disk. Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` when prompted.
-- **Docker** (VPS, Railway, Fly.io):
-  ```bash
-  docker build -t arzon-woxsen .
-  ```
-  ```bash
-  docker run -d -p 3000:3000 -v arzon-data:/data -e ADMIN_EMAIL=you@example.com -e ADMIN_PASSWORD=change-me-please arzon-woxsen
-  ```
-- Put it behind HTTPS (required for the secure admin cookie in production).
-- **Backups**: copy `arzon.db` (e.g. a daily cron `sqlite3 /data/arzon.db ".backup /backups/arzon-$(date +%F).db"`), or export leads as CSV from the admin.
+- Vercel runs `index.js` (the Express app) as a function and serves `public/` from its CDN. Every push to `main` deploys automatically.
+- Supabase holds the data. The app connects as a dedicated `arzon_app` role that owns only the `arzon` schema (not exposed through Supabase's Data API). Tables are created and seeded automatically on first boot.
+- Vercel environment variables: `DATABASE_URL` (Supabase pooler URL, port 6543), `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `IP_SALT`, optional `NOTIFY_WEBHOOK_URL`.
 
-Optional: set `NOTIFY_WEBHOOK_URL` to get a message for every new lead (Slack/Discord incoming webhook, Zapier, Make, Google Apps Script → Sheets).
+**Anywhere else (VPS, Railway, Render, Docker):** set the same variables and run `npm start`, or:
+
+```bash
+docker build -t arzon-woxsen .
+```
+```bash
+docker run -d -p 3000:3000 -e DATABASE_URL=postgres://... -e ADMIN_EMAIL=you@example.com -e ADMIN_PASSWORD=change-me-please arzon-woxsen
+```
+
+**Backups:** Supabase takes daily backups; you can also export leads as CSV from the admin.
 
 ## Before going live — confirm with Arzon
 

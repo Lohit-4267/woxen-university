@@ -1,28 +1,27 @@
 'use strict';
 /**
  * Builds the public site content (window.ARZON_CONFIG + window.ARZON_DATA) from the database,
- * in exactly the shape the front-end expects. Cached in memory; any admin write calls invalidate().
+ * in exactly the shape the front-end expects. Cached briefly in memory; admin writes call invalidate().
  */
 const ICONS = require('./icons.json');
+const { obj } = require('../db');
 
-const parse = (s, fallback) => { try { return JSON.parse(s); } catch (_) { return fallback; } };
-
-function getSettings(db) {
+async function getSettings(db) {
   const out = {};
-  for (const r of db.prepare('SELECT key, value FROM settings').all()) out[r.key] = parse(r.value, null);
+  for (const r of await db.query('SELECT key, value FROM settings')) out[r.key] = obj(r.value, null);
   return out;
 }
 
-function seatsTaken(db) {
-  const m = {};
-  const rows = db.prepare(`SELECT event_id, COUNT(*) AS n FROM submissions
-                           WHERE type = 'event' AND event_id <> '' AND status <> 'spam' GROUP BY event_id`).all();
-  for (const r of rows) m[r.event_id] = r.n;
-  return m;
-}
-
-function build(db) {
-  const S = getSettings(db);
+async function build(db) {
+  const [S, cats, tracks, events, faqs, bens] = await Promise.all([
+    getSettings(db),
+    db.query('SELECT id, label FROM categories ORDER BY sort, id'),
+    db.query('SELECT * FROM tracks WHERE published ORDER BY sort, name'),
+    db.query(`SELECT e.*, (SELECT COUNT(*)::int FROM submissions s WHERE s.type = 'event' AND s.event_id = e.id AND s.status <> 'spam') AS taken
+              FROM events e WHERE e.published ORDER BY e.starts_at`),
+    db.query('SELECT q, a FROM faqs WHERE published ORDER BY sort, id'),
+    db.query('SELECT id, data FROM benefits WHERE published ORDER BY sort, id')
+  ]);
   const contact = S.contact || {}, pricing = S.pricing || {}, site = S.site || {};
 
   const config = {
@@ -36,31 +35,26 @@ function build(db) {
   };
 
   const CATS = {};
-  for (const c of db.prepare('SELECT id, label FROM categories ORDER BY sort, id').all()) CATS[c.id] = c.label;
+  for (const c of cats) CATS[c.id] = c.label;
 
-  const TRACKS = db.prepare('SELECT * FROM tracks WHERE published = 1 ORDER BY sort, name').all().map(r => {
-    const t = parse(r.data, {});
-    return Object.assign({ fit: [], roles: [], tools: [], certs: [], modules: [], signal: { text: '', src: '' } }, t,
-      { id: r.id, name: r.name, cat: r.cat, live: !!r.live, flagship: !!r.flagship });
-  });
+  const TRACKS = tracks.map(r => Object.assign({ fit: [], roles: [], tools: [], certs: [], modules: [], signal: { text: '', src: '' } }, obj(r.data),
+    { id: r.id, name: r.name, cat: r.cat, live: !!r.live, flagship: !!r.flagship }));
 
-  const taken = seatsTaken(db);
-  const EVENTS = db.prepare('SELECT * FROM events WHERE published = 1 ORDER BY starts_at').all().map(e => ({
-    id: e.id, type: e.type, title: e.title, track: e.track_id || '', date: e.starts_at, mode: e.mode, host: e.host,
-    seats: e.seats, seats_left: e.seats == null ? null : Math.max(0, e.seats - (taken[e.id] || 0))
+  const EVENTS = events.map(e => ({
+    id: e.id, type: e.type, title: e.title, track: e.track_id || '', date: new Date(e.starts_at).toISOString(), mode: e.mode, host: e.host,
+    seats: e.seats, seats_left: e.seats == null ? null : Math.max(0, e.seats - e.taken)
   }));
 
-  const FAQ = db.prepare('SELECT q, a FROM faqs WHERE published = 1 ORDER BY sort, id').all().map(f => ({ q: f.q, a: f.a }));
-  const BENEFITS = db.prepare('SELECT id, data FROM benefits WHERE published = 1 ORDER BY sort, id').all()
-    .map(b => Object.assign(parse(b.data, {}), { id: b.id }));
+  const FAQ = faqs.map(f => ({ q: f.q, a: f.a }));
+  const BENEFITS = bens.map(b => Object.assign(obj(b.data), { id: b.id }));
 
   return { config, data: { CATS, TRACKS, EVENTS, CASE_COMP: S.case_comp || {}, FAQ, BENEFITS, ICONS } };
 }
 
 let cache = null;
-function get(db) {
+async function get(db) {
   // Seat counts change with every registration, so keep the cache short-lived.
-  if (!cache || Date.now() - cache.at > 15000) cache = { at: Date.now(), value: build(db) };
+  if (!cache || Date.now() - cache.at > 15000) cache = { at: Date.now(), value: await build(db) };
   return cache.value;
 }
 function invalidate() { cache = null; }
@@ -71,4 +65,4 @@ function toScript(content) {
   return `window.ARZON_CONFIG=${j(content.config)};\nwindow.ARZON_DATA=${j(content.data)};\n`;
 }
 
-module.exports = { get, invalidate, toScript, getSettings, seatsTaken };
+module.exports = { get, invalidate, toScript, getSettings };

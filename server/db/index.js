@@ -1,107 +1,114 @@
 'use strict';
 /**
- * SQLite database (Node's built-in node:sqlite — no native build step).
- * Opens the DB, runs migrations, and seeds content from seed.json on first run.
+ * Postgres database layer.
+ *  - Production: DATABASE_URL (e.g. Supabase connection pooler) via node-postgres.
+ *  - Local dev / tests without DATABASE_URL: PGlite (Postgres compiled to WASM, in-process),
+ *    persisted to PGLITE_DIR or in-memory for tests.
+ *
+ * All tables live in the "arzon" schema so they never collide with anything in "public"
+ * and are not exposed through Supabase's auto-generated Data API.
+ *
+ * Interface:  db.query(sql, params) -> rows,  db.one(sql, params) -> row | undefined,
+ *             db.tx(async t => { await t.query(...) })
  */
 const fs = require('node:fs');
 const path = require('node:path');
-const { DatabaseSync } = require('node:sqlite');
+
+const SCHEMA = 'arzon';
 
 const MIGRATIONS = [
   // v1 — initial schema
   `
   CREATE TABLE settings (
-    key   TEXT PRIMARY KEY,
-    value TEXT NOT NULL              -- JSON
+    key   text PRIMARY KEY,
+    value jsonb NOT NULL
   );
 
   CREATE TABLE categories (
-    id    TEXT PRIMARY KEY,
-    label TEXT NOT NULL,
-    sort  INTEGER NOT NULL DEFAULT 0
+    id    text PRIMARY KEY,
+    label text NOT NULL,
+    sort  integer NOT NULL DEFAULT 0
   );
 
-  -- Programmes / tracks. Rich nested fields (modules, tools, roles…) live in "data" as JSON;
-  -- the columns are the ones we filter and sort on.
+  -- Programmes. Rich nested fields (modules, tools, roles…) live in "data"; columns are what we filter/sort on.
   CREATE TABLE tracks (
-    id         TEXT PRIMARY KEY,
-    name       TEXT NOT NULL,
-    cat        TEXT NOT NULL REFERENCES categories(id),
-    live       INTEGER NOT NULL DEFAULT 1,     -- 1 = enrolling, 0 = coming soon / waitlist
-    flagship   INTEGER NOT NULL DEFAULT 0,
-    published  INTEGER NOT NULL DEFAULT 1,     -- 0 = hidden from the public site
-    sort       INTEGER NOT NULL DEFAULT 0,
-    data       TEXT NOT NULL,                  -- JSON: full track object
-    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    id         text PRIMARY KEY,
+    name       text NOT NULL,
+    cat        text NOT NULL REFERENCES categories(id),
+    live       boolean NOT NULL DEFAULT true,   -- false = coming soon / waitlist
+    flagship   boolean NOT NULL DEFAULT false,
+    published  boolean NOT NULL DEFAULT true,
+    sort       integer NOT NULL DEFAULT 0,
+    data       jsonb NOT NULL,
+    updated_at timestamptz NOT NULL DEFAULT now()
   );
 
   CREATE TABLE events (
-    id         TEXT PRIMARY KEY,
-    type       TEXT NOT NULL,
-    title      TEXT NOT NULL,
-    track_id   TEXT,                           -- optional link to a track
-    starts_at  TEXT NOT NULL,                  -- ISO 8601 with offset
-    mode       TEXT NOT NULL DEFAULT '',
-    host       TEXT NOT NULL DEFAULT '',
-    seats      INTEGER,                        -- NULL = unlimited
-    published  INTEGER NOT NULL DEFAULT 1,
-    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    id         text PRIMARY KEY,
+    type       text NOT NULL,
+    title      text NOT NULL,
+    track_id   text,
+    starts_at  timestamptz NOT NULL,
+    mode       text NOT NULL DEFAULT '',
+    host       text NOT NULL DEFAULT '',
+    seats      integer,                          -- NULL = unlimited
+    published  boolean NOT NULL DEFAULT true,
+    updated_at timestamptz NOT NULL DEFAULT now()
   );
 
   CREATE TABLE faqs (
-    id        INTEGER PRIMARY KEY AUTOINCREMENT,
-    q         TEXT NOT NULL,
-    a         TEXT NOT NULL,
-    sort      INTEGER NOT NULL DEFAULT 0,
-    published INTEGER NOT NULL DEFAULT 1
+    id        integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    q         text NOT NULL,
+    a         text NOT NULL,
+    sort      integer NOT NULL DEFAULT 0,
+    published boolean NOT NULL DEFAULT true
   );
 
   CREATE TABLE benefits (
-    id        TEXT PRIMARY KEY,
-    sort      INTEGER NOT NULL DEFAULT 0,
-    published INTEGER NOT NULL DEFAULT 1,
-    data      TEXT NOT NULL                    -- JSON: full benefit object
+    id        text PRIMARY KEY,
+    sort      integer NOT NULL DEFAULT 0,
+    published boolean NOT NULL DEFAULT true,
+    data      jsonb NOT NULL
   );
 
-  -- Growth Squad ambassadors: their referral code is stamped on every lead they bring in.
   CREATE TABLE ambassadors (
-    code       TEXT PRIMARY KEY,
-    name       TEXT NOT NULL,
-    email      TEXT NOT NULL DEFAULT '',
-    phone      TEXT NOT NULL DEFAULT '',
-    active     INTEGER NOT NULL DEFAULT 1,
-    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    code       text PRIMARY KEY,
+    name       text NOT NULL,
+    email      text NOT NULL DEFAULT '',
+    phone      text NOT NULL DEFAULT '',
+    active     boolean NOT NULL DEFAULT true,
+    created_at timestamptz NOT NULL DEFAULT now()
   );
 
-  -- Every form on the site lands here: roadmap leads, event seats, waitlists, squad applications.
+  -- Every form on the site: roadmap leads, event seats, waitlists, squad applications.
   CREATE TABLE submissions (
-    id           INTEGER PRIMARY KEY AUTOINCREMENT,
-    type         TEXT NOT NULL CHECK (type IN ('lead','event','waitlist','ambassador')),
-    status       TEXT NOT NULL DEFAULT 'new'
+    id           integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    type         text NOT NULL CHECK (type IN ('lead','event','waitlist','ambassador')),
+    status       text NOT NULL DEFAULT 'new'
                  CHECK (status IN ('new','contacted','qualified','enrolled','not_interested','spam')),
-    name         TEXT NOT NULL,
-    phone        TEXT NOT NULL,
-    email        TEXT NOT NULL,
-    stage        TEXT NOT NULL DEFAULT '',
-    track        TEXT NOT NULL DEFAULT '',
-    track_id     TEXT NOT NULL DEFAULT '',
-    track_status TEXT NOT NULL DEFAULT '',
-    event        TEXT NOT NULL DEFAULT '',
-    event_id     TEXT NOT NULL DEFAULT '',
-    ref          TEXT NOT NULL DEFAULT '',
-    source       TEXT NOT NULL DEFAULT '',
-    utm_source   TEXT NOT NULL DEFAULT '',
-    utm_medium   TEXT NOT NULL DEFAULT '',
-    utm_campaign TEXT NOT NULL DEFAULT '',
-    utm_content  TEXT NOT NULL DEFAULT '',
-    page         TEXT NOT NULL DEFAULT '',
-    extra        TEXT NOT NULL DEFAULT '{}',   -- JSON: team_name, teammates, squad_role, handle…
-    notes        TEXT NOT NULL DEFAULT '',
-    consent      INTEGER NOT NULL DEFAULT 1,
-    ip_hash      TEXT NOT NULL DEFAULT '',
-    user_agent   TEXT NOT NULL DEFAULT '',
-    created_at   TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
-    updated_at   TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+    name         text NOT NULL,
+    phone        text NOT NULL,
+    email        text NOT NULL,
+    stage        text NOT NULL DEFAULT '',
+    track        text NOT NULL DEFAULT '',
+    track_id     text NOT NULL DEFAULT '',
+    track_status text NOT NULL DEFAULT '',
+    event        text NOT NULL DEFAULT '',
+    event_id     text NOT NULL DEFAULT '',
+    ref          text NOT NULL DEFAULT '',
+    source       text NOT NULL DEFAULT '',
+    utm_source   text NOT NULL DEFAULT '',
+    utm_medium   text NOT NULL DEFAULT '',
+    utm_campaign text NOT NULL DEFAULT '',
+    utm_content  text NOT NULL DEFAULT '',
+    page         text NOT NULL DEFAULT '',
+    extra        jsonb NOT NULL DEFAULT '{}',
+    notes        text NOT NULL DEFAULT '',
+    consent      boolean NOT NULL DEFAULT true,
+    ip_hash      text NOT NULL DEFAULT '',
+    user_agent   text NOT NULL DEFAULT '',
+    created_at   timestamptz NOT NULL DEFAULT now(),
+    updated_at   timestamptz NOT NULL DEFAULT now()
   );
   CREATE INDEX idx_sub_type_created ON submissions(type, created_at DESC);
   CREATE INDEX idx_sub_status ON submissions(status);
@@ -110,38 +117,96 @@ const MIGRATIONS = [
   CREATE INDEX idx_sub_email ON submissions(email);
 
   CREATE TABLE admins (
-    id            INTEGER PRIMARY KEY AUTOINCREMENT,
-    email         TEXT NOT NULL UNIQUE COLLATE NOCASE,
-    name          TEXT NOT NULL DEFAULT '',
-    password_hash TEXT NOT NULL,
-    created_at    TEXT NOT NULL DEFAULT (datetime('now'))
+    id            integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    email         text NOT NULL UNIQUE,            -- stored lower-case
+    name          text NOT NULL DEFAULT '',
+    password_hash text NOT NULL,
+    created_at    timestamptz NOT NULL DEFAULT now()
   );
 
   CREATE TABLE sessions (
-    token_hash TEXT PRIMARY KEY,
-    admin_id   INTEGER NOT NULL REFERENCES admins(id) ON DELETE CASCADE,
-    expires_at INTEGER NOT NULL               -- unix ms
+    token_hash text PRIMARY KEY,
+    admin_id   integer NOT NULL REFERENCES admins(id) ON DELETE CASCADE,
+    expires_at bigint NOT NULL                     -- unix ms
   );
+  CREATE INDEX idx_sessions_admin ON sessions(admin_id);
   `
 ];
 
-function migrate(db) {
-  db.exec('CREATE TABLE IF NOT EXISTS schema_version (version INTEGER NOT NULL)');
-  const row = db.prepare('SELECT version FROM schema_version').get();
-  let v = row ? row.version : 0;
-  if (!row) db.prepare('INSERT INTO schema_version (version) VALUES (0)').run();
-  for (; v < MIGRATIONS.length; v++) {
-    db.exec('BEGIN');
-    try {
-      db.exec(MIGRATIONS[v]);
-      db.prepare('UPDATE schema_version SET version = ?').run(v + 1);
-      db.exec('COMMIT');
-    } catch (e) { db.exec('ROLLBACK'); throw e; }
-  }
+/* ------------------------------------------------------------------ drivers */
+function wrap(runner) {
+  // Parameterless calls may contain several statements (migrations): PGlite needs exec() for that,
+  // node-postgres uses the simple-query protocol automatically when there are no params.
+  const q = async (sql, params = []) => {
+    if (!params.length && typeof runner.exec === 'function') { const r = await runner.exec(sql); return (r[r.length - 1] || {}).rows || []; }
+    return (await runner.query(sql, params)).rows;
+  };
+  return { query: q, one: async (sql, params) => (await q(sql, params))[0] };
 }
 
-/** Load seed.json into an empty database. */
-function seed(db, seedPath = path.join(__dirname, 'seed.json')) {
+async function connectPg(url) {
+  const { Pool } = require('pg');
+  const local = /@(localhost|127\.0\.0\.1)[:/]/.test(url);
+  const pool = new Pool({
+    connectionString: url,
+    max: +process.env.PG_POOL_MAX || 3,            // serverless: keep per-instance pools small
+    idleTimeoutMillis: 10000,
+    connectionTimeoutMillis: 10000,
+    ssl: local || /sslmode=disable/.test(url) ? false : { rejectUnauthorized: false }
+  });
+  pool.on('error', e => console.error('[db] idle client error', e.message));
+  // Belt and braces: the app role also has search_path set at role level (works through transaction poolers).
+  pool.on('connect', c => c.query(`SET search_path TO ${SCHEMA}, public`).catch(() => {}));
+  const db = wrap(pool);
+  db.tx = async fn => {
+    const c = await pool.connect();
+    try {
+      await c.query(`BEGIN; SET LOCAL search_path TO ${SCHEMA}, public`);
+      const r = await fn(wrap(c));
+      await c.query('COMMIT');
+      return r;
+    } catch (e) { await c.query('ROLLBACK').catch(() => {}); throw e; } finally { c.release(); }
+  };
+  db.close = () => pool.end();
+  db.kind = 'postgres';
+  return db;
+}
+
+async function connectPglite(dir) {
+  let PGlite;
+  try { ({ PGlite } = require('@electric-sql/pglite')); }
+  catch (_) { throw new Error('No DATABASE_URL set and @electric-sql/pglite is not installed. Set DATABASE_URL or run `npm install`.'); }
+  if (dir) fs.mkdirSync(dir, { recursive: true });
+  const pg = new PGlite(dir || undefined);
+  await pg.exec(`CREATE SCHEMA IF NOT EXISTS ${SCHEMA}; SET search_path TO ${SCHEMA}, public;`);
+  const db = wrap(pg);
+  db.tx = fn => pg.transaction(t => fn(wrap(t)));
+  db.close = () => pg.close();
+  db.kind = 'pglite';
+  return db;
+}
+
+/* ------------------------------------------------------------------ migrations + seed */
+async function migrate(db) {
+  const has = await db.one(`SELECT 1 AS x FROM pg_namespace WHERE nspname = $1`, [SCHEMA]);
+  if (!has) await db.query(`CREATE SCHEMA ${SCHEMA}`);
+  await db.tx(async t => {
+    // Serialise concurrent cold starts.
+    await t.query(`SELECT pg_advisory_xact_lock(727274)`);
+    await t.query(`CREATE TABLE IF NOT EXISTS ${SCHEMA}.schema_version (version integer NOT NULL)`);
+    let row = await t.one(`SELECT version FROM ${SCHEMA}.schema_version`);
+    if (!row) { await t.query(`INSERT INTO ${SCHEMA}.schema_version VALUES (0)`); row = { version: 0 }; }
+    for (let v = row.version; v < MIGRATIONS.length; v++) {
+      await t.query(`SET LOCAL search_path TO ${SCHEMA}`);
+      await t.query(MIGRATIONS[v]);
+      await t.query(`UPDATE ${SCHEMA}.schema_version SET version = $1`, [v + 1]);
+    }
+    const n = (await t.one(`SELECT COUNT(*)::int AS n FROM ${SCHEMA}.tracks`)).n;
+    if (n === 0) await seed(t);
+  });
+}
+
+async function seed(t, seedPath = path.join(__dirname, 'seed.json')) {
   const S = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
   const C = S.config;
   const settings = {
@@ -151,44 +216,29 @@ function seed(db, seedPath = path.join(__dirname, 'seed.json')) {
     cohort: C.COHORT,
     case_comp: S.caseComp
   };
-  db.exec('BEGIN');
-  try {
-    const setS = db.prepare('INSERT INTO settings (key, value) VALUES (?, ?)');
-    for (const [k, v] of Object.entries(settings)) setS.run(k, JSON.stringify(v));
-
-    const cat = db.prepare('INSERT INTO categories (id, label, sort) VALUES (?, ?, ?)');
-    Object.entries(S.cats).forEach(([id, label], i) => cat.run(id, label, i));
-
-    const tr = db.prepare('INSERT INTO tracks (id, name, cat, live, flagship, sort, data) VALUES (?, ?, ?, ?, ?, ?, ?)');
-    S.tracks.forEach((t, i) => tr.run(t.id, t.name, t.cat, t.live ? 1 : 0, t.flagship ? 1 : 0, i, JSON.stringify(t)));
-
-    const ev = db.prepare('INSERT INTO events (id, type, title, track_id, starts_at, mode, host, seats) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-    S.events.forEach(e => ev.run(e.id, e.type, e.title, e.track || null, e.date, e.mode || '', e.host || '', e.seats ?? null));
-
-    const fq = db.prepare('INSERT INTO faqs (q, a, sort) VALUES (?, ?, ?)');
-    S.faq.forEach((f, i) => fq.run(f.q, f.a, i));
-
-    const bn = db.prepare('INSERT INTO benefits (id, sort, data) VALUES (?, ?, ?)');
-    S.benefits.forEach((b, i) => bn.run(b.id, i, JSON.stringify(b)));
-    db.exec('COMMIT');
-  } catch (e) { db.exec('ROLLBACK'); throw e; }
+  const s = SCHEMA;
+  for (const [k, v] of Object.entries(settings)) await t.query(`INSERT INTO ${s}.settings (key, value) VALUES ($1, $2::jsonb)`, [k, JSON.stringify(v)]);
+  let i = 0;
+  for (const [id, label] of Object.entries(S.cats)) await t.query(`INSERT INTO ${s}.categories (id, label, sort) VALUES ($1, $2, $3)`, [id, label, i++]);
+  i = 0;
+  for (const tr of S.tracks) await t.query(`INSERT INTO ${s}.tracks (id, name, cat, live, flagship, sort, data) VALUES ($1,$2,$3,$4,$5,$6,$7::jsonb)`,
+    [tr.id, tr.name, tr.cat, !!tr.live, !!tr.flagship, i++, JSON.stringify(tr)]);
+  for (const e of S.events) await t.query(`INSERT INTO ${s}.events (id, type, title, track_id, starts_at, mode, host, seats) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
+    [e.id, e.type, e.title, e.track || null, e.date, e.mode || '', e.host || '', e.seats ?? null]);
+  i = 0;
+  for (const f of S.faq) await t.query(`INSERT INTO ${s}.faqs (q, a, sort) VALUES ($1,$2,$3)`, [f.q, f.a, i++]);
+  i = 0;
+  for (const b of S.benefits) await t.query(`INSERT INTO ${s}.benefits (id, sort, data) VALUES ($1,$2,$3::jsonb)`, [b.id, i++, JSON.stringify(b)]);
 }
 
-function open(file) {
-  if (file !== ':memory:') fs.mkdirSync(path.dirname(file), { recursive: true });
-  const db = new DatabaseSync(file);
-  db.exec('PRAGMA foreign_keys = ON');
-  if (file !== ':memory:') { db.exec('PRAGMA journal_mode = WAL'); db.exec('PRAGMA busy_timeout = 5000'); }
-  migrate(db);
-  const empty = db.prepare('SELECT COUNT(*) AS n FROM tracks').get().n === 0;
-  if (empty) seed(db);
+/** Open the database, run migrations, seed on first run. */
+async function open(cfg) {
+  const db = cfg.databaseUrl ? await connectPg(cfg.databaseUrl) : await connectPglite(cfg.pgliteDir);
+  await migrate(db);
   return db;
 }
 
-/** Run fn inside a transaction. */
-function tx(db, fn) {
-  db.exec('BEGIN IMMEDIATE');
-  try { const r = fn(); db.exec('COMMIT'); return r; } catch (e) { db.exec('ROLLBACK'); throw e; }
-}
+/** jsonb comes back parsed from both drivers; tolerate strings too. */
+const obj = (v, fallback = {}) => { if (v == null) return fallback; if (typeof v === 'string') { try { return JSON.parse(v); } catch (_) { return fallback; } } return v; };
 
-module.exports = { open, tx, seed, migrate };
+module.exports = { open, obj, SCHEMA };
