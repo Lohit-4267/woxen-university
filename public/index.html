@@ -433,6 +433,36 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 @media (max-width:760px){
   [style*="grid-template-columns"]{grid-template-columns:1fr!important;gap:14px!important}
 }
+
+/* ============================================================ 3D HERO + ILLUSTRATIONS */
+.hero3d{position:absolute;left:50%;top:50%;width:140%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:-1;pointer-events:none;opacity:0;transition:opacity 1.2s var(--ease)}
+.hero3d.on{opacity:1}
+.hero3d canvas{width:100%!important;height:100%!important;display:block}
+.has3d .emblem{display:none}
+.illo{width:100%;height:auto;display:block;overflow:visible}
+@media (prefers-reduced-motion:no-preference){
+  .illo .fl{animation:illoF 6s ease-in-out infinite}
+  .illo .fl2{animation:illoF 7.5s ease-in-out -2s infinite}
+  .illo .fl3{animation:illoF 5.5s ease-in-out -4s infinite}
+}
+@keyframes illoF{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.p-hero .wrap{position:relative}
+.p-illo{position:absolute;right:0;top:50%;transform:translateY(-46%);width:min(440px,40%);pointer-events:none;filter:drop-shadow(0 30px 60px rgba(20,70,140,.45))}
+.p-hero.with-illo h1,.p-hero.with-illo .lede{max-width:min(60%,640px)}
+@media (max-width:1000px){
+  /* phones/tablets: the 3D scene gets its own band between the hero copy and the form */
+  .form-side{padding-top:250px;position:relative}
+  .hero3d{top:0;left:50%;width:min(420px,110%);height:300px;aspect-ratio:auto;transform:translateX(-50%)}
+  .p-illo{position:static;transform:none;width:min(320px,82%);margin:0 auto 6px;display:block}
+  .p-hero.with-illo h1,.p-hero.with-illo .lede{max-width:none}
+  .p-hero.with-illo .wrap{display:flex;flex-direction:column}
+  .p-hero.with-illo .p-illo{order:-1}
+}
+@media (max-width:640px){
+  .form-side{padding-top:220px}
+  .hero3d{height:270px}
+  .p-illo{width:min(270px,78%)}
+}
 </style>
 </head>
 <body>
@@ -566,8 +596,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 
 <!-- ============================================================ VIEW: PROGRAMMES -->
 <div class="view" data-view="programmes">
-  <section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b3"></div></div>
-    <div class="wrap"><span class="mono">Programmes</span><h1>Pick your track. <i>Rise.</i></h1>
+  <section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b3"></div></div>
+    <div class="wrap"><div class="p-illo" data-illo="ladder"></div><span class="mono">Programmes</span><h1>Pick your track. <i>Rise.</i></h1>
       <p class="lede">26+ self-paced tracks across business, data & AI, technology and pharma. Every one includes real projects, a 3-month internship, a certificate and placement support.</p></div></section>
   <section class="sec" style="padding-top:10px"><div class="wrap">
     <div class="toolbar" role="search">
@@ -664,7 +694,9 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 
 <script src="/assets/brand.js"></script>
 <!-- Site content (programmes, events, FAQ, pricing, contact) is served live from the database -->
+<script src="/assets/illustrations.js"></script>
 <script src="/site-data.js"></script>
+<script src="/assets/hero3d.js" defer></script>
 <script>
 (function(){
 const C = window.ARZON_CONFIG, D = window.ARZON_DATA;
@@ -811,6 +843,9 @@ const cio = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecti
   const s = t => { const k = Math.min(1, (t - t0) / 1400); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))).toLocaleString('en-IN'); if (k < 1) requestAnimationFrame(s); }; requestAnimationFrame(s); }));
 $$('[data-count]').forEach(el => cio.observe(el));
 
+/* ---------- illustrations ---------- */
+if (window.ARZON_ILLO) $$('[data-illo]').forEach(el => el.innerHTML = ARZON_ILLO.render(el.dataset.illo));
+
 /* ---------- HOME ---------- */
 leadForm($('#lead'));
 const liveHome = visible().filter(t => t.live && t.flagship), soonHome = visible().filter(t => !t.live);
@@ -883,7 +918,8 @@ function renderDetail(id) {
   const fit = t.fit.length ? t.fit.map(x => x.toUpperCase()).join(' & ') + ' students' : 'Graduates & final-year students';
   const rel = visible().filter(x => x !== t && x.cat === t.cat).sort((a, b) => b.live - a.live).slice(0, 3);
   $('#detail').innerHTML = `
-  <section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="wrap">
+  <section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="wrap">
+    ${window.ARZON_ILLO ? `<div class="p-illo">${ARZON_ILLO.render(t.cat)}</div>` : ''}
     <div class="crumbs"><a href="#/">Home</a><span>/</span><a href="#/programmes">Programmes</a><span>/</span><span>${D.CATS[t.cat]}</span></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="badge ${t.live ? 'live' : 'soon'}">${t.live ? 'Enrolling now' : 'Coming soon · waitlist open'}</span>${t.fit.length ? `<span class="badge">For ${t.fit.map(x => x.toUpperCase()).join(' & ')}</span>` : ''}</div>
     <h1>${t.name.replace(/ & /, ' <i>&</i> ')}</h1><p class="lede">${t.tagline} ${t.desc}</p>
