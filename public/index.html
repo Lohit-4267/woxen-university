@@ -428,6 +428,11 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   .card-lead .chips{gap:6px}
   .emblem{display:none}
 }
+
+/* Mobile: stack the inline multi-column grids (case challenge, teasers, detail rows) */
+@media (max-width:760px){
+  [style*="grid-template-columns"]{grid-template-columns:1fr!important;gap:14px!important}
+}
 </style>
 </head>
 <body>
