@@ -93,6 +93,41 @@
       var shield = '<g><path d="M200 128l46 16v34c0 26-20 42-46 50-26-8-46-24-46-50v-34z" fill="url(#IDgl)" opacity=".95" transform="translate(0,4)"/><path d="M182 182l13 13 25-27" fill="none" stroke="#0b2547" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" transform="translate(0,4)"/></g>';
       return box(200, 236, 46, 8, { top: '#1f5fa8', left: '#123a6b', right: '#0b2547' }) + shield + capsule + mol;
     },
+    events: function () {
+      var beam = '<polygon points="70,10 120,10 236,214 116,236" fill="url(#IDgl)" opacity=".16"/>';
+      var cal = card(70, 46, 112, 104,
+        '<rect x="70" y="46" width="112" height="28" rx="12" fill="#e5484d"/><rect x="70" y="62" width="112" height="12" fill="#e5484d"/>' +
+        '<circle cx="96" cy="46" r="4" fill="' + C.sky + '"/><circle cx="156" cy="46" r="4" fill="' + C.sky + '"/>' +
+        '<text x="126" y="122" text-anchor="middle" font-family="Geist,system-ui,sans-serif" font-weight="700" font-size="40" fill="#fff">19</text>' +
+        '<text x="126" y="140" text-anchor="middle" font-family="Geist Mono,monospace" font-size="10" letter-spacing="2" fill="' + C.sky + '">SKILL SPRINT</text>', 'fl');
+      var stage = box(200, 230, 70, 10, { top: '#1f5fa8', left: '#123a6b', right: '#0b2547' });
+      var mic = '<g><line x1="214" y1="216" x2="214" y2="150" stroke="' + C.top + '" stroke-width="4" stroke-linecap="round"/>' +
+        '<ellipse cx="214" cy="218" rx="16" ry="6" fill="' + C.left + '"/>' +
+        '<rect x="203" y="112" width="22" height="40" rx="11" fill="url(#IDgl)"/><line x1="203" y1="128" x2="225" y2="128" stroke="#0b2547" stroke-width="2" opacity=".5"/>' +
+        '<path d="M197 138a17 17 0 0 0 34 0" fill="none" stroke="' + C.top + '" stroke-width="3"/></g>';
+      var trophy = '<g class="fl2"><path d="M282 104h50v14a25 25 0 0 1-50 0z" fill="' + C.warm + '"/>' +
+        '<path d="M282 110h-10a10 10 0 0 0 12 16M332 110h10a10 10 0 0 1-12 16" fill="none" stroke="' + C.warm + '" stroke-width="4"/>' +
+        '<rect x="301" y="142" width="12" height="12" fill="#c9913e"/><rect x="292" y="154" width="30" height="8" rx="2" fill="' + C.warm + '"/>' +
+        '<path d="M300 112l7 5 7-5" fill="none" stroke="#fff3dc" stroke-width="2" opacity=".7"/></g>';
+      var chairs = box(140, 250, 14, 12, { top: '#7fbcef' }) + box(176, 266, 14, 12, { top: '#7fbcef' }) + box(266, 250, 14, 12, { top: '#7fbcef' });
+      var sparks = dot(350, 60, 3, C.sky, true) + dot(60, 190, 2.5, C.warm, true) + dot(250, 70, 2.5, C.mint, true);
+      return beam + stage + chairs + mic + cal + trophy + sparks;
+    },
+    scholarship: function () {
+      var coin = function (x, y) { return '<g><rect x="' + (x - 30) + '" y="' + (y - 8) + '" width="60" height="8" fill="#c9913e"/><ellipse cx="' + x + '" cy="' + y + '" rx="30" ry="12" fill="#9c6b24"/><ellipse cx="' + x + '" cy="' + (y - 8) + '" rx="30" ry="12" fill="' + C.warm + '"/><ellipse cx="' + x + '" cy="' + (y - 8) + '" rx="20" ry="7" fill="none" stroke="#fff3dc" stroke-width="1.5" opacity=".7"/></g>'; };
+      var stack = ''; for (var i = 0; i < 5; i++) stack += coin(140, 232 - i * 10);
+      var stack2 = ''; for (var j = 0; j < 3; j++) stack2 += coin(196, 252 - j * 10);
+      var books = box(262, 224, 44, 16, { top: '#e9eef7', left: C.left, right: C.right }) + box(262, 208, 38, 16, { top: '#e9eef7', left: '#6cc9a4', right: '#3f9a78' });
+      var cap = '<g class="fl"><polygon points="' + P([[262, 142], [318, 164], [262, 186], [206, 164]]) + '" fill="#123a6b"/>' +
+        '<polygon points="' + P([[236, 172], [236, 190], [262, 200], [288, 190], [288, 172], [262, 182]]) + '" fill="#0b2547"/>' +
+        '<polygon points="' + P([[262, 142], [318, 164], [262, 186], [206, 164]]) + '" fill="none" stroke="' + C.top + '" stroke-width="1.5" opacity=".6"/>' +
+        '<line x1="262" y1="164" x2="300" y2="176" stroke="' + C.warm + '" stroke-width="2.5"/><line x1="300" y1="176" x2="300" y2="198" stroke="' + C.warm + '" stroke-width="2.5"/>' + dot(300, 200, 4, C.warm) + dot(262, 164, 4, C.warm) + '</g>';
+      var medal = '<g class="fl2"><path d="M86 54l14 30M114 54l-14 30" stroke="' + C.left + '" stroke-width="8"/>' +
+        '<circle cx="100" cy="102" r="24" fill="' + C.warm + '"/><circle cx="100" cy="102" r="17" fill="none" stroke="#fff3dc" stroke-width="2" opacity=".75"/>' +
+        '<path d="M100 90l3.5 7.5 8 .8-6 5.4 1.8 8-7.3-4.2-7.3 4.2 1.8-8-6-5.4 8-.8z" fill="#fff3dc"/></g>';
+      var sparks = dot(340, 80, 3, C.sky, true) + dot(170, 70, 2.5, C.warm, true) + dot(350, 230, 2.5, C.mint, true);
+      return stack2 + stack + books + cap + medal + sparks;
+    },
     ladder: function () {
       var s = '', steps = [[104, 250, 30], [148, 228, 52], [192, 206, 76], [236, 184, 100], [280, 162, 124]];
       steps.forEach(function (st, i) { s += box(st[0], st[1], 26, st[2], i === 4 ? { top: C.sky } : null); });

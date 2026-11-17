@@ -675,8 +675,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 
 <!-- ============================================================ VIEW: EVENTS -->
 <div class="view" data-view="events">
-  <section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
-    <div class="wrap"><span class="mono">Events · free for Woxsen students</span><h1>Learn it live. <i>Build it tonight.</i></h1>
+  <section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+    <div class="wrap"><div class="p-illo" data-illo="events"></div><span class="mono">Events · free for Woxsen students</span><h1>Learn it live. <i>Build it tonight.</i></h1>
       <p class="lede">45-minute hands-on Skill Sprints with Arzon mentors, co-hosted with Woxsen's clubs, plus AI resume reviews and the Market Masters case challenge.</p>
       <div class="countdown" id="evCd"></div><p class="mono" id="evCdLbl" style="margin-top:12px"></p></div></section>
   <section class="sec" style="padding-top:10px"><div class="wrap">
@@ -870,7 +870,7 @@ const card = (t, i = 0) => `<article class="tcard rv" style="--d:${(i % 3) * 70}
   <div class="roles"><b>Roles:</b> ${t.roles.slice(0, 3).join(' · ')}</div>
   <div class="tools">${t.tools.slice(0, 4).map(x => `<span>${x}</span>`).join('')}</div>
   <div class="signal"><span>${t.signal.text}. <cite>(${t.signal.src})</cite></span></div>
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><a class="t-cta" href="#/programme/${t.id}">${t.live ? 'View programme' : 'Preview & waitlist'} <span class="arrow">→</span></a>${t.live ? `<span class="mono" title="With scholarship">${inr(C.PRICE)} · scholarship</span>` : ''}</div></article>`;
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><a class="t-cta" href="#/programme/${t.id}">${t.live ? 'View programme' : 'Preview & waitlist'} <span class="arrow">→</span></a>${t.live ? `<span class="mono" title="Total programme fee">${inr(C.PRICE)} · total fee</span>` : ''}</div></article>`;
 
 /* ---------- interactions ---------- */
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1, rootMargin: '0px 0px -5% 0px' });
@@ -1004,8 +1004,8 @@ function renderDetail(id) {
         <div class="bx glow" style="min-height:190px"><span class="mono" style="margin-bottom:auto;color:var(--violet-2)">On completion</span><h4>3 certificates + LOR</h4><p>Course, project and internship completion certificates, plus a letter of recommendation.</p></div></div>
         <p style="margin-top:14px"><a class="link" href="#/benefits">See everything you get →</a></p></section>
     </main>
-    <aside><div class="card-lead price">${t.live ? `<span class="mono">Scholarship price</span><div style="margin:6px 0 4px"><span class="amt">${inr(C.PRICE)}</span><s>${inr(C.LIST_PRICE)}</s></div>
-        <span class="badge live">Scholarship · save ${inr(C.LIST_PRICE - C.PRICE)}</span>
+    <aside><div class="card-lead price">${t.live ? `<span class="mono">Programme fee</span><div style="margin:6px 0 4px"><span class="amt">${inr(C.PRICE)}</span><s>${inr(C.LIST_PRICE)}</s></div>
+        <span class="badge live">You save ${inr(C.LIST_PRICE - C.PRICE)}</span>
         <div class="callout" style="margin:14px 0 0;padding:12px 14px"><span class="mono">Register with</span><div style="font-size:24px;font-weight:600;letter-spacing:-.02em">${inr(C.REG_FEE)}</div><span style="font-size:13px;color:var(--text-2)">Reserves your seat. Total programme fee: ${inr(C.PRICE)}</span></div>
         <ul><li>Live classes + lifetime LMS recordings</li><li>Internship offer letter on enrolment</li><li>1 major + 2 minor industry projects</li><li>3 certificates + LOR</li><li>Domain groups: news & cheat sheets</li></ul>
         <button class="btn btn-primary btn-full" id="dRoad">Get my free roadmap <span class="arrow">→</span></button>
@@ -1078,7 +1078,7 @@ function renderBenefits(id) {
     const others = B.filter(x => x !== b).slice(0, 3);
     $('#benView').innerHTML = `<section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div><div class="wrap">
       <div class="crumbs"><a href="#/">Home</a><span>/</span><a href="#/benefits">What you get</a><span>/</span><span>${b.title}</span></div>
-      <div class="hero-grid" style="align-items:center"><div><span class="mono">${b.kicker}</span><h1>${b.title.replace(/^(\S+)/, '<i>$1</i>')}</h1><p class="lede">${b.lede}</p><div class="cta-row"><a class="btn btn-primary" href="#/apply">Get my free roadmap <span class="arrow">→</span></a><a class="btn btn-ghost" href="#/scholarship">₹8,000 with scholarship</a></div></div>
+      <div class="hero-grid" style="align-items:center"><div><span class="mono">${b.kicker}</span><h1>${b.title.replace(/^(\S+)/, '<i>$1</i>')}</h1><p class="lede">${b.lede}</p><div class="cta-row"><a class="btn btn-primary" href="#/apply">Get my free roadmap <span class="arrow">→</span></a><a class="btn btn-ghost" href="#/scholarship">Fees & details</a></div></div>
       <div>${visual(b)}</div></div></div></section>
       <section class="sec" style="padding-top:10px"><div class="wrap">
         <div class="tracks" style="grid-template-columns:1fr 1.4fr;gap:14px;align-items:start"><div class="card"><span class="mono">What's included</span><ul class="pts-list" style="margin-top:14px">${b.points.map(p => `<li>${p}</li>`).join('')}</ul></div>
@@ -1094,8 +1094,9 @@ function renderBenefits(id) {
 /* ---------- SCHOLARSHIP ---------- */
 function renderScholarship() {
   document.title = 'Scholarship & fees · Arzon Global × CrowdCore';
-  const rows = [['List price', C.LIST_PRICE, 'muted'], ['Scholarship price', C.PRICE, ''], ['Registration fee', C.REG_FEE, '']];
-  $('#schView').innerHTML = `<section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="wrap">
+  const rows = [['List price', C.LIST_PRICE, 'muted'], ['Programme fee', C.PRICE, ''], ['Registration fee', C.REG_FEE, '']];
+  $('#schView').innerHTML = `<section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="wrap">
+    ${window.ARZON_ILLO ? `<div class="p-illo">${ARZON_ILLO.render('scholarship')}</div>` : ''}
     <div class="crumbs"><a href="#/">Home</a><span>/</span><span>Scholarship & fees</span></div>
     <span class="sch-chip" style="margin-top:0"><i></i>Scholarship open for students</span>
     <h1>Save ${inr(C.LIST_PRICE - C.PRICE)}. <i>Start with ${inr(C.REG_FEE)}.</i></h1>
