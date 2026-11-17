@@ -462,7 +462,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   .form-side{padding-top:220px}
   .hero3d{height:270px}
   .p-illo{width:min(220px,60%)}
-  .p-illo.cluster{width:min(300px,84%)}
+  .p-illo.cluster{width:min(240px,68%)}
 }
 
 /* ============================================================ CANVA 3D ART */
@@ -516,6 +516,17 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   #homeBen::-webkit-scrollbar{display:none}
   #homeBen .ben{flex:0 0 80%;scroll-snap-align:start;min-height:0}
 }
+
+/* ============================================================ 3D ICON ART (3dicons, CC0) */
+.glow3d::before{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(closest-side,rgba(47,127,216,.45),rgba(47,127,216,.12) 60%,transparent);filter:blur(10px);z-index:-1}
+.icon3d{filter:drop-shadow(0 18px 30px rgba(0,0,0,.55)) drop-shadow(0 0 22px rgba(74,147,227,.35))}
+.cluster .icon3d{width:46%}
+.cluster .icon3d.c4{width:40%}
+.ben-art.has3d{display:grid;place-items:center}
+.ben-art.has3d::before{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:radial-gradient(closest-side,rgba(47,127,216,.55),rgba(47,127,216,.1) 65%,transparent)}
+.ben-art.has3d img{position:relative;width:118px;height:118px;filter:drop-shadow(0 14px 22px rgba(0,0,0,.6)) drop-shadow(0 0 16px rgba(74,147,227,.4));transition:transform .5s var(--ease)}
+.ben:hover .ben-art.has3d img{transform:translateY(-6px) rotate(-4deg) scale(1.05)}
+.ben-art.has3d::after{display:none}
 </style>
 </head>
 <body>
@@ -676,7 +687,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 <!-- ============================================================ VIEW: EVENTS -->
 <div class="view" data-view="events">
   <section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
-    <div class="wrap"><div class="p-illo" data-illo="events"></div><span class="mono">Events · free for Woxsen students</span><h1>Learn it live. <i>Build it tonight.</i></h1>
+    <div class="wrap"><div class="p-illo cluster glow3d" aria-hidden="true"><img class="art3d icon3d float c1" src="/assets/3d/calendar-480.webp" srcset="/assets/3d/calendar-240.webp 240w, /assets/3d/calendar-480.webp 480w" sizes="(max-width:1000px) 150px, 220px" width="480" height="480" alt="" decoding="async"><img class="art3d icon3d float c2" src="/assets/3d/mic-480.webp" srcset="/assets/3d/mic-240.webp 240w, /assets/3d/mic-480.webp 480w" sizes="(max-width:1000px) 150px, 220px" width="480" height="480" alt="" decoding="async"><img class="art3d icon3d float c3" src="/assets/3d/trophy-480.webp" srcset="/assets/3d/trophy-240.webp 240w, /assets/3d/trophy-480.webp 480w" sizes="(max-width:1000px) 150px, 220px" width="480" height="480" alt="" decoding="async"><img class="art3d icon3d float c4" src="/assets/3d/megaphone-480.webp" srcset="/assets/3d/megaphone-240.webp 240w, /assets/3d/megaphone-480.webp 480w" sizes="(max-width:1000px) 150px, 220px" width="480" height="480" alt="" decoding="async"></div><span class="mono">Events · free for Woxsen students</span><h1>Learn it live. <i>Build it tonight.</i></h1>
       <p class="lede">45-minute hands-on Skill Sprints with Arzon mentors, co-hosted with Woxsen's clubs, plus AI resume reviews and the Market Masters case challenge.</p>
       <div class="countdown" id="evCd"></div><p class="mono" id="evCdLbl" style="margin-top:12px"></p></div></section>
   <section class="sec" style="padding-top:10px"><div class="wrap">
@@ -1052,7 +1063,10 @@ const benCard = (b, i = 0) => `<a class="ben spot rv" style="--d:${(i % 4) * 60}
 const priceCard = `<a class="ben hl spot rv" href="#/scholarship"><span class="mono" style="color:#dcecfb">Scholarship open</span><div style="font-size:44px;font-weight:600;letter-spacing:-.04em;margin:14px 0 4px">₹8,000</div><p style="color:#dcecfb">All of this for the total programme fee. Register with ₹1,065.</p><span class="t-cta" style="color:#fff">Fee details <span class="arrow">→</span></span></a>`;
 $('#homeBen').innerHTML = B.map(benCard).join('') + priceCard;
 // Card art for a benefit: a live mini preview of its detail-page visual, with the benefit icon.
-function benArt(b) { const v = visual(b); return v
+function benArt(b) {
+  const BEN_3D = { lms: 'computer', 'offer-letter': 'mail', 'live-classes': 'play', community: 'chat-bubble', projects: 'rocket', certificates: 'medal', lor: 'file-text' };
+  if (BEN_3D[b.id]) return `<div class="ben-art has3d" aria-hidden="true"><img src="/assets/3d/${BEN_3D[b.id]}-240.webp" width="240" height="240" alt="" loading="lazy" decoding="async">${b.id === 'live-classes' ? '<span class="live">LIVE</span>' : ''}</div>`;
+  const v = visual(b); return v
   ? `<div class="ben-art" aria-hidden="true"><div class="mini">${v}</div>${b.id === 'live-classes' ? '<span class="live">LIVE</span>' : ''}<span class="ico">${icon(b.icon)}</span></div>`
   : `<div class="t-ico">${icon(b.icon)}</div>`; }
 function visual(b) {
@@ -1096,7 +1110,7 @@ function renderScholarship() {
   document.title = 'Scholarship & fees · Arzon Global × CrowdCore';
   const rows = [['List price', C.LIST_PRICE, 'muted'], ['Programme fee', C.PRICE, ''], ['Registration fee', C.REG_FEE, '']];
   $('#schView').innerHTML = `<section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div><div class="wrap">
-    ${window.ARZON_ILLO ? `<div class="p-illo">${ARZON_ILLO.render('scholarship')}</div>` : ''}
+    <div class="p-illo cluster glow3d" aria-hidden="true"><img class="art3d icon3d float c1" src="/assets/3d/money-bag-480.webp" srcset="/assets/3d/money-bag-240.webp 240w, /assets/3d/money-bag-480.webp 480w" sizes="(max-width:1000px) 150px, 220px" width="480" height="480" alt="" decoding="async"><img class="art3d icon3d float c2" src="/assets/3d/rupee-480.webp" srcset="/assets/3d/rupee-240.webp 240w, /assets/3d/rupee-480.webp 480w" sizes="(max-width:1000px) 150px, 220px" width="480" height="480" alt="" decoding="async"><img class="art3d icon3d float c3" src="/assets/3d/medal-480.webp" srcset="/assets/3d/medal-240.webp 240w, /assets/3d/medal-480.webp 480w" sizes="(max-width:1000px) 150px, 220px" width="480" height="480" alt="" decoding="async"><img class="art3d icon3d float c4" src="/assets/3d/gift-480.webp" srcset="/assets/3d/gift-240.webp 240w, /assets/3d/gift-480.webp 480w" sizes="(max-width:1000px) 150px, 220px" width="480" height="480" alt="" decoding="async"></div>
     <div class="crumbs"><a href="#/">Home</a><span>/</span><span>Scholarship & fees</span></div>
     <span class="sch-chip" style="margin-top:0"><i></i>Scholarship open for students</span>
     <h1>Save ${inr(C.LIST_PRICE - C.PRICE)}. <i>Start with ${inr(C.REG_FEE)}.</i></h1>
