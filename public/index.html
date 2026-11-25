@@ -160,8 +160,8 @@ h1,h2,h3,h4{margin:0;letter-spacing:-.03em;font-weight:600;line-height:1.05}
 .mq-label{text-align:center;margin-bottom:14px}
 
 /* ============================================================ SECTIONS */
-.sec{padding:110px 0;position:relative}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:44px;flex-wrap:wrap}
+.sec{padding:68px 0;position:relative}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:36px;flex-wrap:wrap}
 .sec-head h2,.h2{font-size:clamp(32px,4.6vw,56px);line-height:1.02;letter-spacing:-.04em;margin:12px 0 0;max-width:17ch}
 .sec-head h2 i,.h2 i,.p-hero h1 i{font-family:var(--serif);font-weight:400;color:var(--violet-2)}
 .sec-head p{max-width:40ch;color:var(--text-2);margin:0}
@@ -178,6 +178,12 @@ h1,h2,h3,h4{margin:0;letter-spacing:-.03em;font-weight:600;line-height:1.05}
 .tcard:hover{border-color:var(--line-2);transform:translateY(-3px)} .tcard:hover::before,.spot:hover::before{opacity:1}
 .tracks.soon .tcard{min-height:0;padding:20px}.tracks.soon .tcard h3{font-size:18px}.tracks.soon .desc,.tracks.soon .roles{font-size:13px}
 .t-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+.t-art{position:relative;margin:-24px -24px 20px;aspect-ratio:960/440;overflow:hidden;border-bottom:1px solid var(--line)}
+.t-art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s var(--ease)}
+.tcard:hover .t-art img{transform:scale(1.05)}
+.t-art .t-top{position:absolute;top:14px;left:14px;right:14px;margin:0}.t-art .t-ico{background:rgba(6,11,20,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-color:var(--line-2)}
+.t-art .badge{background:rgba(6,11,20,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.tcard.has-art h3{margin-top:0}
 .t-ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line)}
 .t-ico svg{width:20px;height:20px}
 .badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:100px;border:1px solid var(--line-2);color:var(--text-2);white-space:nowrap}
@@ -416,7 +422,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   .tracks,.tracks.soon,.opts,.row2,.roles-grid,.ben-grid,.how{grid-template-columns:1fr}
   .lr{grid-template-columns:110px 1fr 80px}.lr .v{font-size:16px}
   .bento{grid-template-columns:1fr}.bx.wide{grid-column:span 1}
-  .sec{padding:80px 0}
+  .sec{padding:48px 0}
   .proof{gap:18px}.proof b{font-size:20px}
   .card-lead{padding:20px;border-radius:22px}
   .also{grid-template-columns:1fr}
@@ -1205,13 +1211,15 @@ function trustStrip() {
 const waitlistForm = id => { const t = T(id); simpleForm({ type:'waitlist', kicker:'Waitlist', title: t.name, sub:'This track is launching soon. Join the waitlist for first seats and early-bird pricing.', cta:'Join the waitlist', payload:{ track: t.name, track_id: t.id, track_status:'waitlist' }, done:["You're on the list.", "We'll tell you the moment it opens."] }); };
 
 /* ---------- track card (v2) ---------- */
-const card = (t, i = 0) => `<article class="tcard rv" style="--d:${(i % 3) * 70}ms" data-fit="${t.fit.join(' ')}">
-  <div class="t-top"><div class="t-ico">${icon(t.icon)}</div><span class="badge ${t.live ? 'live' : 'soon'}">${t.live ? 'Enrolling' : 'Coming soon'}</span></div>
+const TRACK_ART = ['business-analytics', 'digital-marketing', 'applied-finance', 'hr-talent', 'ai-intelligence', 'data-science'];
+const card = (t, i = 0) => { const top = `<div class="t-top"><div class="t-ico">${icon(t.icon)}</div><span class="badge ${t.live ? 'live' : 'soon'}">${t.live ? 'Enrolling' : 'Coming soon'}</span></div>`;
+  return `<article class="tcard rv${TRACK_ART.includes(t.id) ? ' has-art' : ''}" style="--d:${(i % 3) * 70}ms" data-fit="${t.fit.join(' ')}">
+  ${TRACK_ART.includes(t.id) ? `<div class="t-art"><img src="/assets/tracks/${t.id}-520.webp" srcset="/assets/tracks/${t.id}-520.webp 520w, /assets/tracks/${t.id}-960.webp 960w" sizes="(max-width:760px) 92vw, 400px" width="520" height="238" alt="" loading="lazy" decoding="async">${top}</div>` : top}
   <h3>${t.name}</h3><p class="desc">${t.tagline}</p>
   <div class="roles"><b>Roles:</b> ${t.roles.slice(0, 3).join(' · ')}</div>
   <div class="tools">${t.tools.slice(0, 4).map(x => `<span>${x}</span>`).join('')}</div>
   <div class="signal"><span>${t.signal.text}. <cite>(${t.signal.src})</cite></span></div>
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><a class="t-cta" href="#/programme/${t.id}">${t.live ? 'View programme' : 'Preview & waitlist'} <span class="arrow">→</span></a>${t.live ? '<span class="mono">Scholarship open</span>' : ''}</div></article>`;
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><a class="t-cta" href="#/programme/${t.id}">${t.live ? 'View programme' : 'Preview & waitlist'} <span class="arrow">→</span></a>${t.live ? '<span class="mono">Scholarship open</span>' : ''}</div></article>`; };
 
 /* ---------- interactions ---------- */
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1, rootMargin: '0px 0px -5% 0px' });
