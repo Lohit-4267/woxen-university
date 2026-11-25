@@ -483,6 +483,9 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 .ph.wide{grid-column:span 2}
 .ph.band{height:340px}.ph.band figcaption{left:clamp(20px,4vw,44px);bottom:clamp(20px,4vw,38px)}.ph.band figcaption b{font-size:clamp(22px,3vw,32px);max-width:24ch}
 .apply-ph{max-width:440px;height:220px;margin:0 0 14px}
+.ev-photos{display:grid;grid-template-columns:1.35fr 1fr;gap:14px;margin:0 0 56px}.ev-photos .ph{height:320px}
+.mm-banner .banner-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;z-index:-2;opacity:.34;filter:saturate(.8)}
+.mm-banner::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(100deg,rgba(11,18,32,.96) 0%,rgba(11,18,32,.82) 45%,rgba(11,18,32,.55) 100%)}
 .p-photo{position:absolute;right:0;top:50%;transform:translateY(-50%) rotate(1.5deg);width:min(430px,38%);aspect-ratio:4/3;margin:0;border-radius:26px;overflow:hidden;border:1px solid var(--line-2);box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 8px rgba(148,180,220,.04)}
 .p-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .p-photo figcaption{position:absolute;left:14px;bottom:14px;padding:6px 10px;border-radius:999px;background:rgba(6,11,20,.72);backdrop-filter:blur(8px);border:1px solid var(--line-2);font-size:10.5px}
@@ -499,6 +502,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   .mosaic .ph:not(.big):not(.wide) figcaption span:not(.mono){display:none}
   .ph.band{height:280px}
   .apply-ph{max-width:none;height:200px}
+  .ev-photos{grid-template-columns:1fr;gap:10px;margin-bottom:40px}.ev-photos .ph{height:auto;aspect-ratio:16/10}
+  .mm-banner .banner-bg{opacity:.22}
 }
 
 /* ============================================================ CANVA 3D ART */
@@ -740,11 +745,15 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
       <p class="lede">45-minute hands-on Skill Sprints with Arzon mentors, co-hosted with Woxsen's clubs, plus AI resume reviews and the Market Masters case challenge.</p>
       <div class="countdown" id="evCd"></div><p class="mono" id="evCdLbl" style="margin-top:12px"></p></div></section>
   <section class="sec" style="padding-top:10px"><div class="wrap">
+    <div class="ev-photos">
+      <figure class="ph rv"><img src="/assets/photos/workshop-1125.webp" srcset="/assets/photos/workshop-640.webp 640w, /assets/photos/workshop-1125.webp 1125w" sizes="(max-width:760px) 100vw, 60vw" width="1125" height="750" alt="Students working on laptops around a table during a workshop" loading="lazy" decoding="async" style="object-position:50% 45%"><figcaption><span class="mono">Skill Sprints</span><b>45 minutes. Laptops open. Build it live.</b><span>Hands-on sessions with Arzon mentors, co-hosted with Woxsen's clubs.</span></figcaption></figure>
+      <figure class="ph rv" style="--d:100ms"><img src="/assets/photos/resume-review-1200.webp" srcset="/assets/photos/resume-review-640.webp 640w, /assets/photos/resume-review-1200.webp 1200w" sizes="(max-width:760px) 100vw, 40vw" width="1200" height="675" alt="A reviewer giving one-on-one feedback across a desk" loading="lazy" decoding="async" style="object-position:58% 40%"><figcaption><span class="mono">Resume booth</span><b>One-on-one resume & LinkedIn reviews</b><span>Leave with feedback you can act on the same day.</span></figcaption></figure>
+    </div>
     <div class="sec-head"><div><span class="mono">Skill Sprint series</span><h2>Upcoming <i>sessions</i></h2></div></div>
     <div style="display:grid;gap:12px" id="evList"></div>
   </div></section>
   <section class="sec" id="mm" style="padding-top:20px"><div class="wrap">
-    <div class="banner"><div class="tracks" style="grid-template-columns:1.1fr .9fr;gap:40px;align-items:end" id="mmBox"></div></div>
+    <div class="banner mm-banner"><img class="banner-bg" src="/assets/photos/audience-1125.webp" srcset="/assets/photos/audience-640.webp 640w, /assets/photos/audience-1125.webp 1125w" sizes="100vw" width="1125" height="750" alt="" aria-hidden="true" loading="lazy" decoding="async"><div class="tracks" style="grid-template-columns:1.1fr .9fr;gap:40px;align-items:end" id="mmBox"></div></div>
     <div class="tracks" style="margin-top:14px" id="mmRounds"></div>
   </div></section>
 </div>
@@ -752,7 +761,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 <!-- ============================================================ VIEW: SQUAD -->
 <div class="view" data-view="squad">
   <section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
-    <div class="wrap"><figure class="p-photo"><img src="/assets/photos/strategy-1125.webp" srcset="/assets/photos/strategy-640.webp 640w, /assets/photos/strategy-1125.webp 1125w" sizes="(max-width:1000px) 92vw, 420px" width="1125" height="750" alt="Two students planning a campaign at a whiteboard" decoding="async" style="object-position:48% 50%"><figcaption class="mono">Plan · launch · measure</figcaption></figure><span class="mono">For CrowdCore members</span><h1>Market a brand. <i>Build your portfolio.</i></h1>
+    <div class="wrap"><figure class="p-photo"><img src="/assets/photos/brainstorm-1200.webp" srcset="/assets/photos/brainstorm-640.webp 640w, /assets/photos/brainstorm-1200.webp 1200w" sizes="(max-width:1000px) 92vw, 430px" width="1200" height="675" alt="Two students planning a campaign with sticky notes on a board" decoding="async" style="object-position:42% 50%"><figcaption class="mono">Plan · launch · measure</figcaption></figure><span class="mono">For CrowdCore members</span><h1>Market a brand. <i>Build your portfolio.</i></h1>
       <p class="lede">The CrowdCore Growth Squad runs Arzon's Woxsen campaign as a real, live marketing internship: email waves, reels, on-ground booths and events. Every result goes in your portfolio.</p>
       <div class="cta-row"><button class="btn btn-primary" id="sqApply">Apply to the Squad <span class="arrow">→</span></button></div></div></section>
   <section class="sec" style="padding-top:10px"><div class="wrap">
