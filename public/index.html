@@ -468,6 +468,39 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   .p-illo.cluster{width:min(240px,68%)}
 }
 
+/* ============================================================ PHOTOS (Pexels, free licence) */
+.mosaic{display:grid;grid-template-columns:1.15fr 1fr 1fr;grid-template-rows:260px 260px;gap:14px}
+.ph{position:relative;margin:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line-2);background:var(--bg-2);isolation:isolate}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.03);transition:transform 1.4s var(--ease)}
+.ph:hover img{transform:scale(1.04)}
+.ph::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(6,11,20,0) 38%,rgba(6,11,20,.55) 62%,rgba(6,11,20,.92))}
+.ph::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);background:linear-gradient(135deg,rgba(47,127,216,.16),transparent 45%)}
+.ph figcaption{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;display:grid;gap:4px}
+.ph figcaption .mono{color:var(--violet-2)}
+.ph figcaption b{font-size:20px;font-weight:600;letter-spacing:-.02em;color:#fff;line-height:1.2}
+.ph figcaption span:not(.mono){font-size:14px;color:rgba(226,236,250,.82);max-width:46ch}
+.ph.big{grid-row:span 2}.ph.big figcaption b{font-size:26px}
+.ph.wide{grid-column:span 2}
+.ph.band{height:340px}.ph.band figcaption{left:clamp(20px,4vw,44px);bottom:clamp(20px,4vw,38px)}.ph.band figcaption b{font-size:clamp(22px,3vw,32px);max-width:24ch}
+.apply-ph{max-width:440px;height:220px;margin:0 0 14px}
+.p-photo{position:absolute;right:0;top:50%;transform:translateY(-50%) rotate(1.5deg);width:min(430px,38%);aspect-ratio:4/3;margin:0;border-radius:26px;overflow:hidden;border:1px solid var(--line-2);box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 8px rgba(148,180,220,.04)}
+.p-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.p-photo figcaption{position:absolute;left:14px;bottom:14px;padding:6px 10px;border-radius:999px;background:rgba(6,11,20,.72);backdrop-filter:blur(8px);border:1px solid var(--line-2);font-size:10.5px}
+@media (max-width:1000px){
+  .p-photo{position:relative;top:auto;transform:none;width:100%;max-width:520px;margin:0 0 22px;order:-1}
+}
+@media (max-width:760px){
+  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:none;gap:10px}
+  .mosaic .ph{aspect-ratio:1/1}
+  .mosaic .ph.big{grid-column:1/-1;grid-row:auto;aspect-ratio:4/3.4}
+  .mosaic .ph.wide{grid-column:1/-1;aspect-ratio:16/10}
+  .ph figcaption{left:14px;right:14px;bottom:12px}
+  .ph figcaption b{font-size:16px}.ph.big figcaption b{font-size:21px}
+  .mosaic .ph:not(.big):not(.wide) figcaption span:not(.mono){display:none}
+  .ph.band{height:280px}
+  .apply-ph{max-width:none;height:200px}
+}
+
 /* ============================================================ CANVA 3D ART */
 .art3d{display:block;width:100%;height:auto;filter:drop-shadow(0 34px 60px rgba(20,80,170,.45))}
 @media (prefers-reduced-motion:no-preference){ .art3d.float{animation:artF 7s ease-in-out infinite} }
@@ -626,10 +659,23 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   </div>
 </section>
 
+<!-- INSIDE THE PROGRAMME (photos) -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="mono">04 / Inside the programme</span><h2 class="rv">Real people. <i>Real progress.</i></h2></div><p class="rv" style="--d:100ms">Live classes with your batch, projects built in teams, and a finish line you can show recruiters.</p></div>
+    <div class="mosaic">
+      <figure class="ph big rv"><img src="/assets/photos/campus-group-760.webp" srcset="/assets/photos/campus-group-480.webp 480w, /assets/photos/campus-group-760.webp 760w" sizes="(max-width:760px) 100vw, 40vw" width="760" height="750" alt="Three students smiling on a green college campus" loading="lazy" decoding="async"><figcaption><span class="mono">Community</span><b>Learn with your batch</b><span>Live classes and domain groups with peers who want the same things you do.</span></figcaption></figure>
+      <figure class="ph rv" style="--d:80ms"><img src="/assets/photos/team-project-500.webp" width="500" height="333" alt="Students working together on a laptop and notebook" loading="lazy" decoding="async" style="object-position:60% 40%"><figcaption><span class="mono">Projects</span><b>3 industry projects</b><span>Built in teams on real case studies.</span></figcaption></figure>
+      <figure class="ph rv" style="--d:160ms"><img src="/assets/photos/career-640.webp" srcset="/assets/photos/career-640.webp 640w, /assets/photos/career-1125.webp 1125w" sizes="(max-width:760px) 50vw, 28vw" width="1125" height="750" alt="A young professional in a suit getting ready for work" loading="lazy" decoding="async" style="object-position:76% 30%"><figcaption><span class="mono">Placement support</span><b>Interview-ready</b><span>Walk in with work to show.</span></figcaption></figure>
+      <figure class="ph wide rv" style="--d:240ms"><img src="/assets/photos/graduation-1125.webp" srcset="/assets/photos/graduation-640.webp 640w, /assets/photos/graduation-1125.webp 1125w" sizes="(max-width:760px) 100vw, 56vw" width="1125" height="560" alt="A group of graduates in caps and gowns" loading="lazy" decoding="async" style="object-position:50% 46%"><figcaption><span class="mono">The finish line</span><b>3 certificates + a letter of recommendation</b><span>Course, project and internship completion, ready for your CV and LinkedIn.</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <!-- WHAT YOU GET -->
 <section class="sec" style="padding-top:20px">
   <div class="wrap">
-    <div class="sec-head"><div><span class="mono">04 / What you get</span><h2 class="rv">Not another certificate. <i>Everything you need.</i></h2></div><p class="rv" style="--d:100ms">Seven things every Arzon student gets. Tap any card to see how it works.</p></div>
+    <div class="sec-head"><div><span class="mono">05 / What you get</span><h2 class="rv">Not another certificate. <i>Everything you need.</i></h2></div><p class="rv" style="--d:100ms">Seven things every Arzon student gets. Tap any card to see how it works.</p></div>
     <div class="ben-grid" id="homeBen"></div>
     <div class="strip rv" style="margin-top:14px"><div><span class="mono">Scholarship open</span><div style="margin-top:4px"><span class="amt">₹8,000</span><s>₹24,999</s> <span style="color:var(--text-2);margin-left:8px">total programme fee · register with <b style="color:#fff">₹1,065</b></span></div></div>
       <div class="cta-row"><a class="btn btn-primary" href="#/scholarship">See scholarship details <span class="arrow">→</span></a><a class="btn btn-ghost" href="#/benefits">Everything included</a></div></div>
@@ -650,7 +696,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 <!-- FAQ -->
 <section class="sec" style="padding-top:20px">
   <div class="wrap">
-    <div class="sec-head"><div><span class="mono">05 / FAQ</span><h2 class="rv">Quick answers.</h2></div></div>
+    <div class="sec-head"><div><span class="mono">06 / FAQ</span><h2 class="rv">Quick answers.</h2></div></div>
     <div class="faq rv" id="faq" style="max-width:820px"></div>
   </div>
 </section>
@@ -705,8 +751,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 
 <!-- ============================================================ VIEW: SQUAD -->
 <div class="view" data-view="squad">
-  <section class="p-hero"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
-    <div class="wrap"><span class="mono">For CrowdCore members</span><h1>Market a brand. <i>Build your portfolio.</i></h1>
+  <section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+    <div class="wrap"><figure class="p-photo"><img src="/assets/photos/strategy-1125.webp" srcset="/assets/photos/strategy-640.webp 640w, /assets/photos/strategy-1125.webp 1125w" sizes="(max-width:1000px) 92vw, 420px" width="1125" height="750" alt="Two students planning a campaign at a whiteboard" decoding="async" style="object-position:48% 50%"><figcaption class="mono">Plan · launch · measure</figcaption></figure><span class="mono">For CrowdCore members</span><h1>Market a brand. <i>Build your portfolio.</i></h1>
       <p class="lede">The CrowdCore Growth Squad runs Arzon's Woxsen campaign as a real, live marketing internship: email waves, reels, on-ground booths and events. Every result goes in your portfolio.</p>
       <div class="cta-row"><button class="btn btn-primary" id="sqApply">Apply to the Squad <span class="arrow">→</span></button></div></div></section>
   <section class="sec" style="padding-top:10px"><div class="wrap">
@@ -736,6 +782,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
     <div class="wrap hero-grid" style="align-items:start">
       <div><span class="mono">Free · 30 seconds</span><h1>Get your <i>career roadmap.</i></h1>
         <p class="lede">Tell us where you're headed. An Arzon mentor will WhatsApp you a personalised plan: the right track for your specialisation, the next batch date and what it takes to get there.</p>
+        <figure class="ph apply-ph"><img src="/assets/photos/career-640.webp" srcset="/assets/photos/career-640.webp 640w, /assets/photos/career-1125.webp 1125w" sizes="(max-width:760px) 92vw, 440px" width="1125" height="750" alt="A young professional in a suit getting ready for work" decoding="async" style="object-position:72% 30%"><figcaption><span class="mono">Your next step</span><b>From classroom to offer letter</b></figcaption></figure>
         <div style="display:grid;gap:12px;max-width:440px">
           <div class="card" style="padding:16px 18px"><b>A plan made for you</b><div style="color:var(--muted);font-size:14px">Mapped to your Woxsen specialisation and year.</div></div>
           <div class="card" style="padding:16px 18px"><b>A real mentor, not a bot</b><div style="color:var(--muted);font-size:14px">We reach out the same day.</div></div>
@@ -1135,6 +1182,7 @@ function renderScholarship() {
         <div class="card" style="background:linear-gradient(160deg,rgba(47,127,216,.28),rgba(47,127,216,.05));border-color:rgba(156,201,243,.35)"><span class="mono" style="color:#dcecfb">You save</span><div style="font-size:64px;font-weight:600;letter-spacing:-.05em;margin:8px 0">${inr(C.LIST_PRICE - C.PRICE)}</div><p style="color:#dcecfb;margin:0">That's ${Math.round((1 - C.PRICE / C.LIST_PRICE) * 100)}% off the list price, with everything still included.</p></div>
       </div>
       <div style="margin-top:44px"><span class="mono">How to claim it</span><div class="how" style="margin-top:14px"><div class="card"><h4>Get your roadmap</h4><p>Take the quiz or fill the 30-second form.</p></div><div class="card"><h4>Talk to a counsellor</h4><p>Pick your track and confirm your scholarship.</p></div><div class="card"><h4>Register · ${inr(C.REG_FEE)}</h4><p>Reserve your seat and get your offer letter.</p></div><div class="card"><h4>Start learning</h4><p>Live classes, LMS access and your community group.</p></div></div></div>
+      <figure class="ph band" style="margin-top:44px"><img src="/assets/photos/graduation-1125.webp" srcset="/assets/photos/graduation-640.webp 640w, /assets/photos/graduation-1125.webp 1125w" sizes="(max-width:760px) 100vw, 1200px" width="1125" height="560" alt="A group of graduates in caps and gowns" loading="lazy" decoding="async" style="object-position:50% 42%"><figcaption><span class="mono">Where ${inr(C.PRICE)} takes you</span><b>Finish with 3 certificates and a letter of recommendation.</b><span>Course, project and internship completion certificates, plus an LOR for your next company.</span></figcaption></figure>
       <div style="margin-top:44px"><span class="mono">Included in ${inr(C.PRICE)}</span><div class="ben-grid" style="margin-top:14px">${B.map(benCard).join('')}<div class="ben"><div class="t-ico">${icon('trophy')}</div><h3>26+ career tracks</h3><p>Business, data & AI, tech and pharma. Same scholarship on every live track.</p><a class="t-cta" href="#/programmes">Browse programmes <span class="arrow">→</span></a></div></div></div>
       <div style="margin-top:44px;max-width:820px" class="faq">${D.FAQ.slice(0, 4).map(f => `<details><summary>${f.q}</summary><p>${f.a}</p></details>`).join('')}</div>
     </div></section>`;
