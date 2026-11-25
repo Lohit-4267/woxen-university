@@ -521,6 +521,32 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 .club-cta h3{font-size:26px;margin:10px 0 6px}.club-cta p{margin:0;color:var(--text-2);max-width:56ch}
 .sq-how{grid-template-columns:repeat(3,1fr)}
 .sq-photos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}.sq-photos .ph{height:300px}
+/* brand logos */
+.blogo{display:inline-block;width:auto;vertical-align:middle;border-radius:8px;background:#fff}.blogo.sm{border-radius:5px;margin-right:6px}
+.plat.logo{background:#fff;padding:6px 8px;width:auto;min-width:48px;box-shadow:0 6px 18px rgba(0,0,0,.35)}.rate.big .plat.logo{min-width:64px}.plat.logo img{height:100%;width:auto;max-width:100%;object-fit:contain;border-radius:0;background:none}
+.rate.big .plat.logo{padding:8px}
+.rev-h{position:relative}.rev-src{margin-left:auto;align-self:flex-start}.rev-src img{height:22px;border-radius:5px}
+.badge-card .bl{flex:none;background:#fff;border-radius:12px;padding:6px 8px;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.3)}.badge-card .bl img{height:48px;width:auto;border-radius:0;background:none}
+.at-logo img,.ts-logo img{height:30px;border-radius:6px;padding:2px 4px}.ts-logo img{height:26px}
+/* after the hero: recognition strip + photo ribbon */
+.recog{padding:6px 0 18px}
+.recog-in{display:flex;align-items:center;gap:18px 26px;flex-wrap:wrap;justify-content:center;padding:16px 22px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
+.recog-logos{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
+.recog-logos > img{height:44px;width:auto;background:#fff;border-radius:10px;padding:4px 8px}
+.recog-r{display:flex;gap:14px;flex-wrap:wrap}.recog-r > span{display:inline-flex;align-items:center;gap:6px;padding:4px 12px 4px 4px;border-radius:12px;border:1px solid var(--line-2);background:var(--bg-2)}
+.recog-r b{font-size:17px}.recog-r img{height:30px;border-radius:7px}
+.ribbon{overflow:hidden;padding:6px 0 26px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.ribbon-track{display:flex;gap:12px;width:max-content;animation:ribbon 70s linear infinite}
+.ribbon img{height:190px;width:auto;aspect-ratio:4/3;object-fit:cover;border-radius:18px;border:1px solid var(--line-2);filter:saturate(.92)}
+@keyframes ribbon{to{transform:translateX(calc(-50% - 6px))}}
+@media (prefers-reduced-motion:reduce){.ribbon-track{animation:none}}
+/* TASK inauguration feature */
+.inaug{display:grid;grid-template-columns:1.15fr .85fr;gap:0;margin-top:34px;border-radius:28px;overflow:hidden;border:1px solid rgba(127,188,239,.3);background:linear-gradient(120deg,rgba(47,127,216,.14),rgba(11,18,32,.6) 60%),var(--bg-2)}
+.inaug figure{margin:0;position:relative;min-height:280px}.inaug figure img{width:100%;height:100%;object-fit:cover;display:block}
+.inaug figcaption{position:absolute;left:12px;bottom:12px;padding:5px 10px;border-radius:999px;background:rgba(6,11,20,.7);font-size:11.5px;color:#cfe0f3;border:1px solid var(--line-2)}
+.inaug-t{padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;justify-content:center}
+.inaug-t h3{font-size:clamp(26px,3vw,34px);margin:10px 0 10px;letter-spacing:-.03em}.inaug-t p{margin:0;color:var(--text-2)}.inaug-t p b{color:#fff;font-weight:600}
+.inaug-l{display:flex;gap:12px;align-items:center;margin-top:18px;font-size:13.5px;color:var(--text-2)}.inaug-l b{color:#fff}.inaug-l img{height:40px;background:#fff;border-radius:8px;padding:3px 6px}
 /* reviews, ratings, trust */
 .chip-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}.chip-row .sch-chip{margin-top:0}
 .rate-chip{font:inherit;font-size:13.5px;color:inherit;cursor:pointer}.st{color:var(--warm)}
@@ -604,6 +630,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   .fs-grid,.fit-grid,.why3,.do4,.sq-how,.sq-photos{grid-template-columns:1fr;gap:10px}
   .why3{margin-bottom:40px}.sq-photos .ph{height:auto;aspect-ratio:16/10}
   .rate-row,.rev-grid,.rev-quotes,.badges{grid-template-columns:1fr;gap:10px}
+  .inaug{grid-template-columns:1fr}.inaug figure{min-height:0;aspect-ratio:968/462}
+  .ribbon img{height:130px}.recog-logos > img{height:36px}.recog-in{padding:14px}
   .rate.big .rt b{font-size:40px}
   .jd-steps{grid-template-columns:1fr 1fr;gap:10px}
   .jd-grid{grid-template-columns:1fr}.jd-arrow{transform:rotate(90deg);height:34px}
@@ -725,6 +753,12 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   </div>
 </header>
 
+<section class="recog" aria-label="Recognition and ratings"><div class="wrap recog-in">
+  <span class="mono">Recognised & rated</span>
+  <div class="recog-logos"><img src="/assets/brand/task.webp" height="44" alt="TASK, Government of Telangana" loading="lazy"><img src="/assets/brand/iso.webp" height="44" alt="ISO 9001:2015" loading="lazy"><img src="/assets/brand/msme.webp" height="44" alt="MSME Udyam registered" loading="lazy"><span class="recog-r" id="recogRates"></span></div>
+</div></section>
+<div class="ribbon" aria-hidden="true"><div class="ribbon-track"><img src="/assets/photos/campus-filming-640.webp" width="640" height="427" alt="Students filming content on campus" loading="lazy" decoding="async" style="object-position:50% 34%"><img src="/assets/photos/workshop-640.webp" width="640" height="427" alt="Students working on laptops in a workshop" loading="lazy" decoding="async" style="object-position:50% 45%"><img src="/assets/photos/group-study-640.webp" width="640" height="427" alt="Students studying together in a library lounge" loading="lazy" decoding="async" style="object-position:46% 50%"><img src="/assets/photos/audience-640.webp" width="640" height="427" alt="Students in a lecture hall" loading="lazy" decoding="async" style="object-position:50% 40%"><img src="/assets/photos/brainstorm-640.webp" width="640" height="360" alt="Students planning with sticky notes" loading="lazy" decoding="async" style="object-position:42% 50%"><img src="/assets/photos/mentor-640.webp" width="640" height="512" alt="A mentor talking with students" loading="lazy" decoding="async" style="object-position:50% 52%"><img src="/assets/photos/cap-toss-640.webp" width="640" height="427" alt="Graduates throwing their caps" loading="lazy" decoding="async" style="object-position:50% 58%"><img src="/assets/photos/campus-filming-640.webp" width="640" height="427" alt="Students filming content on campus" loading="lazy" decoding="async" style="object-position:50% 34%"><img src="/assets/photos/workshop-640.webp" width="640" height="427" alt="Students working on laptops in a workshop" loading="lazy" decoding="async" style="object-position:50% 45%"><img src="/assets/photos/group-study-640.webp" width="640" height="427" alt="Students studying together in a library lounge" loading="lazy" decoding="async" style="object-position:46% 50%"><img src="/assets/photos/audience-640.webp" width="640" height="427" alt="Students in a lecture hall" loading="lazy" decoding="async" style="object-position:50% 40%"><img src="/assets/photos/brainstorm-640.webp" width="640" height="360" alt="Students planning with sticky notes" loading="lazy" decoding="async" style="object-position:42% 50%"><img src="/assets/photos/mentor-640.webp" width="640" height="512" alt="A mentor talking with students" loading="lazy" decoding="async" style="object-position:50% 52%"><img src="/assets/photos/cap-toss-640.webp" width="640" height="427" alt="Graduates throwing their caps" loading="lazy" decoding="async" style="object-position:50% 58%"></div></div>
+
 <div class="marquee mq" aria-label="Tools you'll learn">
   <div class="mono mq-label">Tools you'll actually use on the job</div>
   <div class="track"><span>Excel</span><span>SQL</span><span>Power BI</span><span>Tableau</span><span>Python</span><span>GA4</span><span>Google Ads</span><span>Meta Ads</span><span>HubSpot</span><span>Salesforce</span><span>Financial modelling</span><span>ChatGPT & Claude</span><span>Copilot</span><span>Figma</span><span>HRIS</span></div>
@@ -833,6 +867,12 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
     <div class="rate-row" id="rateRow"></div>
     <div class="rev-grid" id="revGrid"></div>
     <div class="rev-quotes" id="revQuotes"></div>
+    <div class="inaug rv">
+      <figure><img src="/assets/photos/task-inauguration-968.webp" srcset="/assets/photos/task-inauguration-640.webp 640w, /assets/photos/task-inauguration-968.webp 968w" sizes="(max-width:760px) 100vw, 55vw" width="968" height="462" alt="Dr. Srikanth Sinha, CEO of TASK, speaking at the inauguration of Arzon Global's Hyderabad centre" loading="lazy" decoding="async"><figcaption>Telecast: HYBIZ TV HD</figcaption></figure>
+      <div class="inaug-t"><span class="mono">Government aligned</span><h3>Inaugurated by the <i>CEO of TASK.</i></h3>
+        <p>Arzon Global's Hyderabad centre was inaugurated by <b>Dr. Srikanth Sinha, CEO of TASK</b> (Telangana Academy for Skill and Knowledge, Govt. of Telangana). The launch was telecast on HYBIZ TV HD, ETV Telangana, TV5 and V5 News.</p>
+        <div class="inaug-l"><img src="/assets/brand/task.webp" height="40" alt="TASK" loading="lazy"><span><b>Dr. Srikanth Sinha</b><br>CEO, TASK · Govt. of Telangana</span></div></div>
+    </div>
     <div id="trustBox"></div>
   </div>
 </section>
@@ -1108,6 +1148,10 @@ function simpleForm({ type, kicker, title, sub, cta, extra = '', payload = {}, d
     $('#mClose').onclick = closeModal; });
 }
 const eventForm = id => { const ev = D.EVENTS.find(e => e.id === id); simpleForm({ type:'event', kicker: ev.type, title: ev.title, sub: `${fmtDate(ev.date, {weekday:'short', day:'numeric', month:'short'})} · ${ev.mode} · ${ev.host}`, cta:'Reserve my seat', payload:{ event: ev.title, event_id: ev.id }, done:["You're in!", "We'll WhatsApp you the details and a reminder before it starts."] }); };
+/* ---------- brand logos (from the Arzon 2026 brochure) ---------- */
+const LOGO = { google: 'google', justdial: 'justdial', ambitionbox: 'ambitionbox', task: 'task', iso: 'iso', msme: 'msme' };
+const logoImg = (k, h = 28, cls = 'blogo') => LOGO[k] ? `<img class="${cls}" src="/assets/brand/${LOGO[k]}.webp" height="${h}" alt="${{ google: 'Google', justdial: 'Justdial', ambitionbox: 'AmbitionBox', task: 'TASK', iso: 'ISO 9001:2015', msme: 'MSME' }[k]}" loading="lazy" decoding="async">` : '';
+const badgeLogo = t => /TASK/i.test(t) ? 'task' : /ISO/i.test(t) ? 'iso' : /MSME|Udyam/i.test(t) ? 'msme' : '';
 // "Reserve my seat": take the student's details first (so a counsellor can follow up), then hand over to Razorpay.
 const payForm = id => { const t = T(id); simpleForm({ type:'lead', kicker:'Reserve your seat', title: t ? t.name : 'Reserve your seat',
   sub:"Leave your details so your counsellor can confirm your seat and scholarship. Next, you'll complete payment on our secure Razorpay page.", cta:'Continue to payment',
@@ -1152,7 +1196,7 @@ function trustStrip() {
   const R = D.RATINGS || {}, TR = Object.assign({ badges: [] }, D.TRUST || {});
   const P = [['google', 'Google'], ['justdial', 'Justdial'], ['ambitionbox', 'AmbitionBox']].filter(([k]) => +R[k + '_rating'] > 0);
   if (!P.length && !TR.badges.length) return '';
-  return `<div class="trust-strip">${P.map(([k, l]) => `<span class="ts-r"><span class="st">★</span><b>${(+R[k + '_rating']).toFixed(1)}</b> ${esc(l)}${R[k + '_count'] ? ` <i>${esc(R[k + '_count'])}</i>` : ''}</span>`).join('')}${TR.badges.map(b => `<span class="ts-b">${icon('check')}${esc(b.t)}</span>`).join('')}</div>`;
+  return `<div class="trust-strip">${P.map(([k, l]) => `<span class="ts-r">${logoImg(k, 20, 'blogo sm')}<span class="st">★</span><b>${(+R[k + '_rating']).toFixed(1)}</b> ${esc(l)}${R[k + '_count'] ? ` <i>${esc(R[k + '_count'])}</i>` : ''}</span>`).join('')}${TR.badges.map(b => badgeLogo(b.t) ? `<span class="ts-logo">${logoImg(badgeLogo(b.t), 26)}</span>` : `<span class="ts-b">${icon('check')}${esc(b.t)}</span>`).join('')}</div>`;
 }
 const waitlistForm = id => { const t = T(id); simpleForm({ type:'waitlist', kicker:'Waitlist', title: t.name, sub:'This track is launching soon. Join the waitlist for first seats and early-bird pricing.', cta:'Join the waitlist', payload:{ track: t.name, track_id: t.id, track_status:'waitlist' }, done:["You're on the list.", "We'll tell you the moment it opens."] }); };
 
@@ -1211,22 +1255,23 @@ freeStrips();
   const ini = n => String(n).split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
   const hue = n => [...String(n)].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7);
   const rateCard = ([k, l, i], big) => { const url = R[k + '_url'];
-    const inner = `<span class="plat">${i}</span><div><div class="rt"><b>${(+R[k + '_rating']).toFixed(1)}</b><span>/ 5</span></div>${stars(R[k + '_rating'])}<div class="rc">${esc(l)}${R[k + '_count'] ? ' · ' + esc(R[k + '_count']) : ''}</div></div>${url ? '<span class="rl">Read reviews ↗</span>' : ''}`;
+    const inner = `<span class="plat logo">${logoImg(k, 40)}</span><div><div class="rt"><b>${(+R[k + '_rating']).toFixed(1)}</b><span>/ 5</span></div>${stars(R[k + '_rating'])}<div class="rc">${esc(l)}${R[k + '_count'] ? ' · ' + esc(R[k + '_count']) : ''}</div></div>${url ? '<span class="rl">Read reviews ↗</span>' : ''}`;
     return url ? `<a class="rate rv${big ? ' big' : ''}" href="${esc(url)}" target="_blank" rel="noopener">${inner}</a>` : `<div class="rate rv${big ? ' big' : ''}">${inner}</div>`; };
   const box = $('#reviews');
   if (box) {
     $('#rateRow').innerHTML = P.map((p, i) => rateCard(p, i === 0)).join('');
-    $('#revGrid').innerHTML = REV.filter(r => r.featured).slice(0, 6).map((r, i) => `<figure class="rev card rv" style="--d:${i * 70}ms"><div class="rev-h"><span class="av" style="--h:${hue(r.author)}">${esc(ini(r.author))}</span><div><b>${esc(r.author)}</b><div class="rev-s">${stars(r.rating)}<span>${esc(SRC[r.source] || 'Student')} review</span></div></div></div><blockquote>“${esc(r.text)}”</blockquote></figure>`).join('');
+    $('#revGrid').innerHTML = REV.filter(r => r.featured).slice(0, 6).map((r, i) => `<figure class="rev card rv" style="--d:${i * 70}ms"><div class="rev-h"><span class="av" style="--h:${hue(r.author)}">${esc(ini(r.author))}</span><div><b>${esc(r.author)}</b><div class="rev-s">${stars(r.rating)}<span>${esc(SRC[r.source] || 'Student')} review</span></div></div>${LOGO[r.source] ? `<span class="rev-src">${logoImg(r.source, 22)}</span>` : ''}</div><blockquote>“${esc(r.text)}”</blockquote></figure>`).join('');
     $('#revQuotes').innerHTML = REV.filter(r => !r.featured).map(r => `<div class="q rv"><span class="qs">★</span><div><b>“${esc(r.text)}”</b><span>${esc(r.author)}</span></div></div>`).join('');
-    $('#trustBox').innerHTML = (TR.badges.length ? `<div class="soon-head" style="margin-top:34px"><span class="mono">Verified & registered</span><span class="soon-line"></span></div><div class="badges">${TR.badges.map((b, i) => `<div class="badge-card rv" style="--d:${i * 70}ms"><span class="ok">${icon('check')}</span><div><b>${esc(b.t)}</b><p>${esc(b.d)}</p></div><span class="vf">Verified</span></div>`).join('')}</div>` : '')
+    $('#trustBox').innerHTML = (TR.badges.length ? `<div class="soon-head" style="margin-top:34px"><span class="mono">Verified & registered</span><span class="soon-line"></span></div><div class="badges">${TR.badges.map((b, i) => `<div class="badge-card rv" style="--d:${i * 70}ms">${badgeLogo(b.t) ? `<span class="bl">${logoImg(badgeLogo(b.t), 64)}</span>` : `<span class="ok">${icon('check')}</span>`}<div><b>${esc(b.t)}</b><p>${esc(b.d)}</p></div><span class="vf">Verified</span></div>`).join('')}</div>` : '')
       + (TR.partners.length ? `<div class="soon-head" style="margin-top:26px"><span class="mono">Industry partners</span><span class="soon-line"></span></div><div class="partners">${TR.partners.map(p => `<span class="partner rv"><i>${esc(ini(p))}</i>${esc(p)}</span>`).join('')}</div>` : '');
     if (!P.length && !REV.length && !TR.badges.length && !TR.partners.length) box.remove();
   }
+  const rr = $('#recogRates'); if (rr) rr.innerHTML = P.map(([k, l]) => `<span>${logoImg(k, 30, 'blogo')}<b>${(+R[k + '_rating']).toFixed(1)}</b><span class="st">★</span></span>`).join('');
   const g = P[0];
-  if (g) { const h = $('#heroRate'); h.innerHTML = `<span class="st">★</span><b>${(+R[g[0] + '_rating']).toFixed(1)}</b> on ${g[1]}${R[g[0] + '_count'] ? ' · ' + esc(R[g[0] + '_count']) : ''}`; h.hidden = false; }
+  if (g) { const h = $('#heroRate'); h.innerHTML = `${logoImg(g[0], 18, 'blogo sm')}<span class="st">★</span><b>${(+R[g[0] + '_rating']).toFixed(1)}</b> on ${g[1]}${R[g[0] + '_count'] ? ' · ' + esc(R[g[0] + '_count']) : ''}`; h.hidden = false; }
   const at = $('#applyTrust');
-  if (at) at.innerHTML = (P.length ? `<div class="at-rates">${P.map(([k, l]) => `<span><span class="st">★</span><b>${(+R[k + '_rating']).toFixed(1)}</b> ${esc(l)}</span>`).join('')}</div>` : '')
-    + (TR.badges.length ? `<div class="at-badges">${TR.badges.map(b => `<span>${icon('check')}${esc(b.t)}</span>`).join('')}</div>` : '');
+  if (at) at.innerHTML = (P.length ? `<div class="at-rates">${P.map(([k, l]) => `<span>${logoImg(k, 20, 'blogo sm')}<span class="st">★</span><b>${(+R[k + '_rating']).toFixed(1)}</b> ${esc(l)}</span>`).join('')}</div>` : '')
+    + (TR.badges.length ? `<div class="at-badges">${TR.badges.map(b => badgeLogo(b.t) ? `<span class="at-logo">${logoImg(badgeLogo(b.t), 30)}</span>` : `<span>${icon('check')}${esc(b.t)}</span>`).join('')}</div>` : '');
   const ft = $('#footTrust'); if (ft && TR.badges.length) ft.textContent = TR.badges.map(b => b.t).join(' · ');
 })();
 (() => { const tabs = $('#jdTabs'); if (!tabs) return;
