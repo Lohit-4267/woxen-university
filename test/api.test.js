@@ -132,6 +132,37 @@ test('admin: ambassadors credited with referral leads', async () => {
   assert.equal(list[0].code, 'CC-AR01'); assert.equal(list[0].leads, 1);
 });
 
+test('reviews, ratings and trust are published; healthcare reviews stay hidden', async () => {
+  const d = (await req('GET', '/api/content')).body.data;
+  assert.ok(d.REVIEWS.length >= 5);
+  assert.ok(!d.REVIEWS.some(r => /health|pharma|medical/i.test(r.text)), 'no healthcare/pharma reviews on the MBA/BBA site');
+  assert.equal(d.RATINGS.google_rating, 4.5);
+  assert.ok(d.TRUST.badges.some(b => /ISO 9001/.test(b.t)) && d.TRUST.badges.some(b => /MSME/.test(b.t)));
+  const all = (await req('GET', '/api/admin/reviews')).body;
+  assert.ok(all.length >= 8 && all.some(r => !r.published));
+  const added = await req('POST', '/api/admin/reviews', { source: 'ambitionbox', author: 'Test Student', rating: 4, text: 'Solid mentors.', featured: true });
+  assert.equal(added.status, 201);
+  assert.ok((await req('GET', '/api/content')).body.data.REVIEWS.find(r => r.author === 'Test Student' && r.source === 'ambitionbox'));
+  assert.equal((await req('DELETE', '/api/admin/reviews/' + added.body.id)).status, 200);
+  assert.equal((await req('GET', '/api/content')).body.config.REGISTER_URL, 'https://rzp.io/rzp/Jm81XZWn');
+});
+
+test('counsellors see registrations only', async () => {
+  const made = await req('POST', '/api/admin/admins', { email: 'counsellor@test.local', name: 'C One', password: 'counsellor-pass-1', role: 'counsellor' });
+  assert.equal(made.status, 201); assert.equal(made.body.role, 'counsellor');
+  const adminCookie = cookie; cookie = '';
+  const login = await req('POST', '/api/admin/login', { email: 'counsellor@test.local', password: 'counsellor-pass-1' });
+  assert.equal(login.status, 200); assert.equal(login.body.admin.role, 'counsellor');
+  const list = await req('GET', '/api/admin/submissions?limit=5');
+  assert.equal(list.status, 200); assert.ok(list.body.total >= 1);
+  const id = list.body.rows ? list.body.rows[0].id : list.body.items[0].id;
+  assert.equal((await req('PATCH', '/api/admin/submissions/' + id, { status: 'contacted', notes: 'Called, interested' })).status, 200);
+  assert.equal((await req('GET', '/api/admin/submissions.csv')).status, 200);
+  for (const [m, p] of [['GET', '/api/admin/settings'], ['GET', '/api/admin/admins'], ['GET', '/api/admin/tracks'], ['PUT', '/api/admin/settings/site'], ['DELETE', '/api/admin/submissions/' + id], ['POST', '/api/admin/admins']])
+    assert.equal((await req(m, p, m === 'GET' || m === 'DELETE' ? undefined : {})).status, 403, `${m} ${p} should be admin-only`);
+  await req('POST', '/api/admin/logout', {}); cookie = adminCookie;
+});
+
 test('blocks cross-origin admin writes', async () => {
   const r = await req('POST', '/api/admin/logout', {}, { Origin: 'https://evil.example' });
   assert.equal(r.status, 403);

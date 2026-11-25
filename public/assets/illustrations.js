@@ -1,5 +1,5 @@
 /* Isometric SVG illustrations, generated in code so they stay sharp, tiny and on-palette.
-   window.ARZON_ILLO.render(kind) → SVG string. kinds: business, data, tech, pharma, ladder */
+   window.ARZON_ILLO.render(kind) → SVG string. kinds: business, data, events, scholarship, ladder */
 (function () {
   'use strict';
   var uid = 0;
@@ -71,27 +71,6 @@
       var beam = '<polygon points="186,196 214,196 230,170 170,170" fill="url(#IDgl)" opacity=".25"/>';
       return beam + chip + pins + s +
         card(292, 168, 80, 48, '<polyline points="302,204 316,192 330,198 344,182 360,186" fill="none" stroke="' + C.mint + '" stroke-width="3" stroke-linecap="round"/><rect x="302" y="178" width="30" height="5" rx="2.5" fill="' + C.sky + '"/>', 'fl2');
-    },
-    tech: function () {
-      var srv = box(150, 236, 34, 22) + box(150, 214, 34, 22, { top: '#7fbcef' }) + box(150, 192, 34, 22, { top: C.sky });
-      var leds = '<g>' + [0, 1, 2].map(function (k) { return dot(130, 214 - k * 22, 2.4, k === 1 ? C.warm : C.mint); }).join('') + '</g>';
-      var win = card(198, 70, 150, 104,
-        '<rect x="198" y="70" width="150" height="20" rx="12" fill="rgba(191,224,255,.18)"/>' + dot(212, 80, 3.5, '#f08a95') + dot(224, 80, 3.5, C.warm) + dot(236, 80, 3.5, C.mint) +
-        '<text x="214" y="122" font-family="Geist Mono,monospace" font-size="24" font-weight="600" fill="' + C.sky + '">&lt;/&gt;</text>' +
-        '<rect x="270" y="104" width="62" height="6" rx="3" fill="' + C.left + '"/><rect x="270" y="118" width="44" height="6" rx="3" fill="' + C.top + '"/><rect x="214" y="138" width="118" height="6" rx="3" fill="rgba(191,224,255,.35)"/><rect x="214" y="152" width="80" height="6" rx="3" fill="rgba(191,224,255,.25)"/>');
-      var cloud = '<g class="fl2"><path d="M76 92a22 22 0 0 1 40-12 18 18 0 0 1 26 16 14 14 0 0 1-2 28H82a16 16 0 0 1-6-32z" fill="url(#IDgl)" opacity=".9"/></g>';
-      var cube = box(262, 236, 22, 30, { top: C.warm, left: '#c9913e', right: '#9c6b24' });
-      return srv + leds + cube + win + cloud;
-    },
-    pharma: function () {
-      var capsule = '<g class="fl" transform="rotate(-32 150 130)"><rect x="104" y="112" width="92" height="38" rx="19" fill="' + C.sky + '"/><path d="M150 112h27a19 19 0 0 1 0 38h-27z" fill="' + C.left + '"/><rect x="112" y="118" width="30" height="6" rx="3" fill="#fff" opacity=".6"/></g>';
-      var hex = function (cx, cy, r) { var pts = []; for (var i = 0; i < 6; i++) { var a = Math.PI / 3 * i + Math.PI / 6; pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); } return pts; };
-      var h = hex(268, 104, 30), mol = '<g class="fl2"><polygon points="' + P(h) + '" fill="none" stroke="' + C.top + '" stroke-width="3"/>' +
-        '<line x1="' + h[0][0] + '" y1="' + h[0][1] + '" x2="' + (h[0][0] + 30) + '" y2="' + (h[0][1] + 14) + '" stroke="' + C.top + '" stroke-width="3"/>' +
-        '<line x1="' + h[4][0] + '" y1="' + h[4][1] + '" x2="' + (h[4][0] + 6) + '" y2="' + (h[4][1] - 30) + '" stroke="' + C.top + '" stroke-width="3"/>' +
-        h.map(function (p, i) { return dot(p[0], p[1], 6, i % 2 ? C.mint : C.sky); }).join('') + dot(h[0][0] + 30, h[0][1] + 14, 7, C.warm, true) + dot(h[4][0] + 6, h[4][1] - 30, 6, C.sky) + '</g>';
-      var shield = '<g><path d="M200 128l46 16v34c0 26-20 42-46 50-26-8-46-24-46-50v-34z" fill="url(#IDgl)" opacity=".95" transform="translate(0,4)"/><path d="M182 182l13 13 25-27" fill="none" stroke="#0b2547" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" transform="translate(0,4)"/></g>';
-      return box(200, 236, 46, 8, { top: '#1f5fa8', left: '#123a6b', right: '#0b2547' }) + shield + capsule + mol;
     },
     events: function () {
       var beam = '<polygon points="70,10 120,10 236,214 116,236" fill="url(#IDgl)" opacity=".16"/>';

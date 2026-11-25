@@ -477,6 +477,38 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 .ph.band{height:340px}.ph.band figcaption{left:clamp(20px,4vw,44px);bottom:clamp(20px,4vw,38px)}.ph.band figcaption b{font-size:clamp(22px,3vw,32px);max-width:24ch}
 .apply-ph{max-width:440px;height:220px;margin:0 0 14px}
 .how.sch-why{grid-template-columns:repeat(3,1fr)}
+/* reviews, ratings, trust */
+.chip-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}.chip-row .sch-chip{margin-top:0}
+.rate-chip{font:inherit;font-size:13.5px;color:inherit;cursor:pointer}.st{color:var(--warm)}
+.stars{display:inline-block;font-size:14px;line-height:1;letter-spacing:2px;background:linear-gradient(90deg,var(--warm) calc(var(--r) / 5 * 100%),rgba(255,255,255,.18) 0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stars::before{content:"★★★★★"}
+.rate-row{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;margin-bottom:14px}
+.rate{display:flex;gap:16px;align-items:center;padding:20px 22px;border-radius:var(--radius);border:1px solid var(--line-2);background:var(--bg-2);position:relative;color:inherit;text-decoration:none}
+.rate.big{background:radial-gradient(80% 140% at 0% 0%,rgba(233,184,114,.14),transparent 60%),var(--bg-2);border-color:rgba(233,184,114,.35)}
+.plat{width:48px;height:48px;flex:none;border-radius:14px;display:grid;place-items:center;font-weight:700;font-size:22px;color:#fff;background:linear-gradient(140deg,#3d8ade,#1c4f92);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.rate.big .plat{width:64px;height:64px;font-size:30px;border-radius:18px}
+.rt b{font-size:34px;font-weight:600;letter-spacing:-.04em}.rate.big .rt b{font-size:48px}.rt span{color:var(--muted);margin-left:4px}
+.rc{font-size:13px;color:var(--text-2);margin-top:4px}.rl{position:absolute;right:18px;top:16px;font-size:12px;color:var(--violet-2)}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.rev{margin:0;padding:22px}.rev-h{display:flex;gap:12px;align-items:center}
+.av{width:42px;height:42px;flex:none;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:14px;color:#fff;background:hsl(var(--h) 45% 38%)}
+.rev-s{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--muted);margin-top:3px}
+.rev blockquote{margin:14px 0 0;color:var(--text-2);font-size:15px;line-height:1.6}
+.rev-quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.q{display:flex;gap:12px;align-items:center;padding:14px 18px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
+.q .qs{color:var(--warm)}.q b{display:block;font-weight:500;font-size:14.5px}.q span:not(.qs){font-size:12.5px;color:var(--muted)}
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.badge-card{position:relative;display:flex;gap:14px;align-items:flex-start;padding:20px 22px;border-radius:var(--radius);border:1px solid rgba(127,188,239,.3);background:linear-gradient(160deg,rgba(47,127,216,.16),rgba(11,18,32,.4) 60%),var(--bg-2)}
+.badge-card .ok{width:36px;height:36px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(70,211,154,.14);color:#46d39a}.badge-card .ok svg{width:18px;height:18px}
+.badge-card b{font-size:17px}.badge-card p{margin:6px 0 0;color:var(--text-2);font-size:14px}
+.badge-card .vf{position:absolute;right:16px;top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#46d39a}
+.partners{display:flex;gap:10px;flex-wrap:wrap}
+.partner{display:inline-flex;gap:10px;align-items:center;padding:10px 16px 10px 10px;border-radius:100px;border:1px solid var(--line-2);background:var(--bg-2);font-size:14.5px}
+.partner i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11.5px;font-weight:600;background:rgba(61,138,222,.2);color:#cfe6fb}
+.apply-trust{max-width:440px;margin-top:14px;display:grid;gap:10px}
+.at-rates,.at-badges{display:flex;gap:14px;flex-wrap:wrap;font-size:13.5px;color:var(--text-2)}
+.at-badges span{display:inline-flex;gap:6px;align-items:center}.at-badges svg{width:14px;height:14px;color:#46d39a}
+#footTrust:empty{display:none}
 /* JD method */
 .jd-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 0 14px}
 .jd-step{padding:22px 22px 24px}.jd-step .n{font-family:var(--serif);font-size:46px;line-height:1;color:var(--violet-2);letter-spacing:-.02em}
@@ -524,6 +556,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   .ph.band{height:280px}
   .apply-ph{max-width:none;height:200px}
   .how.sch-why{grid-template-columns:1fr}
+  .rate-row,.rev-grid,.rev-quotes,.badges{grid-template-columns:1fr;gap:10px}
+  .rate.big .rt b{font-size:40px}
   .jd-steps{grid-template-columns:1fr 1fr;gap:10px}
   .jd-grid{grid-template-columns:1fr}.jd-arrow{transform:rotate(90deg);height:34px}
   .jd-line mark{white-space:normal}
@@ -628,7 +662,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
         <a href="#/apply" class="btn btn-primary" data-goto-form>Get my free career roadmap <span class="arrow">→</span></a>
         <button class="btn btn-ghost" data-scroll="quiz">Take the 30-sec quiz</button>
       </div>
-      <a href="#/scholarship" class="sch-chip rv" style="--d:280ms"><i></i>Scholarships open for <b>Woxsen students</b> →</a>
+      <div class="chip-row rv" style="--d:280ms"><a href="#/scholarship" class="sch-chip"><i></i>Scholarships open for <b>Woxsen students</b> →</a><button type="button" class="sch-chip rate-chip" data-scroll="reviews" id="heroRate" hidden></button></div>
       <div class="proof rv" style="--d:320ms">
         <div><b>1000s</b><span>of students enrolled & placed</span></div>
         <div><b><i style="font-style:normal" data-count="6" id="trackN">6</i></b><span>in-demand tracks</span></div>
@@ -654,7 +688,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   <div class="wrap">
     <div class="sec-head"><div><span class="mono">01 / The JD method</span><h2 class="rv">We read <i>2,000+ job descriptions</i> so you train for the real job.</h2></div><p class="rv" style="--d:100ms">Every Arzon track is reverse-engineered from real MBA & BBA job descriptions. We decode what recruiters ask for, then train you on exactly that.</p></div>
     <div class="jd-steps">
-      <div class="card jd-step rv"><div class="n">2,000+</div><h4>Collect</h4><p>Real job descriptions for MBA & BBA roles in analytics, marketing, finance, HR and AI.</p></div>
+      <div class="card jd-step rv"><div class="n">2,000+</div><h4>Collect</h4><p>100–200 real job descriptions studied for every role, across analytics, marketing, finance, HR and AI.</p></div>
       <div class="card jd-step rv" style="--d:80ms"><div class="n">01</div><h4>Decode</h4><p>We break every JD into the skills, tools and tasks recruiters actually screen for.</p></div>
       <div class="card jd-step rv" style="--d:160ms"><div class="n">02</div><h4>Train</h4><p>Every module maps to a JD requirement. If the job doesn't ask for it, we don't teach it.</p></div>
       <div class="card jd-step rv" style="--d:240ms"><div class="n">03</div><h4>Prove</h4><p>Projects mirror real JD tasks, so your CV shows proof recruiters can check.</p></div>
@@ -745,10 +779,21 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   </div>
 </section>
 
+<!-- REVIEWS & TRUST -->
+<section class="sec" id="reviews" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="mono">07 / Reviews & ratings</span><h2 class="rv">Hear it from <i>the students.</i></h2></div><p class="rv" style="--d:100ms">Rated by students on Google, Justdial and AmbitionBox, and backed by government and quality certifications.</p></div>
+    <div class="rate-row" id="rateRow"></div>
+    <div class="rev-grid" id="revGrid"></div>
+    <div class="rev-quotes" id="revQuotes"></div>
+    <div id="trustBox"></div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="sec" style="padding-top:20px">
   <div class="wrap">
-    <div class="sec-head"><div><span class="mono">07 / FAQ</span><h2 class="rv">Quick answers.</h2></div></div>
+    <div class="sec-head"><div><span class="mono">08 / FAQ</span><h2 class="rv">Quick answers.</h2></div></div>
     <div class="faq rv" id="faq" style="max-width:820px"></div>
   </div>
 </section>
@@ -842,7 +887,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
         <div style="display:grid;gap:12px;max-width:440px">
           <div class="card" style="padding:16px 18px"><b>A plan made for you</b><div style="color:var(--muted);font-size:14px">Mapped to your Woxsen specialisation and year.</div></div>
           <div class="card" style="padding:16px 18px"><b>A real mentor, not a bot</b><div style="color:var(--muted);font-size:14px">We reach out the same day.</div></div>
-          <div class="card" style="padding:16px 18px"><b>Zero obligation</b><div style="color:var(--muted);font-size:14px">No spam. Opt out any time.</div></div></div></div>
+          <div class="card" style="padding:16px 18px"><b>Zero obligation</b><div style="color:var(--muted);font-size:14px">No spam. Opt out any time.</div></div></div>
+        <div class="apply-trust" id="applyTrust"></div></div>
       <aside class="card-lead" id="applyForm"></aside>
     </div></section>
 </div>
@@ -855,7 +901,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
     <div><h5>Explore</h5><ul><li><a href="#/benefits">What you get</a></li><li><a href="#/scholarship">Scholarship & fees</a></li><li><a href="#/events">Skill Sprints & events</a></li><li><a href="#/squad">Growth Squad</a></li><li><a href="#/programmes">All programmes</a></li><li><a href="#/apply">Get your roadmap</a></li></ul></div>
     <div><h5>Contact</h5><ul><li><a id="fPhone"></a></li><li><a id="fMail"></a></li><li id="fAddr"></li></ul></div>
   </div>
-  <div class="foot-b"><span>© 2026 Arzon Global. All rights reserved.</span><span>In partnership with CrowdCore · Woxsen University</span></div>
+  <div class="foot-b"><span>© 2026 Arzon Global. All rights reserved.</span><span>In partnership with CrowdCore · Woxsen University</span><span id="footTrust"></span></div>
 </div></footer>
 
 <a class="wa" id="wa" target="_blank" rel="noopener" aria-label="Chat with Arzon on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg></a>
@@ -902,7 +948,7 @@ async function submit(type, data) {
   const body = Object.entries(payload).filter(([,v]) => v !== '').map(([k,v]) => `${k}: ${v}`).join('\n');
   location.href = `mailto:${C.EMAIL}?subject=${encodeURIComponent(`[CrowdCore ${type}] ${payload.name} · ${payload.track || payload.event || ''}`)}&body=${encodeURIComponent(body)}`;
 }
-const registerLink = id => { const u = new URL(C.REGISTER_URL); u.searchParams.set('utm_source', C.SOURCE); u.searchParams.set('utm_medium','campus_site'); u.searchParams.set('utm_campaign','crowdcore_woxsen'); if (id) u.searchParams.set('utm_content', id); if (attrib.ref) u.searchParams.set('ref', attrib.ref); return u.toString(); };
+const registerLink = id => { const u = new URL(C.REGISTER_URL); if (/(^|\.)(rzp\.io|razorpay\.com)$/.test(u.hostname)) return u.toString(); /* payment links: keep them exact */ u.searchParams.set('utm_source', C.SOURCE); u.searchParams.set('utm_medium','campus_site'); u.searchParams.set('utm_campaign','crowdcore_woxsen'); if (id) u.searchParams.set('utm_content', id); if (attrib.ref) u.searchParams.set('ref', attrib.ref); return u.toString(); };
 const validPhone = v => { const d = v.replace(/\D/g,''); return d.length >= 10 && d.length <= 13; };
 function validate(root, map) {
   let ok = true;
@@ -958,7 +1004,7 @@ function openModal(html) { $('#modalBody').innerHTML = html; $('#modal').classLi
 function closeModal() { $('#modal').classList.remove('on'); document.body.style.overflow = ''; }
 $('#modal').addEventListener('click', e => { if (e.target.id === 'modal' || e.target.closest('.x')) closeModal(); });
 addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); document.body.classList.remove('menu-open'); } });
-function simpleForm({ type, kicker, title, sub, cta, extra = '', payload = {}, done }) {
+function simpleForm({ type, kicker, title, sub, cta, extra = '', payload = {}, done, after = '' }) {
   openModal(`<span class="mono">${esc(kicker)}</span><h3 style="font-size:24px;margin:10px 0 6px;padding-right:40px">${esc(title)}</h3><p style="color:var(--text-2);margin:0 0 20px;font-size:15px">${sub}</p>
     <form novalidate id="sf"><div class="field"><label>Full name<input class="s-name" autocomplete="name" style="margin-top:6px"></label></div>
       <div class="row2"><div class="field"><label>WhatsApp<input class="s-phone" type="tel" inputmode="tel" autocomplete="tel" style="margin-top:6px"></label></div><div class="field"><label>Email<input class="s-email" type="email" autocomplete="email" style="margin-top:6px"></label></div></div>
@@ -973,10 +1019,17 @@ function simpleForm({ type, kicker, title, sub, cta, extra = '', payload = {}, d
     const b = $('button[type=submit]', f); b.disabled = true; b.textContent = 'Sending…';
     try { await submit(type, Object.assign(data, payload)); }
     catch (err) { b.disabled = false; b.innerHTML = esc(cta) + ' <span class="arrow">→</span>'; toast(err.message); return; }
-    $('#modalBody').innerHTML = `<div class="done"><div class="ringok">✓</div><h3>${done[0]}</h3><p>${done[1]}</p><button class="btn btn-ghost" id="mClose">Close</button></div>`;
+    $('#modalBody').innerHTML = `<div class="done"><div class="ringok">✓</div><h3>${done[0]}</h3><p>${done[1]}</p>${after ? `<div style="margin:6px 0 12px">${after}</div>` : ''}<button class="btn btn-ghost" id="mClose">Close</button></div>`;
     $('#mClose').onclick = closeModal; });
 }
 const eventForm = id => { const ev = D.EVENTS.find(e => e.id === id); simpleForm({ type:'event', kicker: ev.type, title: ev.title, sub: `${fmtDate(ev.date, {weekday:'short', day:'numeric', month:'short'})} · ${ev.mode} · ${ev.host}`, cta:'Reserve my seat', payload:{ event: ev.title, event_id: ev.id }, done:["You're in!", "We'll WhatsApp you the details and a reminder before it starts."] }); };
+// "Reserve my seat": take the student's details first (so a counsellor can follow up), then hand over to Razorpay.
+const payForm = id => { const t = T(id); simpleForm({ type:'lead', kicker:'Reserve your seat', title: t ? t.name : 'Reserve your seat',
+  sub:"Leave your details so your counsellor can confirm your seat and scholarship. Next, you'll complete payment on our secure Razorpay page.", cta:'Continue to payment',
+  payload:{ track: t ? t.name : 'Not sure yet', track_id: t ? t.id : '', track_status:'payment' },
+  done:['One last step', "Complete your registration on Razorpay. Your counsellor will WhatsApp you once it's confirmed."],
+  after:`<a class="btn btn-primary" href="${esc(registerLink(id))}" target="_blank" rel="noopener">Pay securely on Razorpay <span class="arrow">↗</span></a>` }); };
+document.addEventListener('click', e => { const a = e.target.closest('a[data-pay]'); if (!a) return; e.preventDefault(); payForm(a.dataset.pay); });
 const waitlistForm = id => { const t = T(id); simpleForm({ type:'waitlist', kicker:'Waitlist', title: t.name, sub:'This track is launching soon. Join the waitlist for first seats and early-bird pricing.', cta:'Join the waitlist', payload:{ track: t.name, track_id: t.id, track_status:'waitlist' }, done:["You're on the list.", "We'll tell you the moment it opens."] }); };
 
 /* ---------- track card (v2) ---------- */
@@ -1018,10 +1071,36 @@ if (window.ARZON_ILLO) $$('[data-illo]').forEach(el => el.innerHTML = ARZON_ILLO
 
 /* ---------- HOME ---------- */
 (() => { const el = $('#homeFields'); if (!el) return;
-  const F = [['business', 'Business & Management'], ['data', 'Data & AI'], ['tech', 'Technology'], ['pharma', 'Pharma & Life Sciences']];
+  const F = [['business', 'Business & Management'], ['data', 'Data & AI']];
   el.innerHTML = F.map(([c, l], i) => { const n = visible().filter(t => t.cat === c).length; if (!n) return '';
-    return `<a class="field-tile rv" style="--d:${i * 70}ms" href="#/programmes?cat=${c}"><img src="/assets/illustrations/${c}-sm.webp" width="520" height="${{business:579,data:530,tech:540,pharma:404}[c]}" alt="" loading="lazy" decoding="async"><b>${D.CATS[c] || l}</b><span>${n} programme${n === 1 ? '' : 's'} <i>Explore →</i></span></a>`; }).join(''); })();
+    return `<a class="field-tile rv" style="--d:${i * 70}ms" href="#/programmes?cat=${c}"><img src="/assets/illustrations/${c}-sm.webp" width="520" height="${{business:579,data:530}[c]}" alt="" loading="lazy" decoding="async"><b>${D.CATS[c] || l}</b><span>${n} programme${n === 1 ? '' : 's'} <i>Explore →</i></span></a>`; }).join(''); })();
 leadForm($('#lead'));
+(() => {
+  const R = D.RATINGS || {}, REV = D.REVIEWS || [], TR = Object.assign({ badges: [], partners: [] }, D.TRUST || {});
+  const P = [['google', 'Google', 'G'], ['justdial', 'Justdial', 'J'], ['ambitionbox', 'AmbitionBox', 'A']].filter(([k]) => +R[k + '_rating'] > 0);
+  const SRC = { google: 'Google', justdial: 'Justdial', ambitionbox: 'AmbitionBox', other: 'Student' };
+  const stars = r => `<span class="stars" style="--r:${Math.max(0, Math.min(5, +r || 0))}" role="img" aria-label="${r} out of 5 stars"></span>`;
+  const ini = n => String(n).split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  const hue = n => [...String(n)].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7);
+  const rateCard = ([k, l, i], big) => { const url = R[k + '_url'];
+    const inner = `<span class="plat">${i}</span><div><div class="rt"><b>${(+R[k + '_rating']).toFixed(1)}</b><span>/ 5</span></div>${stars(R[k + '_rating'])}<div class="rc">${esc(l)}${R[k + '_count'] ? ' · ' + esc(R[k + '_count']) : ''}</div></div>${url ? '<span class="rl">Read reviews ↗</span>' : ''}`;
+    return url ? `<a class="rate rv${big ? ' big' : ''}" href="${esc(url)}" target="_blank" rel="noopener">${inner}</a>` : `<div class="rate rv${big ? ' big' : ''}">${inner}</div>`; };
+  const box = $('#reviews');
+  if (box) {
+    $('#rateRow').innerHTML = P.map((p, i) => rateCard(p, i === 0)).join('');
+    $('#revGrid').innerHTML = REV.filter(r => r.featured).slice(0, 6).map((r, i) => `<figure class="rev card rv" style="--d:${i * 70}ms"><div class="rev-h"><span class="av" style="--h:${hue(r.author)}">${esc(ini(r.author))}</span><div><b>${esc(r.author)}</b><div class="rev-s">${stars(r.rating)}<span>${esc(SRC[r.source] || 'Student')} review</span></div></div></div><blockquote>“${esc(r.text)}”</blockquote></figure>`).join('');
+    $('#revQuotes').innerHTML = REV.filter(r => !r.featured).map(r => `<div class="q rv"><span class="qs">★</span><div><b>“${esc(r.text)}”</b><span>${esc(r.author)}</span></div></div>`).join('');
+    $('#trustBox').innerHTML = (TR.badges.length ? `<div class="soon-head" style="margin-top:34px"><span class="mono">Verified & registered</span><span class="soon-line"></span></div><div class="badges">${TR.badges.map((b, i) => `<div class="badge-card rv" style="--d:${i * 70}ms"><span class="ok">${icon('check')}</span><div><b>${esc(b.t)}</b><p>${esc(b.d)}</p></div><span class="vf">Verified</span></div>`).join('')}</div>` : '')
+      + (TR.partners.length ? `<div class="soon-head" style="margin-top:26px"><span class="mono">Industry partners</span><span class="soon-line"></span></div><div class="partners">${TR.partners.map(p => `<span class="partner rv"><i>${esc(ini(p))}</i>${esc(p)}</span>`).join('')}</div>` : '');
+    if (!P.length && !REV.length && !TR.badges.length && !TR.partners.length) box.remove();
+  }
+  const g = P[0];
+  if (g) { const h = $('#heroRate'); h.innerHTML = `<span class="st">★</span><b>${(+R[g[0] + '_rating']).toFixed(1)}</b> on ${g[1]}${R[g[0] + '_count'] ? ' · ' + esc(R[g[0] + '_count']) : ''}`; h.hidden = false; }
+  const at = $('#applyTrust');
+  if (at) at.innerHTML = (P.length ? `<div class="at-rates">${P.map(([k, l]) => `<span><span class="st">★</span><b>${(+R[k + '_rating']).toFixed(1)}</b> ${esc(l)}</span>`).join('')}</div>` : '')
+    + (TR.badges.length ? `<div class="at-badges">${TR.badges.map(b => `<span>${icon('check')}${esc(b.t)}</span>`).join('')}</div>` : '');
+  const ft = $('#footTrust'); if (ft && TR.badges.length) ft.textContent = TR.badges.map(b => b.t).join(' · ');
+})();
 (() => { const tabs = $('#jdTabs'); if (!tabs) return;
   const L = visible().filter(t => t.live && t.tools && t.tools.length && t.modules && t.modules.length); if (!L.length) { $('#jd .jd-demo').remove(); return; }
   tabs.innerHTML = L.map((t, i) => `<button type="button" class="fchip" data-jd="${t.id}" aria-pressed="${i === 0}">${esc(t.goal || t.short)}</button>`).join('');
@@ -1083,10 +1162,10 @@ document.addEventListener('click', e => { const b = e.target.closest('[data-ev]'
 
 /* ---------- PROGRAMMES ---------- */
 const P = { cat: 'all', deg: 'all', q: '' }; const allT = visible().slice();
-const order = { business:0, data:1, tech:2, pharma:3 };
+const order = { business:0, data:1 };
 allT.sort((a, b) => (b.live - a.live) || (order[a.cat] - order[b.cat]) || ((b.flagship ? 1 : 0) - (a.flagship ? 1 : 0)));
 $('#pgrid').innerHTML = allT.map(card).join('');
-$('#pcats').innerHTML = [['all','All'],['business','Business'],['data','Data & AI'],['tech','Tech'],['pharma','Pharma']].filter(([v]) => v === 'all' || allT.some(t => t.cat === v)).concat(C.SHOW_UPCOMING && allT.some(t => !t.live) ? [['soon','Coming soon']] : []).map(([v, l]) => `<button type="button" class="fchip" data-v="${v}" aria-pressed="${v === 'all'}">${l}</button>`).join('');
+$('#pcats').innerHTML = [['all','All'],['business','Business'],['data','Data & AI']].filter(([v]) => v === 'all' || allT.some(t => t.cat === v)).concat(C.SHOW_UPCOMING && allT.some(t => !t.live) ? [['soon','Coming soon']] : []).map(([v, l]) => `<button type="button" class="fchip" data-v="${v}" aria-pressed="${v === 'all'}">${l}</button>`).join('');
 const hay = t => [t.name, t.tagline, t.desc, t.roles.join(' '), t.tools.join(' '), D.CATS[t.cat]].join(' ').toLowerCase();
 function pApply() { let n = 0; $$('#pgrid .tcard').forEach((el, i) => { const t = allT[i];
     const ok = (P.cat === 'all' || (P.cat === 'soon' ? !t.live : t.cat === P.cat)) && (P.deg === 'all' || t.fit.includes(P.deg)) && (!P.q || hay(t).includes(P.q));
@@ -1099,7 +1178,7 @@ pApply();
 
 /* ---------- PROGRAMME DETAIL ---------- */
 // Category artwork: 3D renders made in Canva; code-drawn SVG for any category without one.
-const CAT_ART = { business: [900, 1003], data: [900, 917], tech: [900, 934], pharma: [900, 699] };
+const CAT_ART = { business: [900, 1003], data: [900, 917] };
 const catArt = cat => CAT_ART[cat]
   ? `<img class="art3d float" src="/assets/illustrations/${cat}.webp" srcset="/assets/illustrations/${cat}-sm.webp 520w, /assets/illustrations/${cat}.webp 900w" sizes="(max-width:1000px) 320px, 440px" width="${CAT_ART[cat][0]}" height="${CAT_ART[cat][1]}" alt="" decoding="async">`
   : (window.ARZON_ILLO ? ARZON_ILLO.render(cat) : '');
@@ -1136,9 +1215,9 @@ function renderDetail(id) {
     <aside><div class="card-lead price">${t.live ? `<span class="badge live">Enrolling now · scholarship open</span>
         <h3 style="font-size:24px;letter-spacing:-.02em;margin:12px 0 6px">Your fee, made simple</h3>
         <p style="color:var(--text-2);margin:0 0 4px;font-size:14.5px">Get your free roadmap and a counsellor will WhatsApp you the fee, your scholarship and a payment schedule.</p>
-        <ul><li>Live classes + lifetime LMS recordings</li><li>Internship offer letter on enrolment</li><li>1 major + 2 minor industry projects</li><li>3 certificates + LOR</li><li>Domain groups: news & cheat sheets</li></ul>
+        <ul><li>Live classes + lifetime LMS recordings</li><li>Internship offer letter on enrolment</li><li>1 major + 2 minor industry projects</li><li>3 certificates + LOR</li><li>Domain groups: news & cheat sheets</li><li>24×7 doubt help from peers & mentors</li><li>Resume, interview prep & placement guidance</li></ul>
         <button class="btn btn-primary btn-full" id="dRoad">Get my free roadmap <span class="arrow">→</span></button>
-        <a class="btn btn-ghost btn-full" style="margin-top:10px" href="${registerLink(t.id)}" target="_blank" rel="noopener">Reserve my seat ↗</a>
+        <a class="btn btn-ghost btn-full" style="margin-top:10px" href="${registerLink(t.id)}" data-pay="${t.id}" target="_blank" rel="noopener">Reserve my seat ↗</a>
         <p class="note" style="text-align:center"><a class="link" style="font-size:13px" href="#/scholarship">Scholarship & fee details →</a></p>
         ${C.COHORT.label ? `<p class="note" style="text-align:center">${C.COHORT.label} starts ${fmtDate(C.COHORT.start)}</p>` : ''}`
       : `<span class="badge soon">Coming soon</span><h3 style="font-size:24px;margin:14px 0 8px">Be first in line.</h3><p style="color:var(--text-2);margin:0 0 18px">Waitlist members get first seats and early-bird pricing when this track launches.</p>
@@ -1241,7 +1320,7 @@ function renderScholarship() {
     <span class="sch-chip" style="margin-top:0"><i></i>Scholarship open for students</span>
     <h1>Scholarships for <i>Woxsen students.</i></h1>
     <p class="lede">Scholarships are open on every live track. Get your free roadmap and a counsellor will WhatsApp you the fee, the scholarship you qualify for and a payment schedule that works for you. No obligation.</p>
-    <div class="cta-row"><button class="btn btn-primary" id="schClaim">Claim my scholarship <span class="arrow">→</span></button><a class="btn btn-ghost" href="${registerLink('scholarship')}" target="_blank" rel="noopener">Reserve my seat ↗</a></div></div></section>
+    <div class="cta-row"><button class="btn btn-primary" id="schClaim">Claim my scholarship <span class="arrow">→</span></button><a class="btn btn-ghost" href="${registerLink('scholarship')}" data-pay="scholarship" target="_blank" rel="noopener">Reserve my seat ↗</a></div></div></section>
     <section class="sec" style="padding-top:10px"><div class="wrap">
       <div class="how sch-why">
         <div class="card"><span class="t-ico">${icon('trophy')}</span><h4>On every live track</h4><p>Analytics, marketing, finance, HR, data science or AI: the scholarship applies to every track that's enrolling now.</p></div>

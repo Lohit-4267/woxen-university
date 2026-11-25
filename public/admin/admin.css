@@ -118,3 +118,5 @@ legend{padding:0 6px;font-family:var(--mono);font-size:11px;text-transform:upper
   .kpis{grid-template-columns:1fr 1fr}
   .form .cols,.form .cols3{grid-template-columns:1fr}
 }
+
+.tag.pay{background:rgba(233,184,114,.16);color:#f3cf98;border-color:rgba(233,184,114,.4)}

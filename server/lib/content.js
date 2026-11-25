@@ -13,14 +13,15 @@ async function getSettings(db) {
 }
 
 async function build(db) {
-  const [S, cats, tracks, events, faqs, bens] = await Promise.all([
+  const [S, cats, tracks, events, faqs, bens, revs] = await Promise.all([
     getSettings(db),
     db.query('SELECT id, label FROM categories ORDER BY sort, id'),
     db.query('SELECT * FROM tracks WHERE published ORDER BY sort, name'),
     db.query(`SELECT e.*, (SELECT COUNT(*)::int FROM submissions s WHERE s.type = 'event' AND s.event_id = e.id AND s.status <> 'spam') AS taken
               FROM events e WHERE e.published ORDER BY e.starts_at`),
     db.query('SELECT q, a FROM faqs WHERE published ORDER BY sort, id'),
-    db.query('SELECT id, data FROM benefits WHERE published ORDER BY sort, id')
+    db.query('SELECT id, data FROM benefits WHERE published ORDER BY sort, id'),
+    db.query('SELECT source, author, rating, text, featured FROM reviews WHERE published ORDER BY sort, id')
   ]);
   const contact = S.contact || {}, pricing = S.pricing || {}, site = S.site || {};
 
@@ -49,7 +50,11 @@ async function build(db) {
   const FAQ = faqs.map(f => ({ q: f.q, a: f.a }));
   const BENEFITS = bens.map(b => Object.assign(obj(b.data), { id: b.id }));
 
-  return { config, data: { CATS, TRACKS, EVENTS, CASE_COMP: S.case_comp || {}, FAQ, BENEFITS, ICONS } };
+  const REVIEWS = revs.map(r => ({ source: r.source, author: r.author, rating: r.rating, text: r.text, featured: !!r.featured }));
+  const RATINGS = S.ratings || {};
+  const TRUST = Object.assign({ badges: [], partners: [] }, S.trust || {});
+
+  return { config, data: { CATS, TRACKS, EVENTS, CASE_COMP: S.case_comp || {}, FAQ, BENEFITS, REVIEWS, RATINGS, TRUST, ICONS } };
 }
 
 let cache = null;

@@ -9,6 +9,8 @@ const COOKIE = 'aw_sess';
 const SESSION_MS = 7 * 24 * 3600 * 1000;
 const STATUSES = ['new', 'contacted', 'qualified', 'enrolled', 'not_interested', 'spam'];
 const TYPES = ['lead', 'event', 'waitlist', 'ambassador'];
+const ROLES = ['admin', 'counsellor'];        // counsellor = dashboard + registrations only
+const REVIEW_SOURCES = ['google', 'justdial', 'ambitionbox', 'other'];
 const SLUG = /^[a-z0-9][a-z0-9-]{0,59}$/;
 const ah = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 const isUniqueViolation = e => e && e.code === '23505';
@@ -37,10 +39,10 @@ module.exports = function adminRoutes(getDb, cfg) {
   const auth = ah(async (req, res, next) => {
     const token = cookies(req)[COOKIE];
     if (!token) return bad(res, 'Not signed in.', 401);
-    const row = await req.db.one(`SELECT a.id, a.email, a.name, s.expires_at FROM sessions s JOIN admins a ON a.id = s.admin_id
+    const row = await req.db.one(`SELECT a.id, a.email, a.name, a.role, s.expires_at FROM sessions s JOIN admins a ON a.id = s.admin_id
                                   WHERE s.token_hash = $1`, [sha256(token)]);
     if (!row || Number(row.expires_at) < Date.now()) return bad(res, 'Session expired. Please sign in again.', 401);
-    req.admin = { id: row.id, email: row.email, name: row.name };
+    req.admin = { id: row.id, email: row.email, name: row.name, role: row.role || 'admin' };
     req.sessionHash = sha256(token);
     next();
   });
@@ -54,7 +56,7 @@ module.exports = function adminRoutes(getDb, cfg) {
     await req.db.query('DELETE FROM sessions WHERE expires_at < $1', [Date.now()]);
     await req.db.query('INSERT INTO sessions (token_hash, admin_id, expires_at) VALUES ($1, $2, $3)', [sha256(token), a.id, Date.now() + SESSION_MS]);
     setCookie(res, token, SESSION_MS);
-    res.json({ ok: true, admin: { id: a.id, email: a.email, name: a.name } });
+    res.json({ ok: true, admin: { id: a.id, email: a.email, name: a.name, role: a.role || 'admin' } });
   }));
 
   r.use(auth);
@@ -76,18 +78,22 @@ module.exports = function adminRoutes(getDb, cfg) {
     res.json({ ok: true });
   }));
 
-  /* ------------------------------------------------------------ admins */
-  r.get('/admins', ah(async (req, res) => res.json(await req.db.query('SELECT id, email, name, created_at FROM admins ORDER BY id'))));
-  r.post('/admins', ah(async (req, res) => {
+  // Everything below this guard (team, content, settings) is for full admins; counsellors get 403.
+  const adminOnly = (req, res, next) => req.admin.role === 'admin' ? next() : bad(res, 'Only admins can do this.', 403);
+
+  /* ------------------------------------------------------------ team (admins + counsellors) */
+  r.get('/admins', adminOnly, ah(async (req, res) => res.json(await req.db.query('SELECT id, email, name, role, created_at FROM admins ORDER BY role, id'))));
+  r.post('/admins', adminOnly, ah(async (req, res) => {
     const email = str(req.body?.email, 160).toLowerCase(), name = str(req.body?.name, 80), pw = String(req.body?.password || '');
+    const role = ROLES.includes(req.body?.role) ? req.body.role : 'admin';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return bad(res, 'Valid email required.');
     if (pw.length < 10) return bad(res, 'Password must be at least 10 characters.');
     try {
-      const row = await req.db.one('INSERT INTO admins (email, name, password_hash) VALUES ($1, $2, $3) RETURNING id', [email, name, hashPassword(pw)]);
-      res.status(201).json({ id: row.id, email, name });
+      const row = await req.db.one('INSERT INTO admins (email, name, password_hash, role) VALUES ($1, $2, $3, $4) RETURNING id', [email, name, hashPassword(pw), role]);
+      res.status(201).json({ id: row.id, email, name, role });
     } catch (e) { if (isUniqueViolation(e)) return bad(res, 'An admin with that email already exists.', 409); throw e; }
   }));
-  r.delete('/admins/:id', ah(async (req, res) => {
+  r.delete('/admins/:id', adminOnly, ah(async (req, res) => {
     if (+req.params.id === req.admin.id) return bad(res, "You can't remove yourself.");
     await req.db.query('DELETE FROM admins WHERE id = $1', [+req.params.id || 0]);
     res.json({ ok: true });
@@ -197,14 +203,16 @@ module.exports = function adminRoutes(getDb, cfg) {
     res.json({ ok: true, updated: rows.length });
   }));
 
-  r.delete('/submissions/:id', ah(async (req, res) => {
+  r.delete('/submissions/:id', adminOnly, ah(async (req, res) => {
     await req.db.query('DELETE FROM submissions WHERE id = $1', [+req.params.id || 0]);
     content.invalidate();
     res.json({ ok: true });
   }));
 
+  r.use(adminOnly);   // content + settings below
+
   /* ------------------------------------------------------------ content: settings */
-  const SETTING_KEYS = ['contact', 'pricing', 'site', 'cohort', 'case_comp'];
+  const SETTING_KEYS = ['contact', 'pricing', 'site', 'cohort', 'case_comp', 'ratings', 'trust'];
   r.get('/settings', ah(async (req, res) => res.json(await content.getSettings(req.db))));
   r.put('/settings/:key', ah(async (req, res) => {
     if (!SETTING_KEYS.includes(req.params.key)) return bad(res, 'Unknown setting.');
@@ -284,6 +292,25 @@ module.exports = function adminRoutes(getDb, cfg) {
     content.invalidate(); res.json(row);
   }));
   r.delete('/faqs/:id', ah(async (req, res) => { await req.db.query('DELETE FROM faqs WHERE id = $1', [+req.params.id || 0]); content.invalidate(); res.json({ ok: true }); }));
+
+  /* ------------------------------------------------------------ content: reviews */
+  r.get('/reviews', ah(async (req, res) => res.json(await req.db.query('SELECT * FROM reviews ORDER BY sort, id'))));
+  const revIn = b => ({ source: REVIEW_SOURCES.includes(b?.source) ? b.source : 'google', author: str(b?.author, 120), rating: Math.min(5, Math.max(1, Math.round(+b?.rating || 5))),
+    text: str(b?.text, 1500), featured: b?.featured !== false, sort: +b?.sort || 0, published: b?.published !== false });
+  r.post('/reviews', ah(async (req, res) => {
+    const v = revIn(req.body); if (!v.author || !v.text) return bad(res, 'Name and review text required.');
+    const row = await req.db.one('INSERT INTO reviews (source, author, rating, text, featured, sort, published) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *',
+      [v.source, v.author, v.rating, v.text, v.featured, v.sort, v.published]);
+    content.invalidate(); res.status(201).json(row);
+  }));
+  r.put('/reviews/:id', ah(async (req, res) => {
+    const v = revIn(req.body); if (!v.author || !v.text) return bad(res, 'Name and review text required.');
+    const row = await req.db.one('UPDATE reviews SET source=$1, author=$2, rating=$3, text=$4, featured=$5, sort=$6, published=$7 WHERE id=$8 RETURNING *',
+      [v.source, v.author, v.rating, v.text, v.featured, v.sort, v.published, +req.params.id || 0]);
+    if (!row) return bad(res, 'Not found.', 404);
+    content.invalidate(); res.json(row);
+  }));
+  r.delete('/reviews/:id', ah(async (req, res) => { await req.db.query('DELETE FROM reviews WHERE id = $1', [+req.params.id || 0]); content.invalidate(); res.json({ ok: true }); }));
 
   /* ------------------------------------------------------------ content: benefits */
   r.get('/benefits', ah(async (req, res) => res.json((await req.db.query('SELECT * FROM benefits ORDER BY sort, id'))

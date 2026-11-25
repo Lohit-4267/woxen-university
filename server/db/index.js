@@ -130,6 +130,52 @@ const MIGRATIONS = [
     expires_at bigint NOT NULL                     -- unix ms
   );
   CREATE INDEX idx_sessions_admin ON sessions(admin_id);
+  `,
+  // v2: counsellor logins (registrations only), student reviews, ratings + trust settings, Razorpay link.
+  // Data here comes from the 2026 Arzon student brochure (reviews quoted as published there).
+  `
+  ALTER TABLE admins ADD COLUMN role text NOT NULL DEFAULT 'admin' CHECK (role IN ('admin', 'counsellor'));
+
+  CREATE TABLE reviews (
+    id         integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    source     text NOT NULL DEFAULT 'google' CHECK (source IN ('google', 'justdial', 'ambitionbox', 'other')),
+    author     text NOT NULL,
+    rating     integer NOT NULL DEFAULT 5 CHECK (rating BETWEEN 1 AND 5),
+    text       text NOT NULL,
+    featured   boolean NOT NULL DEFAULT true,          -- full card (true) or short quote chip (false)
+    sort       integer NOT NULL DEFAULT 0,
+    published  boolean NOT NULL DEFAULT true,
+    created_at timestamptz NOT NULL DEFAULT now()
+  );
+  -- Reviews that mention healthcare / pharma are kept but unpublished: this site is for MBA & BBA students.
+  INSERT INTO reviews (source, author, rating, text, featured, sort, published) VALUES
+    ('google', 'Pradeep Kumar Korra', 5, $r$One of the greatest sites if you're serious about pursuing a career in healthcare and AI. The mentors are genuinely knowledgeable in their field. Real talents and a clear professional path. Every minute is worthwhile.$r$, true, 1, false),
+    ('google', 'Vignesh Kolli', 5, $r$Great to learn here. Compared to other institutions, classes run on time with recorded sessions, and this internship played a major role in my interview.$r$, true, 2, true),
+    ('google', 'Evangeline', 5, $r$An informative and interactive session. I learned how AI is used in pharma and medical procedures.$r$, true, 3, false),
+    ('google', 'Vishal Shee', 5, $r$It was a great session. After it I have a clear view of the role of AI in Pharma.$r$, true, 4, false),
+    ('google', 'Niloli Chophy', 5, $r$The organisation is doing a great job. Helpful for enhancing our career.$r$, true, 5, true),
+    ('google', 'Sudharani Alliboyina', 5, $r$Excellent guidance$r$, false, 6, true),
+    ('google', 'Jeethendar Seervi', 5, $r$Helpful in building the career$r$, false, 7, true),
+    ('google', 'Abu Hamza', 5, $r$It is very beneficial$r$, false, 8, true);
+
+  INSERT INTO settings (key, value) VALUES
+    ('ratings', $j$ {"google_rating": 4.5, "google_count": "447 reviews", "google_url": "",
+                   "justdial_rating": 4.5, "justdial_count": "445+ reviews", "justdial_url": "",
+                   "ambitionbox_rating": 4.8, "ambitionbox_count": "31 votes", "ambitionbox_url": ""}$j$::jsonb),
+    ('trust', $j$ {"badges": [
+        {"t": "TASK", "d": "Programmes officially presented with TASK (Telangana Academy for Skill and Knowledge), Government of Telangana."},
+        {"t": "ISO 9001:2015", "d": "Quality management, independently assessed for training and internships."},
+        {"t": "MSME · Udyam registered", "d": "Registered with the Ministry of MSME, Government of India."}],
+      "partners": ["PI Data Centers", "Webhizzy Solutions", "Sangama Solutions", "GMS Enterprises"]}$j$::jsonb)
+  ON CONFLICT (key) DO NOTHING;
+
+  -- Payment / enrolment goes straight to Razorpay (existing installs; fresh installs get it from seed.json).
+  UPDATE settings SET value = jsonb_set(value, '{register_url}', '"https://rzp.io/rzp/Jm81XZWn"') WHERE key = 'site';
+
+  INSERT INTO faqs (q, a, sort) VALUES
+    ($f$Is a job guaranteed?$f$, $f$No, and be wary of anyone who promises one: hiring decisions are always made by employers. What you get is job-ready skills, proof of work (3 industry projects and a 3-month internship) and placement support, including resume building and interview preparation.$f$, 50),
+    ($f$Do I need to know my career already?$f$, $f$No. Take the 30-second career-fit quiz or talk to an academic counsellor. They'll help you pick the track that fits your strengths and your Woxsen specialisation.$f$, 51),
+    ($f$What if I get stuck during the programme?$f$, $f$You get 24×7 doubt help from peers and mentors, plus lifetime access to every class recording on the LMS.$f$, 52);
   `
 ];
 

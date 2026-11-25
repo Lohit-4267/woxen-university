@@ -56,7 +56,15 @@ const layout = rows => rows.map(r => Array.isArray(r) ? `<div class="${r.length 
 
 /* ---------------- auth ---------------- */
 function showLogin() { $('#app').hidden = true; $('#login').hidden = false; setTimeout(() => $('#loginForm [name=email]').focus(), 50); }
-function showApp(admin) { $('#login').hidden = true; $('#app').hidden = false; $('#who').textContent = admin.email; route(); }
+let ME = { role: 'admin' };
+const isAdmin = () => ME.role === 'admin';
+const COUNSELLOR_VIEWS = ['dashboard', 'leads', 'account'];
+function showApp(admin) {
+  ME = admin || ME; $('#login').hidden = true; $('#app').hidden = false;
+  $('#who').textContent = admin.email + (isAdmin() ? '' : ' · counsellor');
+  $$('#nav [data-admin]').forEach(a => a.hidden = !isAdmin());   // counsellors: dashboard, leads, account only
+  route();
+}
 $('#loginForm').addEventListener('submit', async e => {
   e.preventDefault(); const f = e.target, b = $('button', f); $('#loginErr').textContent = ''; b.disabled = true;
   try { const r = await api('/login', { method: 'POST', body: { email: f.email.value, password: f.password.value } }); f.password.value = ''; showApp(r.admin); }
@@ -67,7 +75,8 @@ $('#logout').onclick = guard(async () => { await api('/logout', { method: 'POST'
 /* ---------------- router ---------------- */
 const views = {};
 function route() {
-  const v = (location.hash.slice(1) || 'dashboard').split('?')[0];
+  let v = (location.hash.slice(1) || 'dashboard').split('?')[0];
+  if (!isAdmin() && !COUNSELLOR_VIEWS.includes(v)) v = 'leads';
   const fn = views[v] || views.dashboard;
   $$('#nav a').forEach(a => a.classList.toggle('on', a.dataset.v === v));
   closeDrawer();
@@ -141,7 +150,7 @@ async function loadLeads() {
   $('#ltbl').innerHTML = d.rows.length ? `<div class="tbl-wrap"><table><thead><tr><th><input type="checkbox" id="all" aria-label="Select all"></th><th>Received</th><th>Name</th><th>Contact</th><th>Form</th><th>Interest</th><th>Year</th><th>Ref</th><th>Status</th></tr></thead><tbody>
     ${d.rows.map(r => `<tr class="click" data-row="${r.id}"><td><input type="checkbox" data-id="${r.id}" aria-label="Select"></td><td class="nowrap">${fmt(r.created_at)}</td><td><b>${esc(r.name)}</b></td>
       <td class="nowrap"><a href="https://wa.me/${esc(r.phone.replace(/\D/g, ''))}" target="_blank" rel="noopener" style="color:var(--sky)">${esc(r.phone)}</a><br><span class="muted">${esc(r.email)}</span></td>
-      <td>${esc(label(TYPES, r.type))}</td><td>${esc(r.event || r.track || '')}${r.extra.team_name ? `<br><span class="muted">Team: ${esc(r.extra.team_name)}</span>` : ''}${r.extra.squad_role ? `<br><span class="muted">${esc(r.extra.squad_role)}</span>` : ''}</td>
+      <td>${r.track_status === 'payment' ? '<span class="tag pay">💳 Payment started</span>' : esc(label(TYPES, r.type))}</td><td>${esc(r.event || r.track || '')}${r.extra.team_name ? `<br><span class="muted">Team: ${esc(r.extra.team_name)}</span>` : ''}${r.extra.squad_role ? `<br><span class="muted">${esc(r.extra.squad_role)}</span>` : ''}</td>
       <td>${esc(r.stage)}</td><td>${esc(r.ref)}</td><td>${statusTag(r.status)}</td></tr>`).join('')}</tbody></table></div>
     <div class="pager"><span class="muted">${d.total.toLocaleString('en-IN')} result${d.total === 1 ? '' : 's'} · page ${d.page} of ${pages}</span>
       <div class="row"><button class="btn sm" id="prev" ${d.page <= 1 ? 'disabled' : ''}>← Prev</button><button class="btn sm" id="next" ${d.page >= pages ? 'disabled' : ''}>Next →</button></div></div>`
@@ -154,7 +163,7 @@ async function loadLeads() {
 }
 const leadDetail = guard(async id => {
   const s = await api('/submissions/' + id);
-  const kv = [['Form', label(TYPES, s.type)], ['Received', fmt(s.created_at)], ['Phone', `<a style="color:var(--sky)" href="https://wa.me/${esc(s.phone.replace(/\D/g, ''))}" target="_blank" rel="noopener">${esc(s.phone)} · WhatsApp</a>`],
+  const kv = [['Form', s.track_status === 'payment' ? 'Payment started (clicked “Reserve my seat”, sent to Razorpay). Confirm payment and call first.' : label(TYPES, s.type)], ['Received', fmt(s.created_at)], ['Phone', `<a style="color:var(--sky)" href="https://wa.me/${esc(s.phone.replace(/\D/g, ''))}" target="_blank" rel="noopener">${esc(s.phone)} · WhatsApp</a>`],
     ['Email', `<a style="color:var(--sky)" href="mailto:${esc(s.email)}">${esc(s.email)}</a>`], ['Programme & year', esc(s.stage)], ['Programme', esc(s.track)], ['Track status', esc(s.track_status)], ['Event', esc(s.event)],
     ...Object.entries(s.extra).map(([k, v]) => [k.replace(/_/g, ' '), esc(v)]),
     ['Referral code', esc(s.ref)], ['UTM', esc([s.utm_source, s.utm_medium, s.utm_campaign, s.utm_content].filter(Boolean).join(' / '))], ['Page', esc(s.page)]].filter(([, v]) => v);
@@ -162,10 +171,10 @@ const leadDetail = guard(async id => {
     <dl class="kv">${kv.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('')}</dl>
     <form class="form" id="lfm"><label>Status<select name="status">${STATUSES.map(([v, l]) => `<option value="${v}" ${s.status === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
       <label>Notes<textarea name="notes" rows="5" placeholder="Call notes, counsellor, payment status…">${esc(s.notes)}</textarea></label>
-      <div class="actions"><button type="button" class="btn danger" id="ldel">Delete</button><button class="btn primary" type="submit">Save</button></div></form>
+      <div class="actions">${isAdmin() ? '<button type="button" class="btn danger" id="ldel">Delete</button>' : ''}<button class="btn primary" type="submit">Save</button></div></form>
     ${s.history.length ? `<h3 style="margin-top:22px">Other submissions from this person</h3><div class="bars">${s.history.map(h => `<div class="bar"><span class="t">${esc(label(TYPES, h.type))} · ${esc(h.event || h.track)} <span class="muted">· ${fmt(h.created_at)}</span></span>${statusTag(h.status)}</div>`).join('')}</div>` : ''}`);
   $('#lfm').onsubmit = guard(async e => { e.preventDefault(); await api('/submissions/' + id, { method: 'PATCH', body: { status: e.target.status.value, notes: e.target.notes.value } }); toast('Saved'); closeDrawer(); loadLeads(); refreshBadge(); });
-  $('#ldel').onclick = guard(async () => { if (!confirm('Delete this submission permanently?')) return; await api('/submissions/' + id, { method: 'DELETE' }); toast('Deleted'); closeDrawer(); loadLeads(); refreshBadge(); });
+  if ($('#ldel')) $('#ldel').onclick = guard(async () => { if (!confirm('Delete this submission permanently?')) return; await api('/submissions/' + id, { method: 'DELETE' }); toast('Deleted'); closeDrawer(); loadLeads(); refreshBadge(); });
 });
 
 /* ================================================================ PROGRAMMES */
@@ -296,6 +305,27 @@ function faqForm(f, n) {
   if (!isNew) $('#fdel').onclick = guard(async () => { if (!confirm('Delete this question?')) return; await api('/faqs/' + f.id, { method: 'DELETE' }); closeDrawer(); views.faq(); });
 }
 
+/* ================================================================ REVIEWS */
+const REV_SOURCES = [['google', 'Google'], ['justdial', 'Justdial'], ['ambitionbox', 'AmbitionBox'], ['other', 'Other']];
+views.reviews = async () => {
+  const list = await api('/reviews');
+  $('#view').innerHTML = `<div class="head"><div><h1>Reviews</h1><p class="muted">Student reviews shown in the Reviews section of the home page. Only add real reviews, quoted exactly. Ratings and review counts live in Settings.</p></div><button class="btn primary" id="rnew">+ New review</button></div>
+    <div class="grid">${list.map(r => `<div class="card click" style="cursor:pointer" data-id="${r.id}"><div class="row" style="justify-content:space-between"><h3>${esc(r.author)} <span class="muted">· ${esc(label(REV_SOURCES, r.source))} · ${'★'.repeat(r.rating)}</span></h3><span class="row"><span class="muted">#${r.sort}</span>${r.featured ? '' : '<span class="tag">Short quote</span>'}${r.published ? '' : '<span class="tag off">Hidden</span>'}</span></div><p class="muted" style="margin:6px 0 0">${esc(r.text)}</p></div>`).join('') || '<div class="card empty">No reviews yet.</div>'}</div>`;
+  $('#rnew').onclick = () => reviewForm(null, list.length + 1);
+  $$('#view [data-id]').forEach(c => c.onclick = () => reviewForm(list.find(r => r.id === +c.dataset.id)));
+};
+function reviewForm(r, n) {
+  const isNew = !r; r = r || { source: 'google', rating: 5, featured: true, published: true, sort: n };
+  const F = [{ k: 'author', l: 'Student name', req: true }, { k: 'source', l: 'Platform', type: 'select', opts: REV_SOURCES }, { k: 'rating', l: 'Stars (1–5)', type: 'number' },
+    { k: 'text', l: 'Review (exactly as written)', type: 'textarea', rows: 5 }, { k: 'sort', l: 'Order', type: 'number' },
+    { k: 'featured', l: 'Show as a full card (untick for a short quote)', type: 'check' }, { k: 'published', l: 'Visible on site', type: 'check' }];
+  const h = k => field(F.find(x => x.k === k), r[k]);
+  openDrawer(`<span class="mono">${isNew ? 'New review' : 'Edit review'}</span><form class="form" id="rf" style="margin-top:16px">${layout([h('author'), [h('source'), h('rating')], h('text'), [h('sort')], h('featured'), h('published')])}
+    <div class="actions">${isNew ? '' : '<button type="button" class="btn danger" id="rdel">Delete</button>'}<button class="btn primary" type="submit">Save</button></div></form>`);
+  $('#rf').onsubmit = guard(async e => { e.preventDefault(); const v = readForm(e.target, F); await api(isNew ? '/reviews' : '/reviews/' + r.id, { method: isNew ? 'POST' : 'PUT', body: v }); toast('Saved'); closeDrawer(); views.reviews(); });
+  if (!isNew) $('#rdel').onclick = guard(async () => { if (!confirm('Delete this review?')) return; await api('/reviews/' + r.id, { method: 'DELETE' }); closeDrawer(); views.reviews(); });
+}
+
 /* ================================================================ BENEFITS */
 views.benefits = async () => {
   const list = await api('/benefits');
@@ -323,42 +353,49 @@ const benForm = guard(async (b, n) => {
 
 /* ================================================================ SETTINGS */
 views.settings = async () => {
-  const s = await api('/settings'); const c = s.contact || {}, p = s.pricing || {}, site = s.site || {}, co = s.cohort || {}, m = s.case_comp || {};
+  const s = await api('/settings'); const c = s.contact || {}, p = s.pricing || {}, site = s.site || {}, co = s.cohort || {}, m = s.case_comp || {}, rt = s.ratings || {}, tr = s.trust || {};
   const sec = (key, title, desc, fields, v) => `<form class="card form" data-key="${key}"><div><h2>${title}</h2><p class="muted" style="margin:4px 0 0">${desc}</p></div>${layout(fields.map(r => Array.isArray(r) ? r.map(f => field(f, v[f.k])) : field(r, v[r.k])))}<div class="row" style="justify-content:flex-end"><button class="btn primary" type="submit">Save</button></div></form>`;
   const SF = {
     contact: [[{ k: 'phone', l: 'Phone' }, { k: 'whatsapp', l: 'WhatsApp (digits only, with country code)' }], [{ k: 'email', l: 'Email', type: 'email' }, { k: 'address', l: 'Address' }]],
     pricing: [[{ k: 'price', l: 'Programme fee with scholarship (₹)', type: 'number' }, { k: 'list_price', l: 'List price (₹)', type: 'number' }, { k: 'reg_fee', l: 'Registration fee (₹)', type: 'number' }], { k: 'scholarship', l: 'Scholarship offer active', type: 'check' }],
     site: [[{ k: 'register_url', l: 'Registration / payment URL' }, { k: 'source', l: 'Lead source tag' }], { k: 'show_upcoming', l: 'Show "coming soon" programmes as waitlists', type: 'check' }],
     cohort: [[{ k: 'label', l: 'Cohort label', ph: 'Woxsen Batch' }, { k: 'start', l: 'Start date', type: 'date' }]],
+    ratings: [[{ k: 'google_rating', l: 'Google rating', type: 'number' }, { k: 'google_count', l: 'Google count', ph: '447 reviews' }, { k: 'google_url', l: 'Google reviews link' }],
+      [{ k: 'justdial_rating', l: 'Justdial rating', type: 'number' }, { k: 'justdial_count', l: 'Justdial count', ph: '445+ reviews' }, { k: 'justdial_url', l: 'Justdial link' }],
+      [{ k: 'ambitionbox_rating', l: 'AmbitionBox rating', type: 'number' }, { k: 'ambitionbox_count', l: 'AmbitionBox count', ph: '31 votes' }, { k: 'ambitionbox_url', l: 'AmbitionBox link' }]],
+    trust: [{ k: 'badges', l: 'Verified badges', type: 'textarea', rows: 4, hint: 'One per line: <b>Title: description</b>' }, { k: 'partners', l: 'Industry partners', type: 'lines', hint: 'One per line.' }],
     case_comp: [[{ k: 'name', l: 'Name' }, { k: 'tagline', l: 'Tagline' }], { k: 'brief', l: 'Brief', type: 'textarea', rows: 2 },
       [{ k: 'opens', l: 'Registrations open', type: 'date' }, { k: 'closes', l: 'Round 1 deadline', type: 'date' }, { k: 'final', l: 'Grand finale', type: 'date' }], { k: 'team', l: 'Team size' },
       { k: 'rounds', l: 'Rounds', type: 'textarea', rows: 3, hint: 'One per line: <b>Round title: description</b>' }, { k: 'prizes', l: 'Prizes', type: 'lines', hint: 'One per line.' }]
   };
   const mv = Object.assign({}, m, { rounds: (m.rounds || []).map(r => `${r.t}: ${r.d}`).join('\n') });
+  const tv = { badges: (tr.badges || []).map(b => `${b.t}: ${b.d}`).join('\n'), partners: tr.partners || [] };
   $('#view').innerHTML = `<div class="head"><div><h1>Settings</h1><p class="muted">Site-wide details. Saved changes appear on the site within seconds.</p></div></div>
     <div class="grid">${sec('contact', 'Contact', 'Footer, WhatsApp button and email fallback.', SF.contact, c)}${sec('pricing', 'Pricing', 'Shown on programme cards, scholarship and benefits pages.', SF.pricing, p)}
     ${sec('site', 'Site', 'Registration link and attribution.', SF.site, site)}${sec('cohort', 'Cohort', 'Next batch shown across the site.', SF.cohort, co)}
-    ${sec('case_comp', 'Case challenge', 'The Market Masters section on the Events page.', SF.case_comp, mv)}</div>`;
+    ${sec('case_comp', 'Case challenge', 'The Market Masters section on the Events page.', SF.case_comp, mv)}
+    ${sec('ratings', 'Ratings', 'Rating cards in the Reviews section and the hero. Leave a rating empty to hide that platform.', SF.ratings, rt)}${sec('trust', 'Trust & partners', 'Verified badges (TASK, ISO, MSME) and industry partners.', SF.trust, tv)}</div>`;
   $$('#view form[data-key]').forEach(f => f.onsubmit = guard(async e => {
     e.preventDefault(); const key = f.dataset.key; const flat = SF[key].flat(); const r = readForm(f, flat);
     let body = r;
     if (key === 'case_comp') body = Object.assign({}, m, r, { rounds: lines(r.rounds).map(l => { const i = l.indexOf(':'); return i < 0 ? { t: l, d: '' } : { t: l.slice(0, i).trim(), d: l.slice(i + 1).trim() }; }) });
     if (key === 'contact') body.whatsapp = String(body.whatsapp || '').replace(/\D/g, '');
+    if (key === 'trust') body = { badges: lines(r.badges).map(l => { const i = l.indexOf(':'); return i < 0 ? { t: l, d: '' } : { t: l.slice(0, i).trim(), d: l.slice(i + 1).trim() }; }), partners: r.partners };
     await api('/settings/' + key, { method: 'PUT', body }); toast('Saved');
   }));
 };
 
 /* ================================================================ ACCOUNT */
 views.account = async () => {
-  const admins = await api('/admins'); const me = (await api('/me')).admin;
+  const me = (await api('/me')).admin; const admins = isAdmin() ? await api('/admins') : [];
   $('#view').innerHTML = `<div class="head"><div><h1>Account</h1><p class="muted">Signed in as ${esc(me.email)}</p></div></div>
     <div class="grid half">
       <form class="card form" id="pw"><h2>Change password</h2><label>Current password<input type="password" name="current" autocomplete="current-password"></label><label>New password<input type="password" name="next" autocomplete="new-password" minlength="10"></label><small>At least 10 characters. Other sessions are signed out.</small><div class="row" style="justify-content:flex-end"><button class="btn primary">Update password</button></div></form>
-      <div class="card"><h2>Admins</h2><div class="bars">${admins.map(a => `<div class="bar"><span class="t">${esc(a.email)} <span class="muted">${esc(a.name)}</span></span>${a.id === me.id ? '<span class="muted">you</span>' : `<button class="btn sm danger" data-rm="${a.id}">Remove</button>`}</div>`).join('')}</div>
-        <form class="form" id="na" style="margin-top:16px"><h3>Add admin</h3><div class="cols"><label>Email<input type="email" name="email"></label><label>Name<input name="name"></label></div><label>Temporary password<input type="text" name="password" minlength="10" autocomplete="off"></label><div class="row" style="justify-content:flex-end"><button class="btn">Add admin</button></div></form></div>
+      ${isAdmin() ? `<div class="card"><h2>Team</h2><p class="muted" style="margin:4px 0 12px">Counsellors can see and update registrations only. Admins can also edit the website.</p><div class="bars">${admins.map(a => `<div class="bar"><span class="t">${esc(a.email)} <span class="muted">${esc(a.name)} · ${a.role === 'counsellor' ? 'Counsellor' : 'Admin'}</span></span>${a.id === me.id ? '<span class="muted">you</span>' : `<button class="btn sm danger" data-rm="${a.id}">Remove</button>`}</div>`).join('')}</div>
+        <form class="form" id="na" style="margin-top:16px"><h3>Add a login</h3><div class="cols"><label>Email<input type="email" name="email"></label><label>Name<input name="name"></label></div><div class="cols"><label>Role<select name="role"><option value="counsellor">Counsellor (registrations only)</option><option value="admin">Admin (full access)</option></select></label><label>Temporary password<input type="text" name="password" minlength="10" autocomplete="off"></label></div><div class="row" style="justify-content:flex-end"><button class="btn">Add login</button></div></form></div>` : ''}
     </div>`;
   $('#pw').onsubmit = guard(async e => { e.preventDefault(); await api('/password', { method: 'POST', body: { current: e.target.current.value, next: e.target.next.value } }); e.target.reset(); toast('Password updated'); });
-  $('#na').onsubmit = guard(async e => { e.preventDefault(); const f = e.target; await api('/admins', { method: 'POST', body: { email: f.email.value, name: f.name.value, password: f.password.value } }); toast('Admin added'); views.account(); });
+  if ($('#na')) $('#na').onsubmit = guard(async e => { e.preventDefault(); const f = e.target; await api('/admins', { method: 'POST', body: { email: f.email.value, name: f.name.value, password: f.password.value, role: f.role.value } }); toast('Login added'); views.account(); });
   $$('[data-rm]').forEach(b => b.onclick = guard(async () => { if (!confirm('Remove this admin?')) return; await api('/admins/' + b.dataset.rm, { method: 'DELETE' }); views.account(); }));
 };
 
