@@ -41,7 +41,10 @@ function createApp(cfg) {
 
   const pub = path.join(__dirname, '..', 'public');
   app.get(['/admin', '/admin/'], (req, res) => res.set('Cache-Control', 'no-store').sendFile(path.join(pub, 'admin', 'index.html')));
-  app.use(express.static(pub, { maxAge: cfg.prod ? '1h' : 0, index: 'index.html' }));
+  // HTML must always revalidate so visitors get updates immediately; other assets may be cached briefly.
+  app.use(express.static(pub, { index: 'index.html', setHeaders: (res, file) => {
+    res.setHeader('Cache-Control', file.endsWith('.html') ? 'no-cache' : (cfg.prod ? 'public, max-age=600' : 'no-cache'));
+  } }));
   app.use((req, res) => res.status(404).sendFile(path.join(pub, 'index.html'))); // SPA uses #/ routes; unknown paths go home
 
   app.use((err, req, res, next) => {

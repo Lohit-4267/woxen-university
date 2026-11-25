@@ -523,7 +523,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 .sq-photos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}.sq-photos .ph{height:300px}
 /* brand logos */
 .blogo{display:inline-block;width:auto;vertical-align:middle;border-radius:8px;background:#fff}.blogo.sm{border-radius:5px;margin-right:6px}
-.plat.logo{background:#fff;padding:6px 8px;width:auto;min-width:48px;box-shadow:0 6px 18px rgba(0,0,0,.35)}.rate.big .plat.logo{min-width:64px}.plat.logo img{height:100%;width:auto;max-width:100%;object-fit:contain;border-radius:0;background:none}
+.plat.logo{background:#fff;padding:6px 8px;width:auto;min-width:48px;box-shadow:0 6px 18px rgba(0,0,0,.35)}.rate.big .plat.logo{min-width:64px}.plat.logo img{height:34px;width:auto;max-width:none;object-fit:contain;border-radius:0;background:none}.rate.big .plat.logo img{height:46px}
+.plat.logo{height:auto}.rate > div{min-width:0}
 .rate.big .plat.logo{padding:8px}
 .rev-h{position:relative}.rev-src{margin-left:auto;align-self:flex-start}.rev-src img{height:22px;border-radius:5px}
 .badge-card .bl{flex:none;background:#fff;border-radius:12px;padding:6px 8px;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.3)}.badge-card .bl img{height:48px;width:auto;border-radius:0;background:none}
@@ -546,6 +547,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 .inaug figcaption{position:absolute;left:12px;bottom:12px;padding:5px 10px;border-radius:999px;background:rgba(6,11,20,.7);font-size:11.5px;color:#cfe0f3;border:1px solid var(--line-2)}
 .inaug-t{padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;justify-content:center}
 .inaug-t h3{font-size:clamp(26px,3vw,34px);margin:10px 0 10px;letter-spacing:-.03em}.inaug-t p{margin:0;color:var(--text-2)}.inaug-t p b{color:#fff;font-weight:600}
+.inaug-tv{display:flex;gap:12px;align-items:center;margin-top:16px;font-size:13px;color:var(--text-2)}.inaug-tv img{width:120px;height:auto;border-radius:10px;border:1px solid var(--line-2)}.inaug-tv b{color:#fff}
+.inaug figure a{display:block;height:100%}
 .inaug-l{display:flex;gap:12px;align-items:center;margin-top:18px;font-size:13.5px;color:var(--text-2)}.inaug-l b{color:#fff}.inaug-l img{height:40px;background:#fff;border-radius:8px;padding:3px 6px}
 /* reviews, ratings, trust */
 .chip-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}.chip-row .sch-chip{margin-top:0}
@@ -868,10 +871,11 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
     <div class="rev-grid" id="revGrid"></div>
     <div class="rev-quotes" id="revQuotes"></div>
     <div class="inaug rv">
-      <figure><img src="/assets/photos/task-inauguration-968.webp" srcset="/assets/photos/task-inauguration-640.webp 640w, /assets/photos/task-inauguration-968.webp 968w" sizes="(max-width:760px) 100vw, 55vw" width="968" height="462" alt="Dr. Srikanth Sinha, CEO of TASK, speaking at the inauguration of Arzon Global's Hyderabad centre" loading="lazy" decoding="async"><figcaption>Telecast: HYBIZ TV HD</figcaption></figure>
-      <div class="inaug-t"><span class="mono">Government aligned</span><h3>Inaugurated by the <i>CEO of TASK.</i></h3>
-        <p>Arzon Global's Hyderabad centre was inaugurated by <b>Dr. Srikanth Sinha, CEO of TASK</b> (Telangana Academy for Skill and Knowledge, Govt. of Telangana). The launch was telecast on HYBIZ TV HD, ETV Telangana, TV5 and V5 News.</p>
-        <div class="inaug-l"><img src="/assets/brand/task.webp" height="40" alt="TASK" loading="lazy"><span><b>Dr. Srikanth Sinha</b><br>CEO, TASK · Govt. of Telangana</span></div></div>
+      <figure><a href="/assets/photos/task-chief-guest-poster.webp" target="_blank" rel="noopener" aria-label="Open the inauguration poster"><img src="/assets/photos/task-chief-guest-1170.webp" srcset="/assets/photos/task-chief-guest-640.webp 640w, /assets/photos/task-chief-guest-1170.webp 1170w" sizes="(max-width:760px) 100vw, 55vw" width="1170" height="715" alt="Dr. Srikanth Sinha, CEO of TASK, receiving the Arzon Global grand opening invitation at the TASK office" loading="lazy" decoding="async"></a><figcaption>Inauguration chief guest · Team TASK · 30 July 2025</figcaption></figure>
+      <div class="inaug-t"><span class="mono">Government aligned</span><h3>Inaugurated with <i>Team TASK.</i></h3>
+        <p>Arzon Global's Hyderabad centre was inaugurated on <b>30 July 2025</b> with <b>Dr. Srikanth Sinha, CEO of TASK</b> (Telangana Academy for Skill and Knowledge, Govt. of Telangana) as chief guest. The launch was telecast on HYBIZ TV HD, ETV Telangana, TV5 and V5 News.</p>
+        <div class="inaug-tv"><img src="/assets/photos/task-inauguration-640.webp" width="640" height="305" alt="Dr. Srikanth Sinha speaking to the press at the Arzon Global launch" loading="lazy" decoding="async"><span><b>On TV</b><br>Launch coverage, HYBIZ TV HD</span></div>
+        <div class="inaug-l"><img src="/assets/brand/task.webp" height="40" alt="TASK" loading="lazy"><span><b>Dr. Srikanth Sinha</b><br>CEO, TASK · Govt. of Telangana</span><a class="link" href="/assets/photos/task-chief-guest-poster.webp" target="_blank" rel="noopener" style="margin-left:auto;font-size:13.5px">View poster ↗</a></div></div>
     </div>
     <div id="trustBox"></div>
   </div>
