@@ -2,7 +2,7 @@
 /** Validation + normalisation for public form submissions. Returns { value } or { error }. */
 
 const TYPES = ['lead', 'event', 'waitlist', 'ambassador'];
-const EXTRA_KEYS = ['team_name', 'teammates', 'squad_role', 'handle'];
+const EXTRA_KEYS = ['team_name', 'teammates', 'squad_role', 'handle', 'gaps', 'club'];
 const str = (v, max) => String(v ?? '').replace(/[\u0000-\u001f\u007f]/g, ' ').trim().slice(0, max);
 
 function normalisePhone(raw) {
@@ -29,7 +29,7 @@ function validateSubmission(body) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return { error: 'Please enter a valid email address.' };
 
   const extra = {};
-  for (const k of EXTRA_KEYS) if (body[k] != null && str(body[k], 200)) extra[k] = str(body[k], 200);
+  for (const k of EXTRA_KEYS) { const max = k === 'gaps' ? 800 : 200; if (body[k] != null && str(body[k], max)) extra[k] = str(body[k], max); }
 
   const value = {
     type, name, phone, email,
