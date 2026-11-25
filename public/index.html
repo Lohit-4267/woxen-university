@@ -248,6 +248,9 @@ h1,h2,h3,h4{margin:0;letter-spacing:-.03em;font-weight:600;line-height:1.05}
 .ev-date{text-align:center;padding:10px 6px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line-2)}
 .ev-date b{display:block;font-size:30px;line-height:1;letter-spacing:-.04em}.ev-date span{font-family:var(--mono);font-size:10.5px;color:var(--violet-2);text-transform:uppercase;letter-spacing:.06em}
 .ev h3{font-size:20px;margin:8px 0 6px}
+.ev.past{opacity:.6}.ev.past:hover{opacity:.85}
+.ev-notify{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:26px 28px}
+.ev-notify h3{font-size:24px;margin:12px 0 6px}.ev-notify p{color:var(--text-2);margin:0;max-width:52ch}
 .meta{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}.meta span{display:inline-flex;gap:6px;align-items:center}.meta svg{width:15px;height:15px}
 
 /* squad tiers */
@@ -1034,16 +1037,25 @@ function renderDetail(id) {
 
 /* ---------- EVENTS ---------- */
 (() => { const nx = nextEvent(); if (nx) { countdown($('#evCd'), nx.date); $('#evCdLbl').textContent = 'Until the next session · ' + nx.title; } else { $('#evCd').remove(); $('#evCdLbl').remove(); }
-  $('#evList').innerHTML = D.EVENTS.slice().sort((a, b) => new Date(a.date) - new Date(b.date)).map((e, i) => { const d = new Date(e.date), past = d < new Date(), t = T(e.track);
-    return `<article class="ev spot rv" style="--d:${i * 60}ms"><div class="ev-date"><b>${d.toLocaleDateString('en-IN', { day:'2-digit' })}</b><span>${d.toLocaleDateString('en-IN', { month:'short' })} · ${d.toLocaleDateString('en-IN', { weekday:'short' })}</span></div>
+  const now = new Date(), byDate = (a, b) => new Date(a.date) - new Date(b.date);
+  const upcoming = D.EVENTS.filter(e => new Date(e.date) >= now).sort(byDate);
+  const pastEv = D.EVENTS.filter(e => new Date(e.date) < now).sort(byDate).reverse().slice(0, 3);
+  const evCard = (e, i) => { const d = new Date(e.date), past = d < now, t = T(e.track);
+    return `<article class="ev spot rv${past ? ' past' : ''}" style="--d:${i * 60}ms"><div class="ev-date"><b>${d.toLocaleDateString('en-IN', { day:'2-digit' })}</b><span>${d.toLocaleDateString('en-IN', { month:'short' })} · ${d.toLocaleDateString('en-IN', { weekday:'short' })}</span></div>
       <div><span class="badge ${e.type === 'Skill Sprint' ? 'live' : ''}">${e.type}</span><h3>${e.title}</h3><div class="meta"><span>${icon('calendar')}${d.toLocaleTimeString('en-IN', { hour:'numeric', minute:'2-digit' })} IST</span><span>${icon('pin')}${e.mode}</span><span>${icon('people')}${e.host}</span>${t ? `<a class="link" style="font-size:13.5px" href="#/programme/${t.id}">${t.short} track →</a>` : ''}</div></div>
-      <div style="text-align:right">${past ? '<span class="badge">Ended</span>' : e.seats_left === 0 ? '<span class="badge">Full</span>' : `<button class="btn btn-primary btn-sm" data-ev="${e.id}">Reserve seat <span class="arrow">→</span></button>${e.seats_left != null && e.seats_left <= 25 ? `<div class="mono" style="margin-top:8px">${e.seats_left} seats left</div>` : ''}`}</div></article>`; }).join('');
+      <div style="text-align:right">${past ? '<span class="badge">Ended</span>' : e.seats_left === 0 ? '<span class="badge">Full</span>' : `<button class="btn btn-primary btn-sm" data-ev="${e.id}">Reserve seat <span class="arrow">→</span></button>${e.seats_left != null && e.seats_left <= 25 ? `<div class="mono" style="margin-top:8px">${e.seats_left} seats left</div>` : ''}`}</div></article>`; };
+  // No dated sessions left: keep capturing interest instead of showing a page of "Ended" badges.
+  const notify = `<div class="card ev-notify rv"><div><span class="badge live">Next sessions being scheduled</span><h3>New Skill Sprints drop every few weeks.</h3><p>Get a WhatsApp alert the moment seats open, before they're shared on campus.</p></div><button class="btn btn-primary" id="evNotify">Alert me for the next sprint <span class="arrow">→</span></button></div>`;
+  $('#evList').innerHTML = (upcoming.length ? upcoming.map(evCard).join('') : notify)
+    + (pastEv.length ? `<div class="soon-head" style="margin-top:18px"><span class="mono">Recent sessions</span><span class="soon-line"></span></div>${pastEv.map(evCard).join('')}` : '');
+  const nb = $('#evNotify'); if (nb) nb.onclick = () => simpleForm({ type:'waitlist', kicker:'Skill Sprint alerts', title:'Get the next sprint first', sub:'We\'ll WhatsApp you the topic, date and a seat link as soon as the next Skill Sprint is scheduled.', cta:'Alert me', payload:{ event:'Skill Sprint alerts', track:'Skill Sprint alerts', track_status:'event-alert' }, done:["You're on the list.", "We'll WhatsApp you when the next sprint opens."] });
   const M = D.CASE_COMP;
-  $('#mmBox').innerHTML = `<div><span class="mono">${M.tagline}</span><h2 style="font-size:clamp(48px,7vw,92px);letter-spacing:-.05em;margin:14px 0"><span class="grad">${M.name}</span></h2><p class="lede" style="margin-bottom:24px">The brief: ${M.brief}</p><button class="btn btn-primary" id="mmBtn">Register your team <span class="arrow">→</span></button></div>
+  const mmClosed = M.closes && new Date(M.closes + 'T23:59:59+05:30') < now;
+  $('#mmBox').innerHTML = `<div><span class="mono">${M.tagline}</span><h2 style="font-size:clamp(48px,7vw,92px);letter-spacing:-.05em;margin:14px 0"><span class="grad">${M.name}</span></h2><p class="lede" style="margin-bottom:24px">The brief: ${M.brief}</p>${mmClosed ? `<span class="badge" style="margin-right:10px">Registrations closed</span><button class="btn btn-ghost" id="mmBtn">Notify me for the next edition <span class="arrow">→</span></button>` : `<button class="btn btn-primary" id="mmBtn">Register your team <span class="arrow">→</span></button>`}</div>
     <div class="card-lead" style="padding:22px">${[['Registrations open', fmtDate(M.opens)], ['Round 1 deadline', fmtDate(M.closes)], ['Grand finale', fmtDate(M.final)], ['Team size', M.team], ['Open to', 'All students · Unstop + Woxsen']].map(([k, v]) => `<div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)"><span style="color:var(--text-2)">${k}</span><b style="font-weight:600;text-align:right">${v}</b></div>`).join('')}</div>`;
   $('#mmRounds').innerHTML = M.rounds.map((r, i) => `<div class="card spot rv" style="--d:${i * 80}ms"><div class="serif" style="font-size:52px;line-height:1;color:var(--violet-2)">0${i + 1}</div><h3 style="font-size:19px;margin:12px 0 6px">${r.t}</h3><p style="color:var(--text-2);margin:0">${r.d}</p></div>`).join('')
     + `<div class="card spot rv" style="grid-column:1/-1"><span class="mono">Prizes</span><div class="tracks" style="margin-top:14px;gap:10px">${M.prizes.map(p => `<div style="display:flex;gap:12px;align-items:center"><span class="t-ico">${icon('trophy')}</span><span>${p}</span></div>`).join('')}</div></div>`;
-  $('#mmBtn').onclick = () => simpleForm({ type:'event', kicker:'Case challenge', title: M.name + ' · team registration', sub: M.brief, cta:'Register team',
+  $('#mmBtn').onclick = () => mmClosed ? simpleForm({ type:'waitlist', kicker:'Case challenge', title: M.name + ' · next edition', sub:'Round 1 registrations for this edition have closed. Leave your details and we\'ll WhatsApp you when the next edition opens.', cta:'Notify me', payload:{ event: M.name + ' (next edition)', track: M.name + ' (next edition)', track_status:'event-alert' }, done:["You're on the list.", "We'll WhatsApp you when registrations reopen."] }) : simpleForm({ type:'event', kicker:'Case challenge', title: M.name + ' · team registration', sub: M.brief, cta:'Register team',
     extra:`<div class="row2"><div class="field"><label>Team name<input data-x="team_name" style="margin-top:6px"></label></div><div class="field"><label>Teammates<input data-x="teammates" placeholder="Optional" style="margin-top:6px"></label></div></div>`,
     payload:{ event: M.name, event_id:'market-masters' }, done:['Team registered!', "We'll WhatsApp the full brief, rules and deadlines to your team lead."] });
 })();
