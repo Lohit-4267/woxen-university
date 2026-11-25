@@ -28,7 +28,8 @@ test('serves the site and seeded content', async () => {
   const js = await req('GET', '/site-data.js'); assert.match(js.body, /^window\.ARZON_CONFIG=/);
   const c = await req('GET', '/api/content');
   assert.equal(c.body.config.ENDPOINT, '/api/submissions');
-  assert.equal(c.body.config.PRICE, 8000);
+  assert.equal(c.body.config.PRICE, undefined); // fees are never published
+  assert.equal(c.body.config.SCHOLARSHIP, true);
   assert.ok(c.body.data.TRACKS.length >= 20);
   assert.ok(c.body.data.TRACKS.find(t => t.id === 'business-analytics').modules.length > 0);
   assert.ok(c.body.data.ICONS.chart);
@@ -111,7 +112,8 @@ test('admin: content edits go live (tracks, events with seats, settings)', async
 
   const c = (await req('GET', '/api/content')).body;
   assert.ok(c.data.TRACKS.find(x => x.id === 'excel-pro'));
-  assert.equal(c.config.PRICE, 9000);
+  assert.equal(c.config.PRICE, undefined);
+  assert.equal((await req('GET', '/api/admin/settings')).body.pricing.price, 9000); // kept for the admin team only
   assert.equal(c.data.EVENTS.find(e => e.id === 'tiny').seats_left, 1);
 
   assert.equal((await req('POST', '/api/submissions', lead({ type: 'event', event_id: 'tiny', email: 'one@x.com' }))).status, 201);

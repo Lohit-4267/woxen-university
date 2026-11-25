@@ -28,7 +28,8 @@ async function build(db) {
     ENDPOINT: '/api/submissions',
     REGISTER_URL: site.register_url || 'https://arzonglobal.com/',
     PHONE: contact.phone || '', EMAIL: contact.email || '', ADDRESS: contact.address || '', WHATSAPP: contact.whatsapp || '',
-    PRICE: pricing.price, LIST_PRICE: pricing.list_price, REG_FEE: pricing.reg_fee, SCHOLARSHIP: !!pricing.scholarship,
+    // Fees are intentionally not published: counsellors share them one-to-one.
+    SCHOLARSHIP: !!pricing.scholarship,
     SOURCE: site.source || 'woxsen_crowdcore',
     SHOW_UPCOMING: !!site.show_upcoming,
     COHORT: S.cohort || { label: '', start: '' }
