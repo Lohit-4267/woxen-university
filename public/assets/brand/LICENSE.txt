@@ -1,3 +1,6 @@
-Logos in this folder (Google, Justdial, AmbitionBox, TASK, ISO 9001:2015, MSME) were taken from
-Arzon Global's 2026 student brochure and are used to identify the rating platforms and the
-registrations/certifications Arzon Global holds. They are trademarks of their respective owners.
+Logos in this folder identify the platforms, certifications and partners named on the site.
+They are trademarks of their respective owners.
+- Google, Justdial, AmbitionBox, TASK, ISO 9001:2015, MSME: from Arzon Global's 2026 student brochure.
+- woxsen.webp: Woxsen University registered logo, Wikimedia Commons
+  (File:Woxsen University Registered Logo.jpg, CC BY-SA 4.0), trimmed.
+- crowdcore.webp: CrowdCore club logo supplied by Arzon Global, background removed.

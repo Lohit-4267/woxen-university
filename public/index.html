@@ -101,9 +101,9 @@ h1,h2,h3,h4{margin:0;letter-spacing:-.03em;font-weight:600;line-height:1.05}
 .proof div{border-left:1px solid var(--line-2);padding-left:14px}
 .proof b{display:block;font-size:24px;font-weight:600;letter-spacing:-.02em}
 .proof span{font-size:13px;color:var(--muted)}
-.form-side{position:relative;padding-top:200px}
-.hero-photo{position:absolute;top:0;left:7%;right:-5%;height:310px;margin:0;border-radius:28px;overflow:hidden;border:1px solid var(--line-2);z-index:-1;box-shadow:0 40px 90px rgba(0,0,0,.55)}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:52% 32%;display:block;filter:saturate(.95)}
+.form-side{position:relative;padding-top:268px}
+.hero-photo{position:absolute;top:0;left:4%;right:-4%;height:300px;margin:0;border-radius:28px;overflow:hidden;border:1px solid var(--line-2);z-index:-1;box-shadow:0 40px 90px rgba(0,0,0,.55)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;display:block;filter:saturate(.95)}
 .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,11,20,0) 40%,rgba(6,11,20,.6)),linear-gradient(135deg,rgba(47,127,216,.22),transparent 50%)}
 .hero-photo figcaption{position:absolute;top:14px;left:14px;z-index:1;display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border-radius:999px;background:rgba(6,11,20,.66);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line-2);font-size:12.5px;font-weight:500;color:#e6f0fb}
 .hero-photo figcaption i{width:7px;height:7px;border-radius:50%;background:#46d39a;box-shadow:0 0 0 3px rgba(70,211,154,.2)}
@@ -527,19 +527,20 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 .club-cta h3{font-size:26px;margin:10px 0 6px}.club-cta p{margin:0;color:var(--text-2);max-width:56ch}
 .sq-how{grid-template-columns:repeat(3,1fr)}
 .sq-photos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}.sq-photos .ph{height:300px}
-/* Woxsen x CrowdCore partner row (hero) */
-.partner-row{display:inline-flex;align-items:center;gap:14px;padding:6px 16px 6px 6px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,.04)}
-.pr-logos{display:inline-flex;align-items:center;gap:8px;padding:5px 10px;border-radius:999px;background:#fff}
-.pr-wox{height:30px;width:auto}.pr-cc{height:32px;width:auto;border-radius:7px}.pr-x{color:#8a94a6;font-size:13px}
-.pr-t{display:grid;line-height:1.25;font-size:13px}.pr-t b{font-size:13.5px}.pr-t span{color:var(--text-2)}
-.recog-logos > img.dark{background:#000}
+/* partner lockup (hero) */
+.partner-lock{display:inline-grid;gap:8px;margin-bottom:6px}
+.pl-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pl-logos{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pl-tile{display:inline-flex;align-items:center;background:#fff;border-radius:12px;padding:6px 12px;box-shadow:0 8px 22px rgba(0,0,0,.35)}.pl-tile img{height:42px;width:auto;display:block}
+.pl-cc{height:58px;width:auto;display:block;filter:drop-shadow(0 8px 16px rgba(0,0,0,.45))}
+.pl-note{display:grid;line-height:1.3;font-size:13px;padding-left:12px;border-left:1px solid var(--line-2)}.pl-note b{font-size:14px}.pl-note span{color:var(--text-2)}
 /* MoU */
-.mou{display:grid;grid-template-columns:1.15fr .85fr;border-radius:28px;overflow:hidden;border:1px solid rgba(127,188,239,.3);background:linear-gradient(120deg,rgba(47,127,216,.14),rgba(11,18,32,.6) 60%),var(--bg-2)}
-.mou-ph{margin:0;position:relative}.mou-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.mou{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:stretch;border-radius:28px;overflow:hidden;border:1px solid rgba(127,188,239,.3);background:linear-gradient(120deg,rgba(47,127,216,.14),rgba(11,18,32,.6) 60%),var(--bg-2)}
+.mou-ph{margin:0;position:relative;min-height:380px}.mou-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;display:block}
 .mou-ph figcaption{position:absolute;left:12px;bottom:12px;padding:5px 10px;border-radius:999px;background:rgba(6,11,20,.72);font-size:11.5px;color:#cfe0f3;border:1px solid var(--line-2)}
 .mou-t{padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;justify-content:center;gap:10px}
 .mou-t h2{font-size:clamp(28px,3.2vw,40px);margin:0;letter-spacing:-.03em}.mou-t p{margin:0;color:var(--text-2)}.mou-t p b{color:#fff}
-.mou-logos{display:flex;align-items:center;gap:10px;margin-bottom:6px}.mou-logos img{height:40px;width:auto;background:#fff;border-radius:9px;padding:3px 6px}.mou-logos img.dark{background:#000;padding:0}.mou-logos span{color:var(--muted)}.mou-logos img.arz{background:none;padding:0}
+.mou-logos{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}.mou-logos .pl-tile img{height:36px}.mou-logos .pl-cc{height:52px}.mou-logos .mx{color:var(--muted)}.mou-arz{height:30px;width:auto}
 .mou-list{list-style:none;padding:0;margin:4px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .mou-list li{padding:9px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:14px}
 .mou-list li::before{content:"✓ ";color:#46d39a}
@@ -635,15 +636,15 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 .p-banner img{width:100%;height:auto;display:block}
 .p-photo figcaption{position:absolute;left:14px;bottom:14px;padding:6px 10px;border-radius:999px;background:rgba(6,11,20,.72);backdrop-filter:blur(8px);border:1px solid var(--line-2);font-size:10.5px}
 @media (max-width:1000px){
-  .form-side{padding-top:170px}
-  .hero-photo{left:0;right:0;height:240px;border-radius:24px}
+  .form-side{padding-top:262px}
+  .hero-photo{left:0;right:0;height:250px;border-radius:24px}
   .hi1{width:84px;top:-26px;right:-8px}.hi2{display:none}
   .p-photo{position:relative;top:auto;transform:none;width:100%;max-width:520px;margin:0 0 22px;order:-1}
   .p-banner{position:relative;top:auto;transform:none;width:100%;max-width:620px;margin:0 0 22px;order:-1}
 }
 @media (max-width:760px){
-  .form-side{padding-top:150px}
-  .hero-photo{height:210px}
+  .form-side{padding-top:226px}
+  .hero-photo{height:214px}
   .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:none;gap:10px}
   .mosaic .ph{aspect-ratio:1/1}
   .mosaic .ph.big{grid-column:1/-1;grid-row:auto;aspect-ratio:4/3.4}
@@ -658,8 +659,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   .fs-grid,.fit-grid,.why3,.do4,.sq-how,.sq-photos{grid-template-columns:1fr;gap:10px}
   .why3{margin-bottom:40px}.sq-photos .ph{height:auto;aspect-ratio:16/10}
   .rate-row,.rev-grid,.rev-quotes,.badges{grid-template-columns:1fr;gap:10px}
-  .inaug{grid-template-columns:1fr}.mou{grid-template-columns:1fr}.mou-list{grid-template-columns:1fr}
-  .partner-row{border-radius:20px;flex-wrap:wrap}.inaug figure{min-height:0;aspect-ratio:968/462}
+  .inaug{grid-template-columns:1fr}.mou{grid-template-columns:1fr}.mou-ph{min-height:0;aspect-ratio:3/2}.mou-list{grid-template-columns:1fr}
+  .pl-tile img{height:34px}.pl-cc{height:48px}.inaug figure{min-height:0;aspect-ratio:968/462}
   .ribbon img{height:130px}.recog-logos > img{height:36px}.recog-in{padding:14px}
   .rate.big .rt b{font-size:40px}
   .jd-steps{grid-template-columns:1fr 1fr;gap:10px}
@@ -755,7 +756,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   <div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
   <div class="wrap hero-grid">
     <div>
-      <div class="partner-row rv"><span class="pr-logos"><img class="pr-wox" src="/assets/brand/woxsen.webp" width="200" height="97" alt="Woxsen University"><span class="pr-x">×</span><img class="pr-cc" src="/assets/brand/crowdcore.webp" width="329" height="320" alt="CrowdCore, Woxsen's marketing club"></span><span class="pr-t"><b>Official MoU partner</b><span>CrowdCore · Woxsen University</span></span></div>
+      <div class="partner-lock rv"><span class="pl-lbl">In official partnership with</span>
+        <div class="pl-logos"><span class="pl-tile"><img src="/assets/brand/woxsen.webp" width="775" height="372" alt="Woxsen University"></span><img class="pl-cc" src="/assets/brand/crowdcore.webp" width="371" height="360" alt="CrowdCore, Woxsen's marketing club"><span class="pl-note"><b>MoU signed</b><span>CrowdCore · Woxsen University</span></span></div></div>
       <h1 class="rv" style="--d:80ms">
         <span class="fade-text">Become the</span>
         <span class="l2"><span class="swap" id="swap" aria-live="polite"><span class="on">Analyst</span><span>Marketer</span><span>Finance pro</span><span>HR leader</span><span>AI-ready manager</span></span></span>
@@ -776,7 +778,6 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
     <div class="form-side rv" style="--d:200ms">
       <figure class="hero-photo" aria-hidden="true"><img src="/assets/photos/arzon-launch-1200.webp" srcset="/assets/photos/arzon-launch-640.webp 640w, /assets/photos/arzon-launch-1200.webp 1200w" sizes="(max-width:1000px) 92vw, 560px" width="1125" height="750" alt="" fetchpriority="high" decoding="async"><figcaption><i></i>Arzon Global centre · Hyderabad</figcaption></figure>
       <img class="hero-ico hi1" src="/assets/3d/rocket-240.webp" width="240" height="240" alt="" aria-hidden="true" decoding="async">
-      <img class="hero-ico hi2" src="/assets/3d/chart-240.webp" width="240" height="240" alt="" aria-hidden="true" decoding="async">
       <aside class="card-lead" id="lead" aria-label="Get your free career roadmap"></aside>
     </div>
   </div>
@@ -784,7 +785,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 
 <section class="recog" aria-label="Recognition and ratings"><div class="wrap recog-in">
   <span class="mono">Recognised & rated</span>
-  <div class="recog-logos"><img src="/assets/brand/woxsen.webp" height="44" alt="Woxsen University" loading="lazy"><img class="dark" src="/assets/brand/crowdcore.webp" height="44" alt="CrowdCore" loading="lazy"><img src="/assets/brand/task.webp" height="44" alt="TASK, Government of Telangana" loading="lazy"><img src="/assets/brand/iso.webp" height="44" alt="ISO 9001:2015" loading="lazy"><img src="/assets/brand/msme.webp" height="44" alt="MSME Udyam registered" loading="lazy"><span class="recog-r" id="recogRates"></span></div>
+  <div class="recog-logos"><img src="/assets/brand/woxsen.webp" height="44" alt="Woxsen University" loading="lazy"><img class="cc" src="/assets/brand/crowdcore.webp" height="50" alt="CrowdCore" loading="lazy"><img src="/assets/brand/task.webp" height="44" alt="TASK, Government of Telangana" loading="lazy"><img src="/assets/brand/iso.webp" height="44" alt="ISO 9001:2015" loading="lazy"><img src="/assets/brand/msme.webp" height="44" alt="MSME Udyam registered" loading="lazy"><span class="recog-r" id="recogRates"></span></div>
 </div></section>
 <div class="ribbon" aria-hidden="true"><div class="ribbon-track"><img src="/assets/photos/arzon-launch-640.webp" width="640" height="427" alt="Arzon Global centre launch" loading="lazy" decoding="async"><img src="/assets/photos/whiteboard-640.webp" width="640" height="427" alt="A whiteboard session at Arzon Global" loading="lazy" decoding="async"><img src="/assets/photos/class-desks-640.webp" width="640" height="427" alt="Students in a live class at Arzon Global" loading="lazy" decoding="async"><img src="/assets/photos/centre-tour-640.webp" width="640" height="427" alt="Students in a classroom session" loading="lazy" decoding="async"><img src="/assets/photos/press-640.webp" width="640" height="360" alt="A student speaking to the media at the Arzon launch" loading="lazy" decoding="async"><img src="/assets/photos/mentor-teaching-640.webp" width="640" height="512" alt="An Arzon mentor teaching a class" loading="lazy" decoding="async"><img src="/assets/photos/felicitation-640.webp" width="640" height="427" alt="Felicitation at the Arzon Global centre" loading="lazy" decoding="async"><img src="/assets/photos/arzon-launch-640.webp" width="640" height="427" alt="Arzon Global centre launch" loading="lazy" decoding="async"><img src="/assets/photos/whiteboard-640.webp" width="640" height="427" alt="A whiteboard session at Arzon Global" loading="lazy" decoding="async"><img src="/assets/photos/class-desks-640.webp" width="640" height="427" alt="Students in a live class at Arzon Global" loading="lazy" decoding="async"><img src="/assets/photos/centre-tour-640.webp" width="640" height="427" alt="Students in a classroom session" loading="lazy" decoding="async"><img src="/assets/photos/press-640.webp" width="640" height="360" alt="A student speaking to the media at the Arzon launch" loading="lazy" decoding="async"><img src="/assets/photos/mentor-teaching-640.webp" width="640" height="512" alt="An Arzon mentor teaching a class" loading="lazy" decoding="async"><img src="/assets/photos/felicitation-640.webp" width="640" height="427" alt="Felicitation at the Arzon Global centre" loading="lazy" decoding="async"></div></div>
 
@@ -792,7 +793,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   <div class="mou rv">
     <figure class="mou-ph"><img src="/assets/photos/mou-1200.webp" srcset="/assets/photos/mou-640.webp 640w, /assets/photos/mou-1200.webp 1200w" sizes="(max-width:760px) 100vw, 55vw" width="1200" height="798" alt="The Arzon Global team holding the signed MoU with Woxsen University's CrowdCore club" loading="lazy" decoding="async"><figcaption>MoU signed · September 2026</figcaption></figure>
     <div class="mou-t">
-      <div class="mou-logos"><img src="/assets/brand/woxsen.webp" height="40" alt="Woxsen University" loading="lazy"><span>×</span><img class="dark" src="/assets/brand/crowdcore.webp" height="40" alt="CrowdCore" loading="lazy"><span>×</span><img class="arz" data-logo="icon" height="40" alt="Arzon Global"></div>
+      <div class="mou-logos"><span class="pl-tile"><img src="/assets/brand/woxsen.webp" width="775" height="372" alt="Woxsen University" loading="lazy"></span><span class="mx">×</span><img class="pl-cc" src="/assets/brand/crowdcore.webp" width="371" height="360" alt="CrowdCore" loading="lazy"><span class="mx">×</span><img class="mou-arz" data-logo="wm" width="124" height="32" alt="Arzon Global"></div>
       <span class="mono">Official partnership</span>
       <h2>An MoU with <i>Woxsen University.</i></h2>
       <p>Arzon Global Labs and Woxsen University's <b>CrowdCore</b> club have signed a Memorandum of Understanding for industry training, internships, career development and hiring collaboration.</p>
