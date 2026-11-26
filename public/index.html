@@ -467,7 +467,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   .p-illo.cluster{width:min(240px,68%)}
 }
 
-/* ============================================================ PHOTOS (Pexels, free licence) */
+/* ============================================================ PHOTOS (Arzon Global) */
 .mosaic{display:grid;grid-template-columns:1.15fr 1fr 1fr;grid-template-rows:260px 260px;gap:14px}
 .ph{position:relative;margin:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line-2);background:var(--bg-2);isolation:isolate}
 .ph img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.03);transition:transform 1.4s var(--ease)}
@@ -527,6 +527,22 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 .club-cta h3{font-size:26px;margin:10px 0 6px}.club-cta p{margin:0;color:var(--text-2);max-width:56ch}
 .sq-how{grid-template-columns:repeat(3,1fr)}
 .sq-photos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}.sq-photos .ph{height:300px}
+/* Woxsen x CrowdCore partner row (hero) */
+.partner-row{display:inline-flex;align-items:center;gap:14px;padding:6px 16px 6px 6px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,.04)}
+.pr-logos{display:inline-flex;align-items:center;gap:8px;padding:5px 10px;border-radius:999px;background:#fff}
+.pr-wox{height:30px;width:auto}.pr-cc{height:32px;width:auto;border-radius:7px}.pr-x{color:#8a94a6;font-size:13px}
+.pr-t{display:grid;line-height:1.25;font-size:13px}.pr-t b{font-size:13.5px}.pr-t span{color:var(--text-2)}
+.recog-logos > img.dark{background:#000}
+/* MoU */
+.mou{display:grid;grid-template-columns:1.15fr .85fr;border-radius:28px;overflow:hidden;border:1px solid rgba(127,188,239,.3);background:linear-gradient(120deg,rgba(47,127,216,.14),rgba(11,18,32,.6) 60%),var(--bg-2)}
+.mou-ph{margin:0;position:relative}.mou-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.mou-ph figcaption{position:absolute;left:12px;bottom:12px;padding:5px 10px;border-radius:999px;background:rgba(6,11,20,.72);font-size:11.5px;color:#cfe0f3;border:1px solid var(--line-2)}
+.mou-t{padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;justify-content:center;gap:10px}
+.mou-t h2{font-size:clamp(28px,3.2vw,40px);margin:0;letter-spacing:-.03em}.mou-t p{margin:0;color:var(--text-2)}.mou-t p b{color:#fff}
+.mou-logos{display:flex;align-items:center;gap:10px;margin-bottom:6px}.mou-logos img{height:40px;width:auto;background:#fff;border-radius:9px;padding:3px 6px}.mou-logos img.dark{background:#000;padding:0}.mou-logos span{color:var(--muted)}.mou-logos img.arz{background:none;padding:0}
+.mou-list{list-style:none;padding:0;margin:4px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mou-list li{padding:9px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:14px}
+.mou-list li::before{content:"✓ ";color:#46d39a}
 /* brand logos */
 .blogo{display:inline-block;width:auto;vertical-align:middle;border-radius:8px;background:#fff}.blogo.sm{border-radius:5px;margin-right:6px}
 .plat.logo{background:#fff;padding:6px 8px;width:auto;min-width:48px;box-shadow:0 6px 18px rgba(0,0,0,.35)}.rate.big .plat.logo{min-width:64px}.plat.logo img{height:34px;width:auto;max-width:none;object-fit:contain;border-radius:0;background:none}.rate.big .plat.logo img{height:46px}
@@ -642,7 +658,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   .fs-grid,.fit-grid,.why3,.do4,.sq-how,.sq-photos{grid-template-columns:1fr;gap:10px}
   .why3{margin-bottom:40px}.sq-photos .ph{height:auto;aspect-ratio:16/10}
   .rate-row,.rev-grid,.rev-quotes,.badges{grid-template-columns:1fr;gap:10px}
-  .inaug{grid-template-columns:1fr}.inaug figure{min-height:0;aspect-ratio:968/462}
+  .inaug{grid-template-columns:1fr}.mou{grid-template-columns:1fr}.mou-list{grid-template-columns:1fr}
+  .partner-row{border-radius:20px;flex-wrap:wrap}.inaug figure{min-height:0;aspect-ratio:968/462}
   .ribbon img{height:130px}.recog-logos > img{height:36px}.recog-in{padding:14px}
   .rate.big .rt b{font-size:40px}
   .jd-steps{grid-template-columns:1fr 1fr;gap:10px}
@@ -738,7 +755,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   <div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
   <div class="wrap hero-grid">
     <div>
-      <span class="pill rv"><img data-logo="icon" alt="" width="26" height="22"><span class="d"><b>Official campus partner</b> · CrowdCore, Woxsen's marketing club</span><span class="m"><b>Official partner</b> · CrowdCore Woxsen</span></span>
+      <div class="partner-row rv"><span class="pr-logos"><img class="pr-wox" src="/assets/brand/woxsen.webp" width="200" height="97" alt="Woxsen University"><span class="pr-x">×</span><img class="pr-cc" src="/assets/brand/crowdcore.webp" width="329" height="320" alt="CrowdCore, Woxsen's marketing club"></span><span class="pr-t"><b>Official MoU partner</b><span>CrowdCore · Woxsen University</span></span></div>
       <h1 class="rv" style="--d:80ms">
         <span class="fade-text">Become the</span>
         <span class="l2"><span class="swap" id="swap" aria-live="polite"><span class="on">Analyst</span><span>Marketer</span><span>Finance pro</span><span>HR leader</span><span>AI-ready manager</span></span></span>
@@ -757,7 +774,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
       </div>
     </div>
     <div class="form-side rv" style="--d:200ms">
-      <figure class="hero-photo" aria-hidden="true"><img src="/assets/photos/campus-filming-1125.webp" srcset="/assets/photos/campus-filming-640.webp 640w, /assets/photos/campus-filming-1125.webp 1125w" sizes="(max-width:1000px) 92vw, 560px" width="1125" height="750" alt="" fetchpriority="high" decoding="async" style="object-position:50% 34%"><figcaption><i></i>JD-decoded training · live classes</figcaption></figure>
+      <figure class="hero-photo" aria-hidden="true"><img src="/assets/photos/arzon-launch-1200.webp" srcset="/assets/photos/arzon-launch-640.webp 640w, /assets/photos/arzon-launch-1200.webp 1200w" sizes="(max-width:1000px) 92vw, 560px" width="1125" height="750" alt="" fetchpriority="high" decoding="async"><figcaption><i></i>Arzon Global centre · Hyderabad</figcaption></figure>
       <img class="hero-ico hi1" src="/assets/3d/rocket-240.webp" width="240" height="240" alt="" aria-hidden="true" decoding="async">
       <img class="hero-ico hi2" src="/assets/3d/chart-240.webp" width="240" height="240" alt="" aria-hidden="true" decoding="async">
       <aside class="card-lead" id="lead" aria-label="Get your free career roadmap"></aside>
@@ -767,9 +784,23 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 
 <section class="recog" aria-label="Recognition and ratings"><div class="wrap recog-in">
   <span class="mono">Recognised & rated</span>
-  <div class="recog-logos"><img src="/assets/brand/task.webp" height="44" alt="TASK, Government of Telangana" loading="lazy"><img src="/assets/brand/iso.webp" height="44" alt="ISO 9001:2015" loading="lazy"><img src="/assets/brand/msme.webp" height="44" alt="MSME Udyam registered" loading="lazy"><span class="recog-r" id="recogRates"></span></div>
+  <div class="recog-logos"><img src="/assets/brand/woxsen.webp" height="44" alt="Woxsen University" loading="lazy"><img class="dark" src="/assets/brand/crowdcore.webp" height="44" alt="CrowdCore" loading="lazy"><img src="/assets/brand/task.webp" height="44" alt="TASK, Government of Telangana" loading="lazy"><img src="/assets/brand/iso.webp" height="44" alt="ISO 9001:2015" loading="lazy"><img src="/assets/brand/msme.webp" height="44" alt="MSME Udyam registered" loading="lazy"><span class="recog-r" id="recogRates"></span></div>
 </div></section>
-<div class="ribbon" aria-hidden="true"><div class="ribbon-track"><img src="/assets/photos/campus-filming-640.webp" width="640" height="427" alt="Students filming content on campus" loading="lazy" decoding="async" style="object-position:50% 34%"><img src="/assets/photos/workshop-640.webp" width="640" height="427" alt="Students working on laptops in a workshop" loading="lazy" decoding="async" style="object-position:50% 45%"><img src="/assets/photos/group-study-640.webp" width="640" height="427" alt="Students studying together in a library lounge" loading="lazy" decoding="async" style="object-position:46% 50%"><img src="/assets/photos/audience-640.webp" width="640" height="427" alt="Students in a lecture hall" loading="lazy" decoding="async" style="object-position:50% 40%"><img src="/assets/photos/brainstorm-640.webp" width="640" height="360" alt="Students planning with sticky notes" loading="lazy" decoding="async" style="object-position:42% 50%"><img src="/assets/photos/mentor-640.webp" width="640" height="512" alt="A mentor talking with students" loading="lazy" decoding="async" style="object-position:50% 52%"><img src="/assets/photos/cap-toss-640.webp" width="640" height="427" alt="Graduates throwing their caps" loading="lazy" decoding="async" style="object-position:50% 58%"><img src="/assets/photos/campus-filming-640.webp" width="640" height="427" alt="Students filming content on campus" loading="lazy" decoding="async" style="object-position:50% 34%"><img src="/assets/photos/workshop-640.webp" width="640" height="427" alt="Students working on laptops in a workshop" loading="lazy" decoding="async" style="object-position:50% 45%"><img src="/assets/photos/group-study-640.webp" width="640" height="427" alt="Students studying together in a library lounge" loading="lazy" decoding="async" style="object-position:46% 50%"><img src="/assets/photos/audience-640.webp" width="640" height="427" alt="Students in a lecture hall" loading="lazy" decoding="async" style="object-position:50% 40%"><img src="/assets/photos/brainstorm-640.webp" width="640" height="360" alt="Students planning with sticky notes" loading="lazy" decoding="async" style="object-position:42% 50%"><img src="/assets/photos/mentor-640.webp" width="640" height="512" alt="A mentor talking with students" loading="lazy" decoding="async" style="object-position:50% 52%"><img src="/assets/photos/cap-toss-640.webp" width="640" height="427" alt="Graduates throwing their caps" loading="lazy" decoding="async" style="object-position:50% 58%"></div></div>
+<div class="ribbon" aria-hidden="true"><div class="ribbon-track"><img src="/assets/photos/arzon-launch-640.webp" width="640" height="427" alt="Arzon Global centre launch" loading="lazy" decoding="async"><img src="/assets/photos/whiteboard-640.webp" width="640" height="427" alt="A whiteboard session at Arzon Global" loading="lazy" decoding="async"><img src="/assets/photos/class-desks-640.webp" width="640" height="427" alt="Students in a live class at Arzon Global" loading="lazy" decoding="async"><img src="/assets/photos/centre-tour-640.webp" width="640" height="427" alt="Students in a classroom session" loading="lazy" decoding="async"><img src="/assets/photos/press-640.webp" width="640" height="360" alt="A student speaking to the media at the Arzon launch" loading="lazy" decoding="async"><img src="/assets/photos/mentor-teaching-640.webp" width="640" height="512" alt="An Arzon mentor teaching a class" loading="lazy" decoding="async"><img src="/assets/photos/felicitation-640.webp" width="640" height="427" alt="Felicitation at the Arzon Global centre" loading="lazy" decoding="async"><img src="/assets/photos/arzon-launch-640.webp" width="640" height="427" alt="Arzon Global centre launch" loading="lazy" decoding="async"><img src="/assets/photos/whiteboard-640.webp" width="640" height="427" alt="A whiteboard session at Arzon Global" loading="lazy" decoding="async"><img src="/assets/photos/class-desks-640.webp" width="640" height="427" alt="Students in a live class at Arzon Global" loading="lazy" decoding="async"><img src="/assets/photos/centre-tour-640.webp" width="640" height="427" alt="Students in a classroom session" loading="lazy" decoding="async"><img src="/assets/photos/press-640.webp" width="640" height="360" alt="A student speaking to the media at the Arzon launch" loading="lazy" decoding="async"><img src="/assets/photos/mentor-teaching-640.webp" width="640" height="512" alt="An Arzon mentor teaching a class" loading="lazy" decoding="async"><img src="/assets/photos/felicitation-640.webp" width="640" height="427" alt="Felicitation at the Arzon Global centre" loading="lazy" decoding="async"></div></div>
+
+<section class="sec mou-sec" id="mou" style="padding-top:10px"><div class="wrap">
+  <div class="mou rv">
+    <figure class="mou-ph"><img src="/assets/photos/mou-1200.webp" srcset="/assets/photos/mou-640.webp 640w, /assets/photos/mou-1200.webp 1200w" sizes="(max-width:760px) 100vw, 55vw" width="1200" height="798" alt="The Arzon Global team holding the signed MoU with Woxsen University's CrowdCore club" loading="lazy" decoding="async"><figcaption>MoU signed · September 2026</figcaption></figure>
+    <div class="mou-t">
+      <div class="mou-logos"><img src="/assets/brand/woxsen.webp" height="40" alt="Woxsen University" loading="lazy"><span>×</span><img class="dark" src="/assets/brand/crowdcore.webp" height="40" alt="CrowdCore" loading="lazy"><span>×</span><img class="arz" data-logo="icon" height="40" alt="Arzon Global"></div>
+      <span class="mono">Official partnership</span>
+      <h2>An MoU with <i>Woxsen University.</i></h2>
+      <p>Arzon Global Labs and Woxsen University's <b>CrowdCore</b> club have signed a Memorandum of Understanding for industry training, internships, career development and hiring collaboration.</p>
+      <ul class="mou-list"><li>Training & workshops</li><li>Projects & internships</li><li>Career guidance & assessments</li><li>Industry interaction</li></ul>
+      <a class="link" href="/assets/photos/mou-docs-900.webp" target="_blank" rel="noopener">See the signed MoU ↗</a>
+    </div>
+  </div>
+</div></section>
 
 <div class="marquee mq" aria-label="Tools you'll learn">
   <div class="mono mq-label">Tools you'll actually use on the job</div>
@@ -843,10 +874,10 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
   <div class="wrap">
     <div class="sec-head"><div><span class="mono">05 / Inside the programme</span><h2 class="rv">Real people. <i>Real progress.</i></h2></div><p class="rv" style="--d:100ms">Live classes with your batch, projects built in teams, and a finish line you can show recruiters.</p></div>
     <div class="mosaic">
-      <figure class="ph big rv"><img src="/assets/photos/group-study-1125.webp" srcset="/assets/photos/group-study-640.webp 640w, /assets/photos/group-study-1125.webp 1125w" sizes="(max-width:760px) 100vw, 40vw" width="1125" height="750" alt="Students working on laptops together in a library lounge" loading="lazy" decoding="async" style="object-position:46% 50%"><figcaption><span class="mono">Community</span><b>Learn with your batch</b><span>Live classes and domain groups with peers who want the same things you do.</span></figcaption></figure>
-      <figure class="ph rv" style="--d:80ms"><img src="/assets/photos/team-project-500.webp" width="500" height="333" alt="Students working together on a laptop and notebook" loading="lazy" decoding="async" style="object-position:60% 40%"><figcaption><span class="mono">Projects</span><b>3 industry projects</b><span>Built in teams on real JD tasks.</span></figcaption></figure>
-      <figure class="ph rv" style="--d:160ms"><img src="/assets/photos/career-640.webp" srcset="/assets/photos/career-640.webp 640w, /assets/photos/career-1125.webp 1125w" sizes="(max-width:760px) 50vw, 28vw" width="1125" height="750" alt="A young professional in a suit getting ready for work" loading="lazy" decoding="async" style="object-position:76% 30%"><figcaption><span class="mono">Placement guidance</span><b>Interview-ready</b><span>Walk in with work to show.</span></figcaption></figure>
-      <figure class="ph wide rv" style="--d:240ms"><img src="/assets/photos/cap-toss-1124.webp" srcset="/assets/photos/cap-toss-640.webp 640w, /assets/photos/cap-toss-1124.webp 1124w" sizes="(max-width:760px) 100vw, 56vw" width="1124" height="750" alt="Graduates throwing their caps in the air" loading="lazy" decoding="async" style="object-position:50% 58%"><figcaption><span class="mono">The finish line</span><b>3 certificates + a letter of recommendation</b><span>Course, project and internship completion, ready for your CV and LinkedIn.</span></figcaption></figure>
+      <figure class="ph big rv"><img src="/assets/photos/class-desks-1200.webp" srcset="/assets/photos/class-desks-640.webp 640w, /assets/photos/class-desks-1200.webp 1200w" sizes="(max-width:760px) 100vw, 40vw" width="1125" height="750" alt="Students in a live class at Arzon Global" loading="lazy" decoding="async"><figcaption><span class="mono">Community</span><b>Learn with your batch</b><span>Live classes and domain groups with peers who want the same things you do.</span></figcaption></figure>
+      <figure class="ph rv" style="--d:80ms"><img src="/assets/photos/boardroom-1200.webp" width="500" height="333" alt="A project session in the Arzon boardroom" loading="lazy" decoding="async"><figcaption><span class="mono">Projects</span><b>3 industry projects</b><span>Built in teams on real JD tasks.</span></figcaption></figure>
+      <figure class="ph rv" style="--d:160ms"><img src="/assets/photos/session-640.webp" srcset="/assets/photos/session-640.webp 640w, /assets/photos/session-1200.webp 1200w" sizes="(max-width:760px) 50vw, 28vw" width="1125" height="750" alt="An interactive session at Arzon Global" loading="lazy" decoding="async"><figcaption><span class="mono">Placement guidance</span><b>Interview-ready</b><span>Mock sessions and feedback before the real thing.</span></figcaption></figure>
+      <figure class="ph wide rv" style="--d:240ms"><img src="/assets/photos/felicitation-1200.webp" srcset="/assets/photos/felicitation-640.webp 640w, /assets/photos/felicitation-1200.webp 1200w" sizes="(max-width:760px) 100vw, 56vw" width="1124" height="750" alt="Felicitation at the Arzon Global centre" loading="lazy" decoding="async"><figcaption><span class="mono">The finish line</span><b>3 certificates + a letter of recommendation</b><span>Course, project and internship completion, ready for your CV and LinkedIn.</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -951,8 +982,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
       <div class="countdown" id="evCd"></div><p class="mono" id="evCdLbl" style="margin-top:12px"></p></div></section>
   <section class="sec" style="padding-top:10px"><div class="wrap">
     <div class="ev-photos">
-      <figure class="ph rv"><img src="/assets/photos/workshop-1125.webp" srcset="/assets/photos/workshop-640.webp 640w, /assets/photos/workshop-1125.webp 1125w" sizes="(max-width:760px) 100vw, 60vw" width="1125" height="750" alt="Students working on laptops around a table during a workshop" loading="lazy" decoding="async" style="object-position:50% 45%"><figcaption><span class="mono">Skill Sprints</span><b>45 minutes. Laptops open. Build it live.</b><span>Hands-on sessions with Arzon mentors, co-hosted with Woxsen's clubs.</span></figcaption></figure>
-      <figure class="ph rv" style="--d:100ms"><img src="/assets/photos/resume-review-1200.webp" srcset="/assets/photos/resume-review-640.webp 640w, /assets/photos/resume-review-1200.webp 1200w" sizes="(max-width:760px) 100vw, 40vw" width="1200" height="675" alt="A reviewer giving one-on-one feedback across a desk" loading="lazy" decoding="async" style="object-position:58% 40%"><figcaption><span class="mono">Resume booth</span><b>One-on-one resume & LinkedIn reviews</b><span>Leave with feedback you can act on the same day.</span></figcaption></figure>
+      <figure class="ph rv"><img src="/assets/photos/whiteboard-1200.webp" srcset="/assets/photos/whiteboard-640.webp 640w, /assets/photos/whiteboard-1200.webp 1200w" sizes="(max-width:760px) 100vw, 60vw" width="1125" height="750" alt="A whiteboard session at Arzon Global" loading="lazy" decoding="async"><figcaption><span class="mono">Skill Sprints</span><b>45 minutes. Laptops open. Build it live.</b><span>Hands-on sessions with Arzon mentors, co-hosted with Woxsen's clubs.</span></figcaption></figure>
+      <figure class="ph rv" style="--d:100ms"><img src="/assets/photos/classroom-1200.webp" srcset="/assets/photos/classroom-640.webp 640w, /assets/photos/classroom-1200.webp 1200w" sizes="(max-width:760px) 100vw, 40vw" width="1200" height="675" alt="A mentor-led classroom session" loading="lazy" decoding="async"><figcaption><span class="mono">Mentor-led</span><b>Small groups, real questions answered</b><span>Every session is run by an Arzon mentor.</span></figcaption></figure>
     </div>
     <div class="why3">
       <div class="card"><img class="w3i" src="/assets/3d/computer-240.webp" width="240" height="240" alt="" loading="lazy"><h4>Build something real</h4><p>45 minutes, laptops open. You leave with a dashboard, a campaign or a model you can show.</p></div>
@@ -963,7 +994,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
     <div style="display:grid;gap:12px" id="evList"></div>
   </div></section>
   <section class="sec" id="mm" style="padding-top:20px"><div class="wrap">
-    <div class="banner mm-banner"><img class="banner-bg" src="/assets/photos/audience-1125.webp" srcset="/assets/photos/audience-640.webp 640w, /assets/photos/audience-1125.webp 1125w" sizes="100vw" width="1125" height="750" alt="" aria-hidden="true" loading="lazy" decoding="async"><div class="tracks" style="grid-template-columns:1.1fr .9fr;gap:40px;align-items:end" id="mmBox"></div></div>
+    <div class="banner mm-banner"><img class="banner-bg" src="/assets/photos/centre-tour-1200.webp" srcset="/assets/photos/centre-tour-640.webp 640w, /assets/photos/centre-tour-1200.webp 1200w" sizes="100vw" width="1125" height="750" alt="" aria-hidden="true" loading="lazy" decoding="async"><div class="tracks" style="grid-template-columns:1.1fr .9fr;gap:40px;align-items:end" id="mmBox"></div></div>
     <div class="tracks" style="margin-top:14px" id="mmRounds"></div>
   </div></section>
   <section class="sec" style="padding-top:20px"><div class="wrap">
@@ -975,7 +1006,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
 <!-- ============================================================ VIEW: SQUAD -->
 <div class="view" data-view="squad">
   <section class="p-hero with-illo"><div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
-    <div class="wrap"><figure class="p-photo"><img src="/assets/photos/brainstorm-1200.webp" srcset="/assets/photos/brainstorm-640.webp 640w, /assets/photos/brainstorm-1200.webp 1200w" sizes="(max-width:1000px) 92vw, 430px" width="1200" height="675" alt="Two students planning a campaign with sticky notes on a board" decoding="async" style="object-position:42% 50%"><figcaption class="mono">Plan · launch · measure</figcaption></figure><span class="mono">For CrowdCore members</span><h1>Market a brand. <i>Build your portfolio.</i></h1>
+    <div class="wrap"><figure class="p-photo"><img src="/assets/photos/press-1200.webp" srcset="/assets/photos/press-640.webp 640w, /assets/photos/press-1200.webp 1200w" sizes="(max-width:1000px) 92vw, 430px" width="1200" height="675" alt="A student speaking to the media at the Arzon launch" decoding="async"><figcaption class="mono">Real launches · real coverage</figcaption></figure><span class="mono">For CrowdCore members</span><h1>Market a brand. <i>Build your portfolio.</i></h1>
       <p class="lede">The CrowdCore Growth Squad runs Arzon's Woxsen campaign as a real, live marketing internship: email waves, reels, on-ground booths and events. Every result goes in your portfolio.</p>
       <div class="cta-row"><button class="btn btn-primary" id="sqApply">Apply to the Squad <span class="arrow">→</span></button></div></div></section>
   <section class="sec" style="padding-top:10px"><div class="wrap">
@@ -1008,8 +1039,8 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
     </div>
     <p class="note">Rewards are confirmed by Arzon Global at Squad kickoff.</p>
     <div class="sq-photos">
-      <figure class="ph rv"><img src="/assets/photos/campus-filming-1125.webp" srcset="/assets/photos/campus-filming-640.webp 640w, /assets/photos/campus-filming-1125.webp 1125w" sizes="(max-width:760px) 100vw, 50vw" width="1125" height="750" alt="Students filming content on campus" loading="lazy" decoding="async" style="object-position:50% 34%"><figcaption><span class="mono">Content</span><b>Shoot it, post it, track it</b></figcaption></figure>
-      <figure class="ph rv" style="--d:100ms"><img src="/assets/photos/brainstorm-1200.webp" srcset="/assets/photos/brainstorm-640.webp 640w, /assets/photos/brainstorm-1200.webp 1200w" sizes="(max-width:760px) 100vw, 50vw" width="1200" height="675" alt="Students planning a campaign with sticky notes" loading="lazy" decoding="async" style="object-position:42% 50%"><figcaption><span class="mono">Strategy</span><b>Plan campaigns like a growth team</b></figcaption></figure>
+      <figure class="ph rv"><img src="/assets/photos/arzon-launch-1200.webp" srcset="/assets/photos/arzon-launch-640.webp 640w, /assets/photos/arzon-launch-1200.webp 1200w" sizes="(max-width:760px) 100vw, 50vw" width="1125" height="750" alt="Arzon Global centre launch" loading="lazy" decoding="async"><figcaption><span class="mono">Events</span><b>Run launches with Arzon's team</b></figcaption></figure>
+      <figure class="ph rv" style="--d:100ms"><img src="/assets/photos/press-1200.webp" srcset="/assets/photos/press-640.webp 640w, /assets/photos/press-1200.webp 1200w" sizes="(max-width:760px) 100vw, 50vw" width="1200" height="675" alt="A student speaking to the media at the Arzon launch" loading="lazy" decoding="async"><figcaption><span class="mono">Media</span><b>Get your campaign noticed</b></figcaption></figure>
     </div>
     <div class="free-strip" data-free="squad" style="margin-top:40px"></div>
   </div></section>
@@ -1021,7 +1052,7 @@ footer{padding:60px 0 110px;color:var(--muted);font-size:14px}
     <div class="wrap hero-grid" style="align-items:start">
       <div><span class="mono">Free · 30 seconds</span><h1>Get your <i>career roadmap.</i></h1>
         <p class="lede">Tell us the role you want. An Arzon mentor maps it to what real job descriptions ask for and WhatsApps you a personalised plan: the right track for your specialisation, the next batch date and what it takes to get there.</p>
-        <figure class="ph apply-ph"><img src="/assets/photos/mentor-938.webp" srcset="/assets/photos/mentor-640.webp 640w, /assets/photos/mentor-938.webp 938w" sizes="(max-width:760px) 92vw, 440px" width="938" height="750" alt="A mentor talking with two students at a table" decoding="async" style="object-position:50% 52%"><figcaption><span class="mono">Your next step</span><b>A mentor maps your role, one-to-one</b></figcaption></figure>
+        <figure class="ph apply-ph"><img src="/assets/photos/mentor-teaching-1200.webp" srcset="/assets/photos/mentor-teaching-640.webp 640w, /assets/photos/mentor-teaching-1200.webp 1200w" sizes="(max-width:760px) 92vw, 440px" width="938" height="750" alt="An Arzon mentor teaching a class" decoding="async"><figcaption><span class="mono">Your next step</span><b>A mentor maps your role, one-to-one</b></figcaption></figure>
         <div style="display:grid;gap:12px;max-width:440px">
           <div class="card" style="padding:16px 18px"><b>A plan made for you</b><div style="color:var(--muted);font-size:14px">Mapped to your Woxsen specialisation and year.</div></div>
           <div class="card" style="padding:16px 18px"><b>A real mentor, not a bot</b><div style="color:var(--muted);font-size:14px">We reach out the same day.</div></div>
@@ -1533,7 +1564,7 @@ function renderScholarship() {
         <div class="card"><h4>Freshers welcome</h4><p>No prior experience needed. Your counsellor helps you pick the right level.</p></div></div></div>
       <div class="free-strip" data-free="scholarship" style="margin-top:44px"></div>
       <div id="schTrust" style="margin-top:14px"></div>
-      <figure class="ph band" style="margin-top:44px"><img src="/assets/photos/graduation-1125.webp" srcset="/assets/photos/graduation-640.webp 640w, /assets/photos/graduation-1125.webp 1125w" sizes="(max-width:760px) 100vw, 1200px" width="1125" height="560" alt="A group of graduates in caps and gowns" loading="lazy" decoding="async" style="object-position:50% 42%"><figcaption><span class="mono">Where it takes you</span><b>Finish with 3 certificates and a letter of recommendation.</b><span>Course, project and internship completion certificates, plus an LOR for your next company.</span></figcaption></figure>
+      <figure class="ph band" style="margin-top:44px"><img src="/assets/photos/team-bouquets-1200.webp" srcset="/assets/photos/team-bouquets-640.webp 640w, /assets/photos/team-bouquets-1200.webp 1200w" sizes="(max-width:760px) 100vw, 1200px" width="1125" height="560" alt="The Arzon Global team with guests at the centre launch" loading="lazy" decoding="async"><figcaption><span class="mono">The Arzon community</span><b>Finish with 3 certificates and a letter of recommendation.</b><span>Course, project and internship completion certificates, plus an LOR for your next company.</span></figcaption></figure>
       <div style="margin-top:44px"><span class="mono">Included on every live track</span><div class="ben-grid" style="margin-top:14px">${B.map(benCard).join('')}<div class="ben"><div class="t-ico">${icon('trophy')}</div><h3>In-demand tracks</h3><p>Analytics, marketing, finance, HR, data science and AI. Same scholarship on every track.</p><a class="t-cta" href="#/programmes">Browse programmes <span class="arrow">→</span></a></div></div></div>
       <div style="margin-top:44px;max-width:820px" class="faq">${D.FAQ.slice(0, 4).map(f => `<details><summary>${f.q}</summary><p>${f.a}</p></details>`).join('')}</div>
     </div></section>`;
